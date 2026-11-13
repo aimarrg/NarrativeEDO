@@ -8,7 +8,7 @@ pescador**.
 La historia y los diálogos son tuyos: todo el contenido narrativo está en un
 único archivo editable, `build/world.py`.
 
-Repositorio: <https://github.com/aimarsito/NarrativeEDO>
+Repositorio: <https://github.com/aimarrg/NarrativeEDO>
 
 ---
 
