@@ -1,0 +1,11 @@
+# No normalizar finales de línea en binarios
+* text=auto
+
+*.png binary
+*.ogg binary
+*.ttf binary
+*.ved binary
+
+*.bat text eol=crlf
+*.py text eol=crlf
+*.md text eol=lf

@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Copias de seguridad locales
+*.bak
+*.bak_*
+*.orig
+*~
+
+# Archivos temporales del sistema
+Thumbs.db
+desktop.ini
+.DS_Store

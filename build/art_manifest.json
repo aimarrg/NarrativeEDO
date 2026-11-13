@@ -1,0 +1,103 @@
+{
+ "objects": {
+  "fisher": {
+   "path": "graphics/obj_fisher.png",
+   "x": 53,
+   "y": 361,
+   "w": 187,
+   "h": 313
+  },
+  "photo": {
+   "path": "graphics/obj_photo.png",
+   "x": 0,
+   "y": 0,
+   "w": 160,
+   "h": 190
+  },
+  "note": {
+   "path": "graphics/obj_note.png",
+   "x": 0,
+   "y": 1,
+   "w": 149,
+   "h": 90
+  },
+  "photo_zoom": {
+   "path": "graphics/obj_photo_zoom.png",
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 720
+  },
+  "tavern_a_closed": {
+   "path": "graphics/obj_tavern_a_closed.png",
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 330
+  },
+  "tavern_a_open": {
+   "path": "graphics/obj_tavern_a_open.png",
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 330
+  },
+  "tavern_b_closed": {
+   "path": "graphics/obj_tavern_b_closed.png",
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 330
+  },
+  "tavern_b_open": {
+   "path": "graphics/obj_tavern_b_open.png",
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 330
+  },
+  "net": {
+   "path": "graphics/obj_net.png",
+   "x": 0,
+   "y": 10,
+   "w": 240,
+   "h": 148
+  },
+  "pause": {
+   "path": "graphics/obj_pause.png",
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 720
+  }
+ },
+ "characters": {
+  "walk": [
+   "characters/haru_walk_1.png",
+   "characters/haru_walk_2.png",
+   "characters/haru_walk_3.png",
+   "characters/haru_walk_4.png"
+  ],
+  "idle": [
+   "characters/haru_idle_1.png",
+   "characters/haru_idle_2.png"
+  ]
+ },
+ "scenes": {
+  "menu": {
+   "path": "graphics/bg_menu.png"
+  },
+  "casa": {
+   "path": "graphics/bg_home.png"
+  },
+  "mercado": {
+   "path": "graphics/bg_street.png"
+  },
+  "puerto": {
+   "path": "graphics/bg_port.png"
+  },
+  "casa_pescador": {
+   "path": "graphics/bg_fisher.png"
+  }
+ }
+}
