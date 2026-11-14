@@ -107,7 +107,7 @@
 			<CharacterInactiveDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<CharacterActiveUsedDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<CharacterInactiveUsedDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
-			<CharacterDialogArea top="0" left="0" bottom="-1" right="-1" />
+			<CharacterDialogArea top="440" left="140" bottom="700" right="1140" />
 			<CharacterDialogActiveScrollUp name="" pause="-1" path="" Transparency="2">
 				<position x="0" y="0" />
 			</CharacterDialogActiveScrollUp>

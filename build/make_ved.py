@@ -736,7 +736,10 @@ for tag in ["CharacterActiveDialogFont", "CharacterInactiveDialogFont",
     e.set("tableId", "-1")
     e.set("LinkAny", "F")
 area = ET.SubElement(ch, "CharacterDialogArea")
-for k, v in {"top": "0", "left": "0", "bottom": "-1", "right": "-1"}.items():
+# Mismo cuadro que el de action text: centrado abajo del todo del escenario
+# (game 1280x720: x=140..1140, y=440..700). Evita que el dialogo salga por
+# encima de la cabeza del personaje.
+for k, v in {"top": "440", "left": "140", "bottom": "700", "right": "1140"}.items():
     area.set(k, v)
 for tag in ["CharacterDialogActiveScrollUp", "CharacterDialogInactiveScrollUp",
             "CharacterDialogActiveScrollDown", "CharacterDialogInactiveScrollDown",
