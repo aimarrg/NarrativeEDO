@@ -55,12 +55,36 @@ otro clicable basta añadir  "set": ["tabernas_abiertas"].
 # ---------------------------------------------------------------------------
 # Punto de partida
 # ---------------------------------------------------------------------------
-START_SCENE = "casa"
+# El juego empieza con la cinemática del castillo; al terminar, la propia
+# cinemática encadena con la casa (campo "start_scene_to" de la escena).
+START_SCENE = "castillo"
 
 # ---------------------------------------------------------------------------
 # Escenas (el orden de esta lista es el orden en el editor)
 # ---------------------------------------------------------------------------
 SCENES = [
+    {
+        "key": "castillo",
+        "name": "Castillo del Shogun",
+        "bg": "bg_castle",
+        "music": "audio/castle.ogg",
+        "way": [(0, 600), (1280, 600), (1280, 714), (0, 714)],
+        "entry": (760, 660),
+        # --- cinemática inicial (edita las frases en TEXTS) -----------------
+        # Cada elemento es una clave de TEXTS. Un bloque {"set": "condición"}
+        # cambia la escena a mitad de la cinemática (aquí, el golpe del filo).
+        "start_hide_char": True,
+        "cinematic": [
+            "castillo_1", "castillo_2", "castillo_3", "castillo_4",
+            "castillo_5", "castillo_6",
+            {"set": "ejecutado"},
+            "castillo_7", "castillo_8", "castillo_9",
+        ],
+        "start_show_char": True,
+        "start_scene_to": "casa",
+        # en la cinemática, CONTINUAR no debe sacar a Haru de pie en el cadalso
+        "pause_show_char": False,
+    },
     {
         "key": "casa",
         "name": "Casa de Haru",
@@ -107,6 +131,7 @@ CONDITIONS = {
     "tabernas_abiertas": False,  # las dos tabernas están cerradas al principio
     "hablo_pescador": False,     # ejemplo de marca de diálogo
     "pausa": False,              # menú de pausa abierto
+    "ejecutado": False,          # el filo ha caído en la cinemática inicial
 }
 
 VALUES = {
@@ -140,6 +165,21 @@ TEXTS = {
     "n_abandonar": "Salir del juego",
     "haru": "Haru",
 
+    # --- cinemática inicial (castillo del Shogun) ---
+    "castillo_1": "Castillo del Shogun. Amanecer del décimo día del octavo mes.",
+    "castillo_2": "El patio huele a tierra mojada. Nadie habla.",
+    "castillo_3": ("Haru espera de rodillas junto al cepo. Las manos le tiemblan "
+                   "detrás de la espalda."),
+    "castillo_4": ("«Haru, hijo de comerciantes de Nagasaki: acusado de tratar "
+                   "con extranjeros.»"),
+    "castillo_5": ("La multitud contiene el aliento. El verdugo comprueba la "
+                   "cuerda."),
+    "castillo_6": "La hoja sube. Un instante de silencio.",
+    "castillo_7": "El filo cae.",
+    "castillo_8": "Y todo se apaga.",
+    "castillo_9": ("Despiertas en tu casa. Aún es de noche y todo sigue en su "
+                   "sitio."),
+
     # --- frases (sustitúyelas por tus diálogos) ---
     "foto": ("Tu familia, retratada el año del incendio. Tu madre sostiene el abanico "
              "que aún guardas; tu padre finge no sonreír."),
@@ -158,6 +198,46 @@ TEXTS = {
 # Clicables
 # ---------------------------------------------------------------------------
 CLICKABLES = [
+    # -------------------------------------------------------------- CASTILLO
+    # Decorado de la cinemática. No tienen acción: solo se dibujan.
+    {
+        "key": "guillotine_up",
+        "scene": "castillo",
+        "sprite": "guillotine_up",
+        "pos": (635, 193),
+        "stand": (700, 660),
+        "order": 5,
+        "cond": "ejecutado",
+        "negate": True,
+    },
+    {
+        "key": "guillotine_down",
+        "scene": "castillo",
+        "sprite": "guillotine_down",
+        "pos": (635, 193),
+        "stand": (700, 660),
+        "order": 5,
+        "cond": "ejecutado",
+    },
+    {
+        "key": "verdugo",
+        "scene": "castillo",
+        "sprite": "verdugo",
+        "pos": (872, 289),
+        "stand": (900, 660),
+        "order": 6,
+    },
+    {
+        "key": "haru_reo",
+        "scene": "castillo",
+        "sprite": "haru_reo",
+        "pos": (650, 419),
+        "stand": (700, 660),
+        "order": 7,
+        "cond": "ejecutado",
+        "negate": True,
+    },
+
     # ------------------------------------------------------------------ CASA
     {
         "key": "foto",

@@ -326,7 +326,7 @@ for _sc in world.SCENES:
         _parts = []
         for cname in _btn.get("unset", []):
             _parts.append(ap_setcond(COND[cname], 1))
-        if _btn.get("unset"):
+        if _btn.get("unset") and _sc.get("pause_show_char", True):
             _parts.append(ap_showchar())
         if _btn.get("scene_to"):
             _parts.append(ap_scene("_entry_" + _btn["scene_to"]))
@@ -354,21 +354,64 @@ for _sc in world.SCENES + [{"key": "menu"}]:
 
 # ---------------------------------------------------------------------------
 # Acciones de inicio de escena
+#
+# Una escena puede definir en world.py:
+#   start_texts      lista de claves de TEXTS que se muestran al entrar
+#   cinematic        secuencia avanzada: claves de TEXTS y bloques
+#                    {"set": "condición"} / {"unset": "condición"}
+#   start_hide_char  oculta a Haru al entrar (cinemáticas)
+#   start_show_char  vuelve a mostrarlo antes de cambiar de escena
+#   start_scene_to   escena a la que se salta al terminar la secuencia
 # ---------------------------------------------------------------------------
 SCENE_START_ACTION = {}
 
 
-def make_start_action(scene_key, text_keys):
-    if not text_keys:
+def _as_list(v):
+    if v is None:
+        return []
+    if isinstance(v, str):
+        return [v]
+    return list(v)
+
+
+def _beat_parts(item):
+    if isinstance(item, str):
+        return [ap_text(TX[item])]
+    out = []
+    if item.get("text"):
+        out.append(ap_text(TX[item["text"]]))
+    for cname in _as_list(item.get("set")):
+        out.append(ap_setcond(COND[cname]))
+    for cname in _as_list(item.get("unset")):
+        out.append(ap_setcond(COND[cname], 1))
+    return out
+
+
+def make_start_action(sc):
+    scene_key = sc["key"]
+    parts = []
+    if sc.get("start_hide_char"):
+        parts.append(ap_hidechar())
+
+    seq = sc.get("cinematic")
+    if seq is None:
+        seq = list(sc.get("start_texts", []))
+    for item in seq:
+        parts.extend(_beat_parts(item))
+
+    if sc.get("start_show_char"):
+        parts.append(ap_showchar())
+    if sc.get("start_scene_to"):
+        parts.append(ap_scene("_entry_" + sc["start_scene_to"]))
+
+    if not parts:
         return None
-    parts = [ap_text(TX[k]) for k in text_keys]
     return add_action("Inicio: " + scene_key, 31, parts)
 
 
 SCENE_START_ACTION["menu"] = A["start_menu"]
 for _sc in world.SCENES:
-    SCENE_START_ACTION[_sc["key"]] = make_start_action(
-        _sc["key"], _sc.get("start_texts", []))
+    SCENE_START_ACTION[_sc["key"]] = make_start_action(_sc)
 
 
 # ---------------------------------------------------------------------------

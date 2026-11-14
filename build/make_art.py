@@ -1448,6 +1448,128 @@ def bg_fisher():
     return img.convert("RGB")
 
 
+def bg_castle():
+    """Patio de ejecución del castillo del Shogun, al amanecer."""
+    img = new_rgba()
+    vgrad(img, 0, 600, [(0, (26, 30, 48)), (0.30, (56, 54, 74)),
+                        (0.55, (124, 86, 78)), (0.80, (200, 134, 96)),
+                        (1, (232, 178, 126))])
+    pen = Pen(img)
+
+    # sol bajo y nubes rasgadas
+    soft_glow(img, 1010, 348, 180, (255, 146, 88), 100)
+    pen.ellipse((916, 254, 1104, 442), (212, 92, 62, 240), (150, 56, 40, 220), 2.2)
+    cloud(img, 250, 118, 430, 34, (240, 216, 188, 215), True)
+    cloud(img, 830, 84, 380, 28, (226, 172, 150, 195), True)
+    cloud(img, 1180, 196, 300, 24, (242, 208, 172, 175), True)
+
+    # montañas lejanas
+    mountain(img, [(0, 520), (0, 432), (150, 402), (300, 438), (470, 400),
+                   (660, 434), (820, 398), (1010, 430), (1180, 402),
+                   (1280, 432), (1280, 520)],
+             (56, 64, 82, 235), PAL["prussian"])
+
+    # muralla de piedra (ishigaki)
+    pen.poly([(88, 306), (648, 306), (712, 548), (24, 548)],
+             (112, 104, 96, 255), PAL["ink"] + (235,))
+    for i in range(6):
+        y = 338 + i * 34
+        pen.line([(66 + i * 4, y), (664 - i * 6, y)], (70, 64, 58, 140), 1.5)
+    for i in range(9):
+        x = 58 + i * 74
+        pen.line([(x, 312), (x - 10, 544)], (70, 64, 58, 95), 1.3)
+    pen.rect((80, 300, 656, 314), (78, 72, 66, 255), PAL["ink"] + (220,), 1.6)
+
+    # torreón: tres cuerpos con tejados
+    for x0, y0, x1, y1 in ((196, 246, 552, 302), (238, 176, 510, 250),
+                           (286, 112, 462, 180)):
+        pen.rect((x0, y0, x1, y1), (232, 222, 200, 255), PAL["ink"] + (215,), 1.8)
+        for x in range(x0 + 26, x1, 48):
+            pen.rect((x, y0 + 16, x + 20, y1 - 12), (58, 52, 46, 235))
+        pen.poly([(x0 - 54, y0 + 8), (x0 - 18, y0 - 34), (x1 + 18, y0 - 34),
+                  (x1 + 54, y0 + 8), (x1 + 30, y0 + 16), (x0 - 30, y0 + 16)],
+                 (52, 62, 78, 255), PAL["ink"] + (245,))
+        pen.line([(x0 - 44, y0 - 14), (x1 + 44, y0 - 14)],
+                 PAL["indigo_p"] + (110,), 1.6)
+        pen.rect((x0 - 62, y0 + 6, x0 - 46, y0 + 22), PAL["gold"] + (230,),
+                 PAL["ink"] + (220,), 1.2)
+        pen.rect((x1 + 46, y0 + 6, x1 + 62, y0 + 22), PAL["gold"] + (230,),
+                 PAL["ink"] + (220,), 1.2)
+
+    # remate del torreón
+    pen.poly([(340, 78), (374, 40), (408, 78)], PAL["gold"] + (240,),
+             PAL["ink"] + (230,))
+    pen.line([(374, 40), (374, 18)], PAL["ink"] + (230,), 2.4)
+
+    # estandartes (nobori)
+    for bx, s in ((120, 1), (1150, -1)):
+        pen.rect((bx, 240, bx + 8, 566), PAL["wood_d"] + (255,),
+                 PAL["ink"] + (220,), 1.4)
+        pen.poly([(bx + 8, 254), (bx + 8 + 74 * s, 268), (bx + 8 + 78 * s, 430),
+                  (bx + 8, 442)], PAL["vermillion_d"] + (245,),
+                 PAL["ink"] + (235,))
+        mx0, mx1 = bx + 8 + 26 * s, bx + 8 + 52 * s
+        pen.ellipse((min(mx0, mx1), 300, max(mx0, mx1), 326),
+                    PAL["paper_l"] + (240,))
+
+    # patio de grava
+    pen.rect((0, 544, W, H), (176, 166, 148, 255))
+    pen.rect((0, 544, W, 554), (120, 112, 100, 255))
+    for row in range(6):
+        y = 566 + row * 26
+        off = (row % 2) * 34
+        for x in range(-34 + off, W, 68):
+            pen.line([(x, y), (x + 22, y)], (150, 140, 124, 90), 1)
+    pen.line([(40, 662), (1160, 642)], (140, 130, 116, 70), 1)
+
+    # público en silencio, al pie de la muralla
+    rng = random.Random(4)
+    for i in range(15):
+        if i < 10:
+            x = 52 + i * 44 + rng.randint(-5, 5)
+        else:
+            x = 1112 + (i - 10) * 26 + rng.randint(-4, 4)
+        hh = rng.choice([72, 78, 84, 76])
+        y = 604 + rng.randint(-4, 4)
+        col = (50, 48, 50, 242)
+        pen.poly([(x - 20, y), (x + 20, y), (x + 14, y - hh), (x - 14, y - hh)],
+                 col, None)
+        pen.ellipse((x - 9, y - hh - 24, x + 9, y - hh + 1), col, None)
+        pen.line([(x - 16, y - hh + 10), (x + 16, y - hh + 10)],
+                 (30, 28, 28, 190), 1.2)
+
+    # cadalso de madera
+    pen.poly([(556, 502), (1014, 502), (1056, 538), (516, 538)],
+             (126, 92, 58, 255), PAL["ink"] + (245,))
+    pen.rect((516, 538, 1056, 596), (94, 68, 42, 255), PAL["ink"] + (245,), 2.4)
+    for x in range(536, 1050, 44):
+        pen.line([(x, 542), (x, 592)], (76, 54, 34, 150), 1.4)
+    pen.poly([(606, 506), (966, 506), (988, 530), (584, 530)],
+             PAL["vermillion_d"] + (235,), PAL["ink"] + (180,))
+    for sx0, sx1, sy in ((700, 880, 596), (720, 860, 610), (740, 840, 624)):
+        pen.rect((sx0, sy, sx1, sy + 14), (126, 92, 58, 255),
+                 PAL["ink"] + (230,), 1.6)
+
+    # guardia del Shogun
+    for gx, gs in ((470, 1.0), (1092, 1.05)):
+        draw_person(pen, gx, 556, 122 * gs, (54, 62, 82), PAL["hair"], hat=True)
+        pen.line([(gx + 34, 300), (gx + 34, 552)], PAL["wood_d"] + (255,), 3)
+        pen.poly([(gx + 34, 300), (gx + 46, 316), (gx + 34, 332)],
+                 (176, 182, 190, 255), PAL["ink"] + (230,))
+
+    # cuervos
+    for cx, cy, cs in ((360, 190, 1.0), (430, 150, 0.8),
+                       (300, 232, 0.7), (560, 168, 0.9)):
+        pen.line([(cx - 11 * cs, cy), (cx, cy - 6 * cs), (cx + 11 * cs, cy)],
+                 PAL["ink"] + (215,), 1.8)
+
+    cartouche(img, 30, 30, 34, 226, "CASTILLO")
+    img = washi(img, 0.95)
+    img = grain(img, 3)
+    img = vignette(img, 0.18)
+    return img.convert("RGB")
+
+
 # ---------------------------------------------------------------------------
 # Objetos del mundo nuevo
 # ---------------------------------------------------------------------------
@@ -1604,6 +1726,110 @@ def obj_net():
     return img
 
 
+def obj_guillotine(blade_down=False):
+    """Guillotina del cadalso. blade_down=True para el instante del golpe."""
+    img = new_rgba(250, 350)
+    pen = Pen(img)
+    wood = (110, 78, 50)
+    wood_l = (146, 108, 74)
+    steel = (178, 184, 192)
+    pen.ellipse((28, 324, 222, 350), (18, 16, 14, 95))
+    # base
+    pen.rect((34, 306, 216, 330), wood + (255,), PAL["ink"] + (255,), 2.2)
+    # montantes
+    pen.rect((46, 34, 76, 310), wood + (255,), PAL["ink"] + (255,), 2.2)
+    pen.rect((174, 34, 204, 310), wood + (255,), PAL["ink"] + (255,), 2.2)
+    pen.line([(54, 40), (54, 300)], wood_l + (110,), 1.6)
+    pen.line([(182, 40), (182, 300)], wood_l + (110,), 1.6)
+    # travesaño superior
+    pen.rect((24, 20, 226, 54), wood + (255,), PAL["ink"] + (255,), 2.4)
+    pen.line([(28, 30), (222, 30)], wood_l + (120,), 1.6)
+    # polea
+    pen.ellipse((116, 56, 136, 76), PAL["ink_soft"] + (255,),
+                PAL["ink"] + (255,), 1.6)
+    # cuchilla
+    y0 = 196 if blade_down else 96
+    pen.poly([(82, y0), (172, y0 + 32), (172, y0 + 84), (82, y0 + 52)],
+             steel + (255,), PAL["ink"] + (255,))
+    pen.poly([(82, y0), (172, y0 + 32), (172, y0 + 46), (82, y0 + 14)],
+             (226, 232, 240, 235), None)
+    pen.line([(96, y0 + 22), (158, y0 + 46)], (250, 252, 255, 190), 2)
+    if not blade_down:
+        pen.line([(126, 74), (126, y0)], (196, 172, 132, 255), 2.6)
+    # cepo
+    pen.rect((42, 258, 208, 296), wood_l + (255,), PAL["ink"] + (255,), 2.2)
+    pen.ellipse((106, 262, 144, 292), (22, 18, 16, 255), PAL["ink"] + (255,), 1.8)
+    # refuerzos
+    pen.poly([(46, 200), (76, 252), (76, 206)], wood_l + (150,))
+    pen.poly([(204, 200), (174, 252), (174, 206)], wood_l + (150,))
+    return img
+
+
+def obj_verdugo():
+    """Verdugo encapuchado con la cuerda de la cuchilla."""
+    img = new_rgba(160, 272)
+    pen = Pen(img)
+    robe = (46, 50, 66)
+    pen.ellipse((18, 254, 142, 272), (18, 16, 14, 90))
+    # piernas y sandalias
+    pen.rect((56, 216, 74, 256), robe + (255,))
+    pen.rect((84, 216, 102, 256), robe + (255,))
+    pen.ellipse((48, 250, 80, 264), (62, 46, 36, 255), PAL["ink"] + (210,), 1.2)
+    pen.ellipse((80, 250, 112, 264), (62, 46, 36, 255), PAL["ink"] + (210,), 1.2)
+    # torso
+    pen.poly([(48, 224), (104, 224), (112, 96), (40, 96)],
+             robe + (255,), PAL["ink"] + (255,))
+    # faja
+    pen.rect((42, 166, 110, 182), PAL["vermillion_d"] + (245,))
+    pen.rect((46, 196, 106, 206), PAL["indigo"] + (200,))
+    # brazos
+    pen.poly([(40, 108), (24, 176), (38, 184), (58, 122)],
+             robe + (255,), PAL["ink"] + (220,))
+    pen.poly([(112, 108), (130, 172), (116, 180), (96, 122)],
+             robe + (255,), PAL["ink"] + (220,))
+    # manos
+    pen.ellipse((18, 172, 40, 194), PAL["skin"] + (255,), PAL["ink"] + (200,), 1.4)
+    pen.ellipse((118, 164, 140, 186), PAL["skin"] + (255,), PAL["ink"] + (200,), 1.4)
+    # capucha
+    pen.poly([(40, 100), (110, 100), (118, 56), (76, 24), (32, 56)],
+             robe + (255,), PAL["ink"] + (255,))
+    # rostro en sombra
+    pen.ellipse((56, 54, 98, 96), (28, 26, 24, 255), PAL["ink"] + (255,), 1.6)
+    pen.ellipse((62, 68, 74, 79), (232, 226, 206, 235))
+    pen.ellipse((80, 68, 92, 79), (232, 226, 206, 235))
+    # cuerda hacia la polea
+    pen.line([(132, 176), (152, 106)], (196, 172, 132, 240), 2.6)
+    return img
+
+
+def obj_haru_reo():
+    """Haru de rodillas ante el cepo, con el kimono blanco del condenado."""
+    img = new_rgba(150, 150)
+    pen = Pen(img)
+    white = (234, 226, 206)
+    pen.ellipse((16, 130, 132, 150), (18, 16, 14, 85))
+    # rodillas y vuelo del kimono
+    pen.poly([(38, 146), (126, 146), (116, 118), (74, 110), (42, 120)],
+             white + (255,), PAL["ink"] + (255,))
+    # torso inclinado
+    pen.poly([(56, 122), (108, 116), (102, 74), (66, 80)],
+             white + (255,), PAL["ink"] + (255,))
+    for x in (62, 80, 98):
+        pen.line([(x, 122), (x - 3, 142)], (198, 186, 162, 170), 1.3)
+    # obi
+    pen.rect((58, 108, 108, 118), PAL["ink_soft"] + (225,))
+    # manos atadas a la espalda
+    pen.poly([(102, 100), (126, 118), (120, 126), (98, 110)],
+             white + (255,), PAL["ink"] + (200,))
+    pen.line([(108, 108), (124, 116)], PAL["ink_soft"] + (225,), 1.4)
+    # cabeza inclinada
+    pen.ellipse((56, 44, 96, 84), PAL["skin"] + (255,), PAL["ink"] + (255,), 2)
+    pen.poly([(56, 58), (58, 40), (76, 32), (94, 40), (96, 58),
+              (86, 50), (66, 50)], PAL["hair"] + (255,), PAL["ink"] + (255,))
+    pen.line([(64, 66), (88, 66)], PAL["ink_soft"] + (215,), 1.2)
+    return img
+
+
 def obj_pause():
     img = new_rgba()
     pen = Pen(img)
@@ -1650,8 +1876,10 @@ def main():
     save(bg_street(), "bg_street.png")
     save(bg_port(), "bg_port.png")
     save(bg_fisher(), "bg_fisher.png")
+    save(bg_castle(), "bg_castle.png")
     manifest["scenes"] = {
         "menu": {"path": "graphics/bg_menu.png"},
+        "castillo": {"path": "graphics/bg_castle.png"},
         "casa": {"path": "graphics/bg_home.png"},
         "mercado": {"path": "graphics/bg_street.png"},
         "puerto": {"path": "graphics/bg_port.png"},
@@ -1669,6 +1897,10 @@ def main():
         "tavern_b_closed": obj_tavern("b", False),
         "tavern_b_open": obj_tavern("b", True),
         "net": obj_net(),
+        "guillotine_up": obj_guillotine(False),
+        "guillotine_down": obj_guillotine(True),
+        "verdugo": obj_verdugo(),
+        "haru_reo": obj_haru_reo(),
         "pause": obj_pause(),
     }
     for key, im in objs.items():

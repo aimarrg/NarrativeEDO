@@ -63,6 +63,34 @@
    "w": 240,
    "h": 148
   },
+  "guillotine_up": {
+   "path": "graphics/obj_guillotine_up.png",
+   "x": 22,
+   "y": 18,
+   "w": 206,
+   "h": 332
+  },
+  "guillotine_down": {
+   "path": "graphics/obj_guillotine_down.png",
+   "x": 22,
+   "y": 18,
+   "w": 206,
+   "h": 332
+  },
+  "verdugo": {
+   "path": "graphics/obj_verdugo.png",
+   "x": 16,
+   "y": 21,
+   "w": 139,
+   "h": 251
+  },
+  "haru_reo": {
+   "path": "graphics/obj_haru_reo.png",
+   "x": 14,
+   "y": 29,
+   "w": 120,
+   "h": 121
+  },
   "pause": {
    "path": "graphics/obj_pause.png",
    "x": 0,
@@ -86,6 +114,9 @@
  "scenes": {
   "menu": {
    "path": "graphics/bg_menu.png"
+  },
+  "castillo": {
+   "path": "graphics/bg_castle.png"
   },
   "casa": {
    "path": "graphics/bg_home.png"

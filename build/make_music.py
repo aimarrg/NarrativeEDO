@@ -227,6 +227,35 @@ def warehouse_theme():
     return reverb(b, 0.42, 2.0, 2.0)
 
 
+def castle_theme():
+    """Tensión de amanecer: tambor lento, zumbido grave y campana rota."""
+    dur = 32.0
+    b = loop_buf(dur)
+    add(b, drone(n("D2"), dur, 0.15), 0)
+    add(b, drone(n("C3"), dur, 0.04), 0)
+    add(b, wind(dur, 0.05), 0)
+    # pulso de taiko lento y pesado (una negra cada dos tiempos)
+    beat = 1.9
+    t = 0.0
+    i = 0
+    while t < dur:
+        add(b, taiko(0.9, 0.40 if i % 4 == 0 else 0.20, 78, 40), t)
+        t += beat
+        i += 1
+    # campana grave al principio de cada frase
+    for at in (0.6, 8.8, 17.2, 25.6):
+        add(b, bell(n("D3"), 7.0, 0.13), at)
+    add(b, bell(n("F3"), 6.0, 0.06), 4.4)
+    # motivo de flauta corto, casi un lamento
+    for at, note, ln in ((3.4, "A3", 2.4), (11.6, "F3", 2.8),
+                         (20.2, "C4", 2.4), (28.0, "A3", 2.6)):
+        add(b, flute(n(note), ln, 0.13), at)
+    # cuerdas pulsadas graves
+    for at, note in ((2.2, "D3"), (6.6, "A2"), (14.8, "C3"), (23.4, "D3")):
+        add(b, pluck(n(note), 3.4, 0.18, 3.2, 0.40), at)
+    return reverb(b, 0.45, 1.9, 2.2)
+
+
 def epilogue_theme():
     dur = 28.0
     b = loop_buf(dur)
@@ -254,7 +283,8 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     print("Música ->", OUT)
     for name, fn in (("menu", menu_theme), ("market", market_theme),
-                     ("warehouse", warehouse_theme), ("epilogue", epilogue_theme)):
+                     ("warehouse", warehouse_theme), ("castle", castle_theme),
+                     ("epilogue", epilogue_theme)):
         write_ogg(name, fn())
 
 

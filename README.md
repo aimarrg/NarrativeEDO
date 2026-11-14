@@ -1,9 +1,10 @@
 # Nagasaki 1641: El sello de Dejima
 
 Prototipo jugable de aventura point-and-click para **Visionaire Studio 5**.
-Nagasaki, 1641 (período Edo), estética ukiyo-e. Haru empieza en su casa y
-recorre cuatro escenas encadenadas: **casa → mercado → puerto → casa del
-pescador**.
+Nagasaki, 1641 (período Edo), estética ukiyo-e. La partida se abre con una
+**cinemática en el castillo del Shogun** (la ejecución de Haru) y, al terminar,
+Haru despierta en su casa. Desde ahí recorre cuatro escenas encadenadas:
+**casa → mercado → puerto → casa del pescador**.
 
 La historia y los diálogos son tuyos: todo el contenido narrativo está en un
 único archivo editable, `build/world.py`.
@@ -79,6 +80,12 @@ py build\make_art.py
 py build\make_ved.py
 ```
 
+Y si cambias la música (necesita `ffmpeg` en el PATH):
+
+```
+py build\make_music.py
+```
+
 `make_ved.py` necesita `art_manifest.json`, así que ejecuta `make_art.py` antes
 la primera vez o cuando cambies sprites.
 
@@ -99,9 +106,18 @@ Todo el juego se describe con cuatro bloques:
 ### 3.1 Escenas
 
 ```python
-START_SCENE = "casa"
+START_SCENE = "castillo"
 
 SCENES = [
+    {"key": "castillo", "name": "Castillo del Shogun", "bg": "bg_castle",
+     "music": "audio/castle.ogg",
+     "way": [(0, 600), (1280, 600), (1280, 714), (0, 714)],
+     "entry": (760, 660),
+     "start_hide_char": True,
+     "cinematic": ["castillo_1", "castillo_2",
+                   {"set": "ejecutado"}, "castillo_7"],
+     "start_show_char": True,
+     "start_scene_to": "casa"},
     {"key": "casa", "name": "Casa de Haru", "bg": "bg_home",
      "music": "audio/warehouse.ogg",
      "way": [(0, 585), (1280, 585), (1280, 714), (0, 714)],
@@ -111,13 +127,20 @@ SCENES = [
 ```
 
 - `key`: identificador interno (se usa en `scene` y `scene_to`).
-- `bg`: fondo generado por `make_art.py` (`bg_home`, `bg_street`,
-  `bg_port`, `bg_fisher`).
+- `bg`: fondo generado por `make_art.py` (`bg_castle`, `bg_home`,
+  `bg_street`, `bg_port`, `bg_fisher`).
 - `way`: polígono de suelo por el que puede caminar Haru. El último valor
   (`714`) es el borde inferior.
 - `entry`: punto donde aparece Haru al entrar en la escena.
 - `start_texts`: lista de claves de `TEXTS` que se muestran al entrar
   (vacía = ninguna). Útil para narración automática al cambiar de escena.
+- `cinematic`: como `start_texts`, pero admite bloques `{"set": "condición"}`
+  entre las frases. Si existe, manda sobre `start_texts`.
+- `start_hide_char` / `start_show_char`: ocultan a Haru al empezar y lo
+  vuelven a mostrar al terminar (para cinemáticas).
+- `start_scene_to`: escena a la que se salta cuando acaba la secuencia.
+- `pause_show_char`: ponlo a `False` si el menú de pausa no debe mostrar a
+  Haru al pulsar CONTINUAR (por ejemplo, en una cinemática).
 
 El **orden de la lista `SCENES`** solo afecta al orden en que las escenas
 aparecen en el editor. La navegación real la definen los `scene_to` de los
@@ -138,12 +161,16 @@ qué escena apunta cada salida. Las salidas actuales son:
 
 | Desde | Salida | Hacia |
 |---|---|---|
+| castillo | (cinemática inicial) | casa |
 | casa | puerta derecha | mercado |
 | mercado | borde izquierdo | casa |
 | mercado | borde derecho | puerto |
 | puerto | borde izquierdo | mercado |
 | puerto | cabaña derecha | casa_pescador |
 | casa_pescador | puerta izquierda | puerto |
+
+El castillo no tiene salidas clicables: se recorre solo, de principio a fin, y
+salta a `casa` al terminar su cinemática.
 
 ### 3.3 Clicables
 
@@ -186,6 +213,7 @@ CONDITIONS = {
     "tabernas_abiertas": False,  # las tabernas están cerradas al principio
     "hablo_pescador": False,     # marca de diálogo
     "pausa": False,              # menú de pausa abierto
+    "ejecutado": False,          # el filo ha caído en la cinemática inicial
 }
 ```
 
@@ -263,6 +291,41 @@ condición en un clicable alternativo:
 
 El primero se ve la primera vez; el segundo, después. Es la misma mecánica que
 las tabernas y no requiere tocar el generador.
+
+### 4.5 La cinemática inicial (castillo del Shogun)
+
+La partida no empieza en casa: `START_SCENE = "castillo"` y la escena
+`castillo` reproduce su secuencia de entrada. Está descrita en `SCENES`:
+
+```python
+"start_hide_char": True,          # Haru no aparece de pie en el cadalso
+"cinematic": [
+    "castillo_1", "castillo_2",   # claves de TEXTS, en orden
+    "castillo_3", "castillo_4",
+    "castillo_5", "castillo_6",
+    {"set": "ejecutado"},         # ← aquí cae el filo
+    "castillo_7", "castillo_8", "castillo_9",
+],
+"start_show_char": True,
+"start_scene_to": "casa",         # al acabar, Haru despierta en su casa
+```
+
+Qué hace cada pieza:
+
+- Cada cadena es una frase de `TEXTS`; se muestran seguidas y se pueden
+  saltar con un clic.
+- `{"set": "ejecutado"}` cambia la condición a mitad de la secuencia. Los
+  objetos del cadalso están ligados a ella: mientras es falsa se ve la
+  guillotina con el filo arriba y Haru de rodillas (`haru_reo`); cuando pasa a
+  verdadera, se cambia a `guillotine_down` y desaparece el reo.
+- `start_hide_char` oculta al personaje real (el de los sprites de andar), y
+  `start_show_char` lo vuelve a mostrar antes de saltar a casa.
+- El decorado son cuatro objetos sin acción en `CLICKABLES` (`guillotine_up`,
+  `guillotine_down`, `verdugo`, `haru_reo`); se mueven con las claves `pos` y
+  `order` como cualquier otro sprite.
+
+Para cambiar el texto de la cinemática edita `castillo_1` … `castillo_9` en
+`TEXTS`. Para alargarla o acortarla, añade o quita claves en `cinematic`.
 
 ---
 
@@ -343,7 +406,8 @@ regenera el arte.
 
 `build/make_music.py` sintetiza los bucles con numpy y los convierte a OGG con
 `ffmpeg`. Cada escena declara su pista en `music` dentro de `SCENES`
-(`audio/menu.ogg`, `audio/market.ogg`, `audio/warehouse.ogg`…).
+(`audio/menu.ogg`, `audio/market.ogg`, `audio/warehouse.ogg`,
+`audio/castle.ogg`…).
 
 Si `ffmpeg` no está en el PATH, instálalo o edita la ruta en `make_music.py`.
 
