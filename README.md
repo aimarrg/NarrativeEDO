@@ -506,8 +506,31 @@ está en la sección *Menus*). Al seleccionar una escena, la zona central muestr
 su imagen y sus pestañas `Objects / Way systems / Actions / Curves`, y a la
 derecha sus `Conditions / Values / Components`.
 
+> Coordenadas de los iconos en pantalla (para depurar): con un editor abierto en
+> pantalla completa (2560x1440), la casita (*Scenes*) está en aproximadamente
+> `(x=276, y=25)` a partir del esquina superior izquierda del cliente, y el
+> engranaje (*Game properties*) en `(150, 20)`. Si un clic no responde, probar con
+> el cursor justo encima del icono.
+
 Para inspeccionar todo el proyecto de una vez: *Tools → Explorer* (`CTRL+E`),
 que lista `eScenes`, `eCharacters`, `eDialogs`, `eTexts`…
+
+### 11.5 Verificación (estado actual)
+
+Con las dos correcciones de arriba, el editor ya no muestra secciones vacías:
+
+- *Game properties*: datos reales (primera escena `menu`, personaje activo `Haru`,
+  idioma `Español`, fuente de texto `Noto`, 1280x720).
+- *Scenes*: lista con las **7 escenas** (`menu`, `castillo`, `casa`, `calle`,
+  `mercado`, `puerto`, `casa_pescador`), y al seleccionar una se ven la imagen de
+  fondo, sus objetos (`Objects`), la pestaña `Actions` y la panel de
+  condiciones.
+- *Characters*: 1 personaje (`Haru`).
+- *Fonts*: fuente `Noto`.
+- *Texts*: 54 textos / diálogos.
+
+Si algún panel sigue en blanco de nuevo, mirar `build/make_ved.py` (listas de
+enlaces) y `build/fix_editor_layout.py` (workspace del `.ini`).
 
 ### 11.2 Si una sección sale vacía
 
