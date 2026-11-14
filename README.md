@@ -312,6 +312,9 @@ Reglas prácticas:
   rectángulo definido por `GameActionTextRect` (`GameDrawActionText = 2`), anclado
   abajo del todo del escenario (game 1280x720: rect `x=140..1140`, `y=440..700`).
   Así no tapa la visibilidad del personaje y queda centrado horizontalmente.
+- La misma área para los diálogos con personaje se fija con
+  `CharacterDialogArea` (`top=440`, `left=140`, `bottom=700`, `right=1140`) para que
+  tampoco salga por encima de la cabeza del personaje.
 - Las opciones de diálogo (`GameDialogTextAlignment`) también se centran (`2`).
 
 ### 4.5 Conversaciones con ramas
