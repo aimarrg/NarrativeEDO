@@ -308,6 +308,12 @@ Reglas prácticas:
   escribirlo tú (el motor no lo añade solo).
 - Los acentos, `«»`, `¿` y `¡` funcionan: el `.ved` se guarda en UTF-8.
 
+- El cuadro de diálogo se dibuja centrado (`GameTextAlignment = 2`) dentro de un
+  rectángulo definido por `GameActionTextRect` (`GameDrawActionText = 2`), anclado
+  abajo del todo del escenario (game 1280x720: rect `x=140..1140`, `y=440..700`).
+  Así no tapa la visibilidad del personaje y queda centrado horizontalmente.
+- Las opciones de diálogo (`GameDialogTextAlignment`) también se centran (`2`).
+
 ### 4.5 Conversaciones con ramas
 
 Para una conversación que cambia según lo ya hablado, añade el texto y usa la
