@@ -66,6 +66,7 @@ visionaire-nagasaki/
 │  ├─ make_art.py           Genera todo el arte ukiyo-e (Pillow, 1280x720)
 │  ├─ make_music.py         Genera la música (numpy) y la codifica a OGG
 │  ├─ art_manifest.json     Posiciones/tamaños de sprites (lo escribe make_art)
+│  ├─ fix_editor_layout.py  Reinicia el layout del editor de Visionaire
 │  └─ legacy/               Copia del prototipo anterior (por si acaso)
 ├─ Jugar Nagasaki1641.bat
 └─ README.md
@@ -474,7 +475,38 @@ carpetas `graphics/`, `characters/`, `fonts/` y `audio/`.
 
 ---
 
-## 11. Copia de seguridad
+## 11. El editor de Visionaire
+
+El editor guarda el layout de paneles en
+`%LOCALAPPDATA%\Visionaire Editor\viseditor.ini`, y lo guarda **solo de la
+sección que estuviera activa al cerrarlo**. Si sales del editor mientras estás
+en *Texts*, la próxima vez abre con el panel de diálogos y traducciones y
+parece que el proyecto "solo tiene textos": el `.ved` está bien, es el layout.
+
+Para recuperar el árbol de proyecto y el editor de escenas:
+
+```
+py build\fix_editor_layout.py
+```
+
+El script cierra la línea `Workspaces=` del `.ini` (con copia de seguridad) y
+el editor reconstruye el layout por defecto al abrirlo. Cierra el editor antes
+de ejecutarlo; si sigue abierto, al salir volverá a escribir su workspace.
+
+También se puede hacer desde el propio editor: clic derecho sobre el icono de
+la sección en la barra superior → **Reset workspace**.
+
+Las secciones se cambian con los iconos de la barra superior (Game properties,
+Characters, Interfaces, Items, Cursors, Fonts, Scripts, Particles, Texts,
+Shaders, Audio…). Para inspeccionar todo el proyecto de una vez: *Tools →
+Explorer* (`CTRL+E`), que lista `eScenes`, `eCharacters`, `eDialogs`, `eTexts`…
+
+> Cada vez que el editor se cierra guarda el `.ved`; si no has cambiado nada y
+> quieres volver a la versión del repositorio: `git checkout -- game/Nagasaki1641.ved`.
+
+---
+
+## 12. Copia de seguridad
 
 El prototipo anterior (mercado/almacén/epílogo y su generador) está guardado en
 `build/legacy/`:
@@ -487,7 +519,7 @@ No se usa al regenerar; solo sirve para recuperar algo del diseño anterior.
 
 ---
 
-## 12. Créditos y licencias
+## 13. Créditos y licencias
 
 - Arte, música y textos: generados para este prototipo.
 - Tipografía: **Noto Sans** (SIL Open Font License).
