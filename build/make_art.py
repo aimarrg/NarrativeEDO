@@ -1607,6 +1607,11 @@ def bg_market():
     puesto(1046, 292, 620, (86, 62, 78), PAL["gold"],
            ["vasija", "caja", "vasija"], (86, 62, 78), PAL["gold"])
 
+    # NPC en cada puesto (vendedor detrás del mostrador)
+    draw_person(pen, 232, 618, 150, PAL["indigo"], (34, 26, 30), hat=True)
+    draw_person(pen, 640, 634, 154, PAL["vermillion"], (34, 26, 30), bun=True)
+    draw_person(pen, 1046, 618, 150, (86, 62, 78), (34, 26, 30), hat=True)
+
     # cajas y barriles sueltos
     pen.rect((54, 652, 128, 714), (146, 108, 70, 255), PAL["ink"] + (225,), 1.8)
     pen.line([(54, 652), (128, 714)], PAL["ink_soft"] + (140,), 1.4)
@@ -1624,6 +1629,23 @@ def bg_market():
 # ---------------------------------------------------------------------------
 # Objetos del mundo nuevo
 # ---------------------------------------------------------------------------
+def obj_decor_castle():
+    img = new_rgba(260, 220)
+    pen = Pen(img)
+    pen.poly([(0, 220), (0, 120), (40, 100), (70, 120), (90, 90),
+              (120, 120), (140, 100), (170, 120), (200, 90), (230, 120),
+              (260, 100), (260, 220)], (66, 74, 84, 230), PAL["ink"] + (200,))
+    for x in (60, 110, 160, 210):
+        pen.poly([(x - 18, 120), (x, 86), (x + 18, 120)], (90, 62, 44, 240),
+                 PAL["ink"] + (200,))
+    pen.rect((110, 160, 150, 220), (40, 30, 24, 240), PAL["ink"] + (200,), 1.4)
+    pen.ellipse((118, 152, 142, 168), (40, 30, 24, 240), PAL["ink"] + (200,), 1.4)
+    for x in (70, 120, 190):
+        pen.rect((x, 130, x + 14, 150), (240, 220, 170, 230), PAL["ink"] + (180,), 1.2)
+    img = washi(img, 0.6)
+    return img
+
+
 def obj_photo():
     img = new_rgba(160, 190)
     pen = Pen(img)
@@ -1941,6 +1963,7 @@ def main():
 
     print("Objetos...")
     objs = {
+        "decor_castle": obj_decor_castle(),
         "fisher": obj_fisher(),
         "photo": obj_photo(),
         "note": obj_note(),

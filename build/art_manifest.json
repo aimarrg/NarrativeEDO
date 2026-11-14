@@ -1,5 +1,12 @@
 {
  "objects": {
+  "decor_castle": {
+   "path": "graphics/obj_decor_castle.png",
+   "x": 0,
+   "y": 11,
+   "w": 260,
+   "h": 209
+  },
   "fisher": {
    "path": "graphics/obj_fisher.png",
    "x": 53,

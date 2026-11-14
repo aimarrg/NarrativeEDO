@@ -104,6 +104,24 @@ SCENES = [
         "start_texts": [],
     },
     {
+        "key": "calle_socio",
+        "name": "Calle del Socio",
+        "bg": "bg_street",
+        "music": "audio/market.ogg",
+        "way": [(0, 600), (1280, 600), (1280, 714), (0, 714)],
+        "entry": (150, 690),
+        "start_texts": [],
+    },
+    {
+        "key": "calle_rival",
+        "name": "Calle del Rival",
+        "bg": "bg_street",
+        "music": "audio/market.ogg",
+        "way": [(0, 600), (1280, 600), (1280, 714), (0, 714)],
+        "entry": (150, 690),
+        "start_texts": [],
+    },
+    {
         "key": "mercado",
         "name": "Mercado de Nagasaki",
         "bg": "bg_market",
@@ -394,6 +412,13 @@ CLICKABLES = [
         "text": "mercado_cerrado",
     },
     {
+        "key": "decor_castle",
+        "scene": "calle",
+        "sprite": "decor_castle",
+        "pos": (640, 200),
+        "order": 1,
+    },
+    {
         "key": "ir_puerto",
         "scene": "calle",
         "name": "n_ir_puerto",
@@ -401,6 +426,24 @@ CLICKABLES = [
         "stand": (1180, 690),
         "order": 2,
         "scene_to": "puerto",
+    },
+    {
+        "key": "ir_calle_socio",
+        "scene": "calle",
+        "name": "n_puesto_socio",
+        "rect": (300, 300, 100, 200),
+        "stand": (640, 690),
+        "order": 2,
+        "scene_to": "calle_socio",
+    },
+    {
+        "key": "ir_calle_rival",
+        "scene": "calle",
+        "name": "n_puesto_rival",
+        "rect": (900, 300, 100, 200),
+        "stand": (640, 690),
+        "order": 2,
+        "scene_to": "calle_rival",
     },
 
     # --------------------------------------------------------------- MERCADO
@@ -415,10 +458,10 @@ CLICKABLES = [
     },
     {
         "key": "puesto_socio",
-        "scene": "mercado",
+        "scene": "calle_socio",
         "name": "n_puesto_socio",
-        "rect": (86, 356, 296, 292),
-        "stand": (232, 700),
+        "rect": (400, 350, 400, 300),
+        "stand": (640, 690),
         "order": 3,
         "text": "mercado_socio",
     },
@@ -433,12 +476,32 @@ CLICKABLES = [
     },
     {
         "key": "puesto_rival",
-        "scene": "mercado",
+        "scene": "calle_rival",
         "name": "n_puesto_rival",
-        "rect": (900, 356, 292, 292),
-        "stand": (1046, 700),
+        "rect": (400, 350, 400, 300),
+        "stand": (640, 690),
         "order": 3,
         "text": "mercado_rival",
+    },
+
+    # ---------------------------------------------------- CALLE SOCIO / RIVAL
+    {
+        "key": "volver_calle_socio",
+        "scene": "calle_socio",
+        "name": "n_volver_calle",
+        "rect": (0, 560, 90, 160),
+        "stand": (110, 700),
+        "order": 2,
+        "scene_to": "calle",
+    },
+    {
+        "key": "volver_calle_rival",
+        "scene": "calle_rival",
+        "name": "n_volver_calle",
+        "rect": (0, 560, 90, 160),
+        "stand": (110, 700),
+        "order": 2,
+        "scene_to": "calle",
     },
 
     # ---------------------------------------------------------------- PUERTO
