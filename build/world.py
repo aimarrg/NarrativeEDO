@@ -69,7 +69,7 @@ SCENES = [
         "bg": "bg_castle",
         "music": "audio/castle.ogg",
         "way": [(0, 600), (1280, 600), (1280, 714), (0, 714)],
-        "entry": (760, 660),
+        "entry": (240, 690),
         # --- cinemática inicial (edita las frases en TEXTS) -----------------
         # Cada elemento es una clave de TEXTS. Un bloque {"set": "condición"}
         # cambia la escena a mitad de la cinemática (aquí, el golpe del filo).
@@ -95,12 +95,21 @@ SCENES = [
         "start_texts": [],
     },
     {
-        "key": "mercado",
-        "name": "Mercado de Nagasaki",
+        "key": "calle",
+        "name": "Calle de Nagasaki",
         "bg": "bg_street",
         "music": "audio/market.ogg",
         "way": [(0, 585), (1280, 585), (1280, 714), (0, 714)],
         "entry": (150, 690),
+        "start_texts": [],
+    },
+    {
+        "key": "mercado",
+        "name": "Mercado de Nagasaki",
+        "bg": "bg_market",
+        "music": "audio/market.ogg",
+        "way": [(0, 640), (1280, 640), (1280, 714), (0, 714)],
+        "entry": (160, 700),
         "start_texts": [],
     },
     {
@@ -129,8 +138,11 @@ SCENES = [
 CONDITIONS = {
     "viendo_foto": False,        # la foto está ampliada
     "tabernas_abiertas": False,  # las dos tabernas están cerradas al principio
-    "hablo_pescador": False,     # ejemplo de marca de diálogo
+    "hablo_pescador": False,     # ya has hablado con el pescador
+    "tengo_check": False,        # el pescador te ha dado el pase del mercado
     "pausa": False,              # menú de pausa abierto
+    "sin_haru_en_pausa": False,  # la pausa no muestra a Haru (cinemáticas)
+    "en_menu": False,            # estás en el menú principal (ESC no abre pausa)
     "ejecutado": False,          # el filo ha caído en la cinemática inicial
 }
 
@@ -147,13 +159,17 @@ TEXTS = {
     "n_nota": "Nota de tu padre",
     "n_cerrar_foto": "Cerrar la foto",
     "n_salir_casa": "Salir a la calle",
-    "n_volver_casa": "Volver a casa",
+    "n_volver_casa": "Entrar en casa",
     "n_ir_puerto": "Bajar al puerto",
-    "n_volver_mercado": "Volver al mercado",
+    "n_ir_mercado": "Ir al mercado",
+    "n_volver_calle": "Volver a la calle",
     "n_casa_pescador": "Casa del pescador",
     "n_volver_puerto": "Volver al puerto",
     "n_taberna_a": "Taberna de la Grulla",
     "n_taberna_b": "Taberna del Farol",
+    "n_puesto_tuyo": "Tu puesto",
+    "n_puesto_socio": "Puesto del socio",
+    "n_puesto_rival": "Puesto del rival",
     "n_pescador": "Pescador",
     "n_red": "Red de pesca",
     "n_barco": "Barco holandés",
@@ -188,7 +204,13 @@ TEXTS = {
     "taberna_cerrada": ("La puerta está cerrada con una cuerda y un cartel: "
                         "«Cerrado hasta la noche»."),
     "taberna_abierta": "(Aquí irá tu diálogo de la taberna.)",
-    "pescador": "(Aquí irá tu diálogo con el pescador.)",
+    "mercado_cerrado": ("El mercado está cerrado. Un cartel dice: «Abre a las 9:00»."),
+    "mercado_tuyo": "(Aquí irá tu texto del puesto de Haru.)",
+    "mercado_socio": "(Aquí irá tu diálogo con el socio.)",
+    "mercado_rival": "(Aquí irá tu diálogo con el rival.)",
+    "pescador": ("(Aquí irá tu diálogo con el pescador, que te da el pase del "
+                 "mercado.)"),
+    "pescador_despues": "(Aquí irá lo que dice el pescador la segunda vez.)",
     "red": "(Aquí irá el texto de la red de pesca.)",
     "barco": "(Aquí irá el texto del barco holandés.)",
     "cajas": "(Aquí irá el texto de las cajas del muelle.)",
@@ -199,13 +221,14 @@ TEXTS = {
 # ---------------------------------------------------------------------------
 CLICKABLES = [
     # -------------------------------------------------------------- CASTILLO
-    # Decorado de la cinemática. No tienen acción: solo se dibujan.
+    # Decorado de la cinemática. Todos los objetos descansan en el suelo del
+    # patio; el castillo queda arriba, al final de la escalinata.
     {
         "key": "guillotine_up",
         "scene": "castillo",
         "sprite": "guillotine_up",
-        "pos": (635, 193),
-        "stand": (700, 660),
+        "pos": (250, 368),
+        "stand": (520, 690),
         "order": 5,
         "cond": "ejecutado",
         "negate": True,
@@ -214,8 +237,8 @@ CLICKABLES = [
         "key": "guillotine_down",
         "scene": "castillo",
         "sprite": "guillotine_down",
-        "pos": (635, 193),
-        "stand": (700, 660),
+        "pos": (250, 368),
+        "stand": (520, 690),
         "order": 5,
         "cond": "ejecutado",
     },
@@ -223,16 +246,16 @@ CLICKABLES = [
         "key": "verdugo",
         "scene": "castillo",
         "sprite": "verdugo",
-        "pos": (872, 289),
-        "stand": (900, 660),
+        "pos": (470, 449),
+        "stand": (520, 690),
         "order": 6,
     },
     {
         "key": "haru_reo",
         "scene": "castillo",
         "sprite": "haru_reo",
-        "pos": (650, 419),
-        "stand": (700, 660),
+        "pos": (320, 579),
+        "stand": (520, 690),
         "order": 7,
         "cond": "ejecutado",
         "negate": True,
@@ -287,13 +310,13 @@ CLICKABLES = [
         "rect": (1030, 160, 190, 420),
         "stand": (1015, 690),
         "order": 2,
-        "scene_to": "mercado",
+        "scene_to": "calle",
     },
 
-    # --------------------------------------------------------------- MERCADO
+    # ----------------------------------------------------------------- CALLE
     {
         "key": "taberna_a_cerrada",
-        "scene": "mercado",
+        "scene": "calle",
         "name": "n_taberna_a",
         "sprite": "tavern_a_closed",
         "pos": (40, 250),
@@ -305,7 +328,7 @@ CLICKABLES = [
     },
     {
         "key": "taberna_a_abierta",
-        "scene": "mercado",
+        "scene": "calle",
         "name": "n_taberna_a",
         "sprite": "tavern_a_open",
         "pos": (40, 250),
@@ -316,7 +339,7 @@ CLICKABLES = [
     },
     {
         "key": "taberna_b_cerrada",
-        "scene": "mercado",
+        "scene": "calle",
         "name": "n_taberna_b",
         "sprite": "tavern_b_closed",
         "pos": (880, 250),
@@ -328,7 +351,7 @@ CLICKABLES = [
     },
     {
         "key": "taberna_b_abierta",
-        "scene": "mercado",
+        "scene": "calle",
         "name": "n_taberna_b",
         "sprite": "tavern_b_open",
         "pos": (880, 250),
@@ -338,33 +361,95 @@ CLICKABLES = [
         "text": "taberna_abierta",
     },
     {
+        # la puerta de casa, en la fachada central de la calle
         "key": "volver_casa",
-        "scene": "mercado",
+        "scene": "calle",
         "name": "n_volver_casa",
-        "rect": (0, 530, 80, 184),
-        "stand": (100, 690),
+        "rect": (466, 448, 82, 112),
+        "stand": (507, 700),
         "order": 2,
         "scene_to": "casa",
     },
     {
+        # con el pase del pescador se puede entrar al mercado
+        "key": "ir_mercado",
+        "scene": "calle",
+        "name": "n_ir_mercado",
+        "rect": (0, 520, 90, 200),
+        "stand": (120, 690),
+        "order": 2,
+        "cond": "tengo_check",
+        "scene_to": "mercado",
+    },
+    {
+        # sin el pase: el mercado aún está cerrado
+        "key": "mercado_cerrado",
+        "scene": "calle",
+        "name": "n_ir_mercado",
+        "rect": (0, 520, 90, 200),
+        "stand": (120, 690),
+        "order": 2,
+        "cond": "tengo_check",
+        "negate": True,
+        "text": "mercado_cerrado",
+    },
+    {
         "key": "ir_puerto",
-        "scene": "mercado",
+        "scene": "calle",
         "name": "n_ir_puerto",
-        "rect": (1200, 530, 80, 184),
+        "rect": (1200, 520, 80, 200),
         "stand": (1180, 690),
         "order": 2,
         "scene_to": "puerto",
     },
 
+    # --------------------------------------------------------------- MERCADO
+    {
+        "key": "salir_mercado",
+        "scene": "mercado",
+        "name": "n_volver_calle",
+        "rect": (0, 560, 90, 160),
+        "stand": (110, 700),
+        "order": 2,
+        "scene_to": "calle",
+    },
+    {
+        "key": "puesto_socio",
+        "scene": "mercado",
+        "name": "n_puesto_socio",
+        "rect": (86, 356, 296, 292),
+        "stand": (232, 700),
+        "order": 3,
+        "text": "mercado_socio",
+    },
+    {
+        "key": "puesto_tuyo",
+        "scene": "mercado",
+        "name": "n_puesto_tuyo",
+        "rect": (460, 336, 360, 306),
+        "stand": (640, 700),
+        "order": 3,
+        "text": "mercado_tuyo",
+    },
+    {
+        "key": "puesto_rival",
+        "scene": "mercado",
+        "name": "n_puesto_rival",
+        "rect": (900, 356, 292, 292),
+        "stand": (1046, 700),
+        "order": 3,
+        "text": "mercado_rival",
+    },
+
     # ---------------------------------------------------------------- PUERTO
     {
-        "key": "volver_mercado",
+        "key": "volver_calle",
         "scene": "puerto",
-        "name": "n_volver_mercado",
+        "name": "n_volver_calle",
         "rect": (0, 530, 80, 184),
         "stand": (100, 690),
         "order": 2,
-        "scene_to": "mercado",
+        "scene_to": "calle",
     },
     {
         "key": "ir_casa_pescador",
@@ -396,15 +481,30 @@ CLICKABLES = [
 
     # -------------------------------------------------------- CASA PESCADOR
     {
-        "key": "pescador",
+        # primera conversación: te da el pase del mercado
+        "key": "pescador_1",
         "scene": "casa_pescador",
         "name": "n_pescador",
         "sprite": "fisher",
         "pos": (760, 377),
         "stand": (990, 690),
         "order": 5,
+        "cond": "hablo_pescador",
+        "negate": True,
         "text": "pescador",
-        "set": ["hablo_pescador"],
+        "set": ["hablo_pescador", "tengo_check"],
+        "set_first": True,
+    },
+    {
+        "key": "pescador_2",
+        "scene": "casa_pescador",
+        "name": "n_pescador",
+        "sprite": "fisher",
+        "pos": (760, 377),
+        "stand": (990, 690),
+        "order": 5,
+        "cond": "hablo_pescador",
+        "text": "pescador_despues",
     },
     {
         "key": "red",

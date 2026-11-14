@@ -311,118 +311,6 @@ def mountain(img, pts, fill, hatch_col=None):
 # ---------------------------------------------------------------------------
 # FONDOS
 # ---------------------------------------------------------------------------
-def bg_market():
-    img = new_rgba()
-    vgrad(img, 0, 500, [(0, (30, 47, 72)), (0.30, (52, 79, 108)),
-                        (0.55, (126, 133, 138)), (0.76, (214, 178, 137)),
-                        (1, (242, 224, 188))])
-    pen = Pen(img)
-
-    # sol bajo, disco pÃ¡lido
-    soft_glow(img, 1010, 286, 130, (255, 226, 170), 70)
-    pen.ellipse((958, 234, 1062, 338), PAL["gold"] + (240,), PAL["vermillion"] + (120,), 2)
-
-    # nubes en bandas
-    cloud(img, 230, 150, 330, 44, PAL["paper_l"] + (232,), True)
-    cloud(img, 660, 108, 400, 38, PAL["paper"] + (220,), True)
-    cloud(img, 1040, 205, 360, 34, PAL["rose"] + (200,), True)
-    cloud(img, 360, 300, 300, 26, PAL["paper_l"] + (185,), True)
-    cloud(img, 900, 380, 340, 24, PAL["rose"] + (185,), True)
-
-    # montaÃ±as lejanas (Inasa) en capas
-    mountain(img, [(0, 500), (0, 420), (120, 372), (250, 410), (390, 368), (520, 405),
-                   (660, 360), (800, 402), (960, 366), (1120, 398), (1280, 372),
-                   (1280, 500)], PAL["indigo"] + (255,), PAL["prussian"])
-    mountain(img, [(0, 500), (0, 455), (170, 430), (330, 458), (520, 436), (700, 462),
-                   (900, 438), (1100, 460), (1280, 440), (1280, 500)],
-             PAL["prussian"] + (255,), PAL["ink_soft"])
-
-    # mar
-    vgrad(img, 480, 596, [(0, (38, 62, 88)), (0.5, (30, 54, 78)), (1, (24, 44, 64))])
-    seigaiha(img, -40, 486, W + 40, 592, PAL["prussian"], PAL["indigo_p"], r=24, alpha=120)
-    seigaiha(img, -40, 530, W + 40, 592, PAL["prussian"], PAL["paper"], r=18, alpha=45)
-
-    # barco holandÃ©s lejano
-    pen = Pen(img)
-    bx, by = 1080, 492
-    pen.poly([(bx - 55, by), (bx + 55, by), (bx + 40, by + 14), (bx - 40, by + 14)],
-             PAL["ink"] + (235,), PAL["ink"] + (255,))
-    pen.line([(bx, by), (bx, by - 92)], PAL["ink"] + (255,), 2.4)
-    pen.line([(bx - 36, by - 8), (bx + 34, by - 8)], PAL["ink"] + (230,), 2)
-    pen.poly([(bx + 4, by - 88), (bx + 4, by - 34), (bx + 44, by - 40)],
-             PAL["paper"] + (225,), PAL["ink"] + (255,))
-    pen.poly([(bx - 4, by - 84), (bx - 4, by - 30), (bx - 32, by - 38)],
-             PAL["paper"] + (210,), PAL["ink"] + (255,))
-    pen.line([(bx + 46, by - 20), (bx, by - 88)], PAL["ink"] + (150,), 1)
-
-    # muelle de madera
-    pen.rect((0, 588, W, H), PAL["wood"] + (255,))
-    pen.rect((0, 588, W, 602), PAL["wood_l"] + (255,), PAL["ink"] + (255,), 2)
-    for y in range(612, H, 30):
-        pen.line([(0, y), (W, y)], PAL["wood_d"] + (130,), 1.4)
-    for x in range(-40, W + 60, 132):
-        pen.line([(x, 600), (x + 46, H)], PAL["wood_d"] + (105,), 1.2)
-    pen.line([(0, 588), (W, 588)], PAL["ink"] + (255,), 3)
-
-    # almacÃ©n derecha
-    pen.poly([(930, 336), (1290, 310), (1290, 236), (930, 258)], PAL["wood_d"] + (255,),
-             PAL["ink"] + (255,))
-    pen.rect((946, 330, 1280, 604), PAL["wood"] + (255,), PAL["ink"] + (255,), 3)
-    for x in range(956, 1280, 30):
-        pen.line([(x, 334), (x, 602)], PAL["wood_d"] + (95,), 1.2)
-    pen.rect((946, 330, 1280, 346), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 1.5)
-    # hueco de la puerta
-    pen.rect((1018, 366, 1218, 604), PAL["ink"] + (255,))
-    pen.rect((1010, 356, 1226, 370), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2)
-    # postes y viga
-    pen.rect((1004, 350, 1022, 610), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2)
-    pen.rect((1214, 350, 1232, 610), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2)
-    pen.rect((1000, 336, 1236, 352), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2)
-    hatch(img, [(946, 346), (1280, 346), (1280, 604), (946, 604)], PAL["ink_soft"],
-          step=11, width=1, alpha=40, angle=58)
-
-    # puesto de pescado (izquierda)
-    pen.rect((58, 404, 74, 620), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2)
-    pen.rect((302, 404, 318, 620), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2)
-    for i in range(6):
-        x = 48 + i * 45
-        col = PAL["paper"] + (255,) if i % 2 == 0 else PAL["vermillion"] + (245,)
-        pen.poly([(x, 372), (x + 47, 372), (x + 58, 428), (x - 4, 428)], col,
-                 PAL["ink"] + (255,))
-    pen.rect((40, 424, 326, 436), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2)
-    # mostrador
-    pen.rect((68, 552, 308, 588), PAL["wood_l"] + (255,), PAL["ink"] + (255,), 2)
-    pen.rect((68, 588, 308, 618), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2)
-    # pescados colgados
-    for i, x in enumerate((100, 142, 238, 280)):
-        pen.line([(x, 436), (x, 470)], PAL["ink_soft"] + (200,), 1)
-        pen.ellipse((x - 7, 468, x + 7, 500), PAL["indigo_l"] + (235,), PAL["ink"] + (255,), 1.2)
-        pen.line([(x, 470), (x, 496)], PAL["paper"] + (90,), 1)
-    # cajas bajo el mostrador
-    pen.rect((318, 566, 396, 630), PAL["wood"] + (255,), PAL["ink"] + (255,), 2)
-    pen.line([(318, 566), (396, 630)], PAL["wood_d"] + (140,), 1.4)
-    pen.line([(396, 566), (318, 630)], PAL["wood_d"] + (140,), 1.4)
-
-    # farolillos
-    for cx, cy, r in ((430, 58, 34), (760, 40, 30)):
-        pen.line([(cx, 0), (cx, cy - r)], PAL["ink"] + (255,), 2)
-        soft_glow(img, cx, cy, r * 2.4, (255, 190, 110), 70)
-        pen.rrect((cx - r * 0.52, cy - r * 0.55, cx + r * 0.52, cy + r * 0.7), 8,
-                  PAL["vermillion"] + (240,), PAL["ink"] + (255,), 2)
-        pen.line([(cx - r * 0.52, cy - r * 0.2), (cx + r * 0.52, cy - r * 0.2)],
-                 PAL["paper"] + (130,), 1.4)
-        pen.line([(cx, cy - r * 0.55), (cx, cy + r * 0.7)], PAL["vermillion_d"] + (120,), 1)
-
-    # cartucho y sellos (esquina superior izquierda, discreta)
-    cartouche(img, 24, 24, 34, 210, "NAGASAKI")
-    seal_stamp(img, 26, 246, 30, "1641")
-
-    img = washi(img, 1.0)
-    img = grain(img, 3)
-    img = vignette(img, 0.12)
-    return img.convert("RGB")
-
-
 def bg_warehouse():
     img = new_rgba()
     # pared de yeso (kura)
@@ -1302,16 +1190,29 @@ def bg_street():
         pen.line([(x - 16, 168), (x + 16, 168)], PAL["vermillion_d"] + (220,), 2)
         pen.line([(x - 16, 190), (x + 16, 190)], PAL["vermillion_d"] + (220,), 2)
 
-    # puesto central con toldo
-    pen.rect((430, 470, 560, 560), PAL["wood"] + (255,), PAL["ink"] + (255,), 2)
-    pen.poly([(410, 470), (495, 428), (580, 470)], PAL["indigo"] + (255,),
+    # casa de Haru, en el centro de la calle: fachada de machiya con puerta
+    pen.rect((392, 428, 588, 566), (206, 186, 152, 255), PAL["ink"] + (255,), 2.2)
+    pen.poly([(370, 432), (490, 382), (610, 432)], (62, 70, 84, 255),
              PAL["ink"] + (255,))
-    for i in range(3):
-        pen.poly([(426 + i * 44, 468), (448 + i * 44, 444), (470 + i * 44, 468)],
-                 PAL["paper_l"] + (210,))
-    pen.rect((446, 500, 544, 516), PAL["wood_l"] + (255,), PAL["ink"] + (180,), 1.2)
+    pen.rect((370, 428, 610, 446), (74, 82, 94, 255), PAL["ink"] + (220,), 1.6)
+    # celosías a los lados
+    for lx in (404, 556):
+        pen.rect((lx, 470, lx + 26, 552), PAL["wood_d"] + (255,),
+                 PAL["ink"] + (215,), 1.4)
+        for ly in range(478, 552, 12):
+            pen.line([(lx + 3, ly), (lx + 23, ly)], PAL["wood_l"] + (150,), 1.2)
+    # puerta corredera (la zona clicable "volver_casa")
+    pen.rect((466, 448, 548, 560), PAL["wood_d"] + (255,), PAL["ink"] + (255,), 2.6)
+    pen.rect((476, 458, 538, 552), (54, 44, 34, 255))
+    for dx in range(484, 538, 18):
+        pen.line([(dx, 458), (dx, 552)], PAL["wood_l"] + (120,), 1.2)
+    pen.line([(507, 458), (507, 552)], PAL["wood_d"] + (255,), 2)
+    # noren con el sello de la casa
+    pen.rect((462, 448, 552, 480), PAL["indigo"] + (240,), PAL["ink"] + (230,), 1.6)
+    pen.ellipse((494, 456, 520, 476), PAL["paper_l"] + (240,))
+    pen.rect((500, 461, 514, 471), PAL["vermillion"] + (220,))
 
-    cartouche(img, 30, 30, 34, 206, "MERCADO")
+    cartouche(img, 30, 30, 34, 206, "CALLE")
     img = washi(img, 1.0)
     img = grain(img, 3)
     img = vignette(img, 0.13)
@@ -1449,117 +1350,135 @@ def bg_fisher():
 
 
 def bg_castle():
-    """Patio de ejecución del castillo del Shogun, al amanecer."""
+    """Patio de ejecución al pie del castillo del Shogun, con escalinata."""
     img = new_rgba()
-    vgrad(img, 0, 600, [(0, (26, 30, 48)), (0.30, (56, 54, 74)),
-                        (0.55, (124, 86, 78)), (0.80, (200, 134, 96)),
-                        (1, (232, 178, 126))])
+    vgrad(img, 0, 566, [(0, (28, 32, 52)), (0.26, (58, 56, 78)),
+                        (0.50, (126, 88, 78)), (0.76, (204, 138, 98)),
+                        (1, (238, 186, 132))])
     pen = Pen(img)
 
     # sol bajo y nubes rasgadas
-    soft_glow(img, 1010, 348, 180, (255, 146, 88), 100)
-    pen.ellipse((916, 254, 1104, 442), (212, 92, 62, 240), (150, 56, 40, 220), 2.2)
-    cloud(img, 250, 118, 430, 34, (240, 216, 188, 215), True)
-    cloud(img, 830, 84, 380, 28, (226, 172, 150, 195), True)
-    cloud(img, 1180, 196, 300, 24, (242, 208, 172, 175), True)
+    soft_glow(img, 1064, 356, 190, (255, 150, 90), 105)
+    pen.ellipse((970, 262, 1158, 450), (214, 94, 62, 240), (150, 56, 40, 220), 2.2)
+    cloud(img, 210, 116, 420, 34, (240, 216, 188, 215), True)
+    cloud(img, 760, 80, 380, 28, (226, 172, 150, 195), True)
+    cloud(img, 1180, 190, 300, 24, (242, 208, 172, 175), True)
 
     # montañas lejanas
-    mountain(img, [(0, 520), (0, 432), (150, 402), (300, 438), (470, 400),
-                   (660, 434), (820, 398), (1010, 430), (1180, 402),
-                   (1280, 432), (1280, 520)],
+    mountain(img, [(0, 500), (0, 418), (150, 388), (300, 424), (470, 386),
+                   (660, 420), (820, 384), (1010, 416), (1180, 388),
+                   (1280, 418), (1280, 500)],
              (56, 64, 82, 235), PAL["prussian"])
 
-    # muralla de piedra (ishigaki)
-    pen.poly([(88, 306), (648, 306), (712, 548), (24, 548)],
-             (112, 104, 96, 255), PAL["ink"] + (235,))
-    for i in range(6):
-        y = 338 + i * 34
-        pen.line([(66 + i * 4, y), (664 - i * 6, y)], (70, 64, 58, 140), 1.5)
-    for i in range(9):
-        x = 58 + i * 74
-        pen.line([(x, 312), (x - 10, 544)], (70, 64, 58, 95), 1.3)
-    pen.rect((80, 300, 656, 314), (78, 72, 66, 255), PAL["ink"] + (220,), 1.6)
+    # muralla de piedra (ishigaki) sobre la que se alza el castillo
+    pen.poly([(0, 436), (W, 436), (W, 566), (0, 566)], (112, 104, 96, 255),
+             PAL["ink"] + (235,))
+    for i in range(4):
+        y = 452 + i * 30
+        pen.line([(0, y), (W, y)], (72, 66, 60, 130), 1.4)
+        for x in range(-46 + (i % 2) * 46, W, 92):
+            pen.line([(x, y), (x + 8, y + 30)], (72, 66, 60, 80), 1.2)
+    pen.rect((0, 430, W, 444), (78, 72, 66, 255), PAL["ink"] + (225,), 1.8)
 
     # torreón: tres cuerpos con tejados
-    for x0, y0, x1, y1 in ((196, 246, 552, 302), (238, 176, 510, 250),
-                           (286, 112, 462, 180)):
+    for x0, y0, x1, y1 in ((530, 350, 1000, 444), (580, 288, 950, 350),
+                           (630, 232, 900, 288)):
         pen.rect((x0, y0, x1, y1), (232, 222, 200, 255), PAL["ink"] + (215,), 1.8)
-        for x in range(x0 + 26, x1, 48):
+        for x in range(x0 + 26, x1 - 16, 48):
             pen.rect((x, y0 + 16, x + 20, y1 - 12), (58, 52, 46, 235))
-        pen.poly([(x0 - 54, y0 + 8), (x0 - 18, y0 - 34), (x1 + 18, y0 - 34),
-                  (x1 + 54, y0 + 8), (x1 + 30, y0 + 16), (x0 - 30, y0 + 16)],
+        pen.poly([(x0 - 58, y0 + 10), (x0 - 20, y0 - 32), (x1 + 20, y0 - 32),
+                  (x1 + 58, y0 + 10), (x1 + 32, y0 + 18), (x0 - 32, y0 + 18)],
                  (52, 62, 78, 255), PAL["ink"] + (245,))
-        pen.line([(x0 - 44, y0 - 14), (x1 + 44, y0 - 14)],
+        pen.line([(x0 - 48, y0 - 14), (x1 + 48, y0 - 14)],
                  PAL["indigo_p"] + (110,), 1.6)
-        pen.rect((x0 - 62, y0 + 6, x0 - 46, y0 + 22), PAL["gold"] + (230,),
+        pen.rect((x0 - 66, y0 + 8, x0 - 50, y0 + 24), PAL["gold"] + (230,),
                  PAL["ink"] + (220,), 1.2)
-        pen.rect((x1 + 46, y0 + 6, x1 + 62, y0 + 22), PAL["gold"] + (230,),
+        pen.rect((x1 + 50, y0 + 8, x1 + 66, y0 + 24), PAL["gold"] + (230,),
                  PAL["ink"] + (220,), 1.2)
 
     # remate del torreón
-    pen.poly([(340, 78), (374, 40), (408, 78)], PAL["gold"] + (240,),
+    pen.poly([(730, 202), (765, 160), (800, 202)], PAL["gold"] + (240,),
              PAL["ink"] + (230,))
-    pen.line([(374, 40), (374, 18)], PAL["ink"] + (230,), 2.4)
+    pen.line([(765, 160), (765, 136)], PAL["ink"] + (230,), 2.4)
 
-    # estandartes (nobori)
-    for bx, s in ((120, 1), (1150, -1)):
-        pen.rect((bx, 240, bx + 8, 566), PAL["wood_d"] + (255,),
-                 PAL["ink"] + (220,), 1.4)
-        pen.poly([(bx + 8, 254), (bx + 8 + 74 * s, 268), (bx + 8 + 78 * s, 430),
-                  (bx + 8, 442)], PAL["vermillion_d"] + (245,),
-                 PAL["ink"] + (235,))
-        mx0, mx1 = bx + 8 + 26 * s, bx + 8 + 52 * s
-        pen.ellipse((min(mx0, mx1), 300, max(mx0, mx1), 326),
-                    PAL["paper_l"] + (240,))
-
+    # público en lo alto de la muralla
+    rng = random.Random(11)
+    for i in range(9):
+        x = 96 + i * 46 + rng.randint(-6, 6)
+        hh = rng.choice([58, 64, 70])
+        col = (50, 48, 50, 240)
+        pen.poly([(x - 16, 434), (x + 16, 434), (x + 11, 434 - hh),
+                  (x - 11, 434 - hh)], col, None)
+        pen.ellipse((x - 8, 434 - hh - 20, x + 8, 434 - hh + 1), col, None)
     # patio de grava
-    pen.rect((0, 544, W, H), (176, 166, 148, 255))
-    pen.rect((0, 544, W, 554), (120, 112, 100, 255))
+    pen.rect((0, 566, W, H), (176, 166, 148, 255))
+    pen.rect((0, 566, W, 576), (118, 110, 98, 255))
     for row in range(6):
-        y = 566 + row * 26
+        y = 592 + row * 26
         off = (row % 2) * 34
         for x in range(-34 + off, W, 68):
             pen.line([(x, y), (x + 22, y)], (150, 140, 124, 90), 1)
-    pen.line([(40, 662), (1160, 642)], (140, 130, 116, 70), 1)
 
-    # público en silencio, al pie de la muralla
-    rng = random.Random(4)
-    for i in range(15):
-        if i < 10:
-            x = 52 + i * 44 + rng.randint(-5, 5)
-        else:
-            x = 1112 + (i - 10) * 26 + rng.randint(-4, 4)
-        hh = rng.choice([72, 78, 84, 76])
-        y = 604 + rng.randint(-4, 4)
-        col = (50, 48, 50, 242)
-        pen.poly([(x - 20, y), (x + 20, y), (x + 14, y - hh), (x - 14, y - hh)],
-                 col, None)
-        pen.ellipse((x - 9, y - hh - 24, x + 9, y - hh + 1), col, None)
-        pen.line([(x - 16, y - hh + 10), (x + 16, y - hh + 10)],
-                 (30, 28, 28, 190), 1.2)
+    # pretiles de la escalinata
+    top_l, top_r, bot_l, bot_r = 706, 824, 640, 930
+    top_y, bot_y, steps = 444, 708, 9
+    pen.poly([(top_l - 30, top_y), (top_l, top_y), (bot_l, bot_y),
+              (bot_l - 40, bot_y)], (134, 124, 112, 255), PAL["ink"] + (215,))
+    pen.poly([(top_r, top_y), (top_r + 30, top_y), (bot_r + 40, bot_y),
+              (bot_r, bot_y)], (134, 124, 112, 255), PAL["ink"] + (215,))
 
-    # cadalso de madera
-    pen.poly([(556, 502), (1014, 502), (1056, 538), (516, 538)],
-             (126, 92, 58, 255), PAL["ink"] + (245,))
-    pen.rect((516, 538, 1056, 596), (94, 68, 42, 255), PAL["ink"] + (245,), 2.4)
-    for x in range(536, 1050, 44):
-        pen.line([(x, 542), (x, 592)], (76, 54, 34, 150), 1.4)
-    pen.poly([(606, 506), (966, 506), (988, 530), (584, 530)],
-             PAL["vermillion_d"] + (235,), PAL["ink"] + (180,))
-    for sx0, sx1, sy in ((700, 880, 596), (720, 860, 610), (740, 840, 624)):
-        pen.rect((sx0, sy, sx1, sy + 14), (126, 92, 58, 255),
-                 PAL["ink"] + (230,), 1.6)
+    # escalones hacia la puerta del castillo
+    for i in range(steps):
+        t0, t1 = i / steps, (i + 1) / steps
+        y0 = top_y + (bot_y - top_y) * t0
+        y1 = top_y + (bot_y - top_y) * t1
+        l0 = top_l + (bot_l - top_l) * t0
+        r0 = top_r + (bot_r - top_r) * t0
+        l1 = top_l + (bot_l - top_l) * t1
+        r1 = top_r + (bot_r - top_r) * t1
+        k = 172 - i * 4
+        pen.poly([(l0, y0), (r0, y0), (r1, y1), (l1, y1)],
+                 (k, k - 8, k - 22, 255), (86, 78, 70, 130))
+        pen.line([(l1, y1), (r1, y1)], (86, 78, 70, 200), 1.8)
 
-    # guardia del Shogun
-    for gx, gs in ((470, 1.0), (1092, 1.05)):
-        draw_person(pen, gx, 556, 122 * gs, (54, 62, 82), PAL["hair"], hat=True)
-        pen.line([(gx + 34, 300), (gx + 34, 552)], PAL["wood_d"] + (255,), 3)
-        pen.poly([(gx + 34, 300), (gx + 46, 316), (gx + 34, 332)],
+    # guardias flanqueando la escalinata
+    for gx, gs in ((664, 1.0), (880, 1.0)):
+        draw_person(pen, gx, 446, 82 * gs, (54, 62, 82), PAL["hair"], hat=True)
+        pen.line([(gx + 26, 356), (gx + 26, 444)], PAL["wood_d"] + (255,), 2.6)
+        pen.poly([(gx + 26, 356), (gx + 36, 370), (gx + 26, 384)],
                  (176, 182, 190, 255), PAL["ink"] + (230,))
 
+    # puerta del castillo al final de la escalinata
+    pen.rect((716, 386, 814, 446), (40, 34, 30, 255), PAL["ink"] + (240,), 2.4)
+    pen.poly([(698, 390), (765, 354), (832, 390)], (52, 62, 78, 255),
+             PAL["ink"] + (240,))
+    pen.line([(765, 446), (765, 394)], (86, 74, 58, 150), 1.6)
+
+    # público en primer plano, a la derecha
+    for i in range(4):
+        x = 1092 + i * 44 + rng.randint(-5, 5)
+        hh = rng.choice([92, 98, 104])
+        col = (44, 42, 46, 245)
+        pen.poly([(x - 20, 720), (x + 20, 720), (x + 14, 720 - hh),
+                  (x - 14, 720 - hh)], col, None)
+        pen.ellipse((x - 9, 720 - hh - 20, x + 9, 720 - hh + 2), col, None)
+        pen.line([(x - 15, 720 - hh + 10), (x + 15, 720 - hh + 10)],
+                 (26, 24, 26, 190), 1.3)
+
+    # estandartes (nobori) a los lados
+    for bx, s in ((96, 1), (1180, -1)):
+        pen.rect((bx, 250, bx + 8, 700), PAL["wood_d"] + (255,),
+                 PAL["ink"] + (220,), 1.4)
+        pen.poly([(bx + 8, 266), (bx + 8 + 76 * s, 282),
+                  (bx + 8 + 80 * s, 470), (bx + 8, 484)],
+                 PAL["vermillion_d"] + (245,), PAL["ink"] + (235,))
+        mx0, mx1 = bx + 8 + 28 * s, bx + 8 + 56 * s
+        pen.ellipse((min(mx0, mx1), 336, max(mx0, mx1), 364),
+                    PAL["paper_l"] + (240,))
+
     # cuervos
-    for cx, cy, cs in ((360, 190, 1.0), (430, 150, 0.8),
-                       (300, 232, 0.7), (560, 168, 0.9)):
+    for cx, cy, cs in ((430, 168, 1.0), (500, 128, 0.8),
+                       (372, 210, 0.7), (560, 150, 0.9)):
         pen.line([(cx - 11 * cs, cy), (cx, cy - 6 * cs), (cx + 11 * cs, cy)],
                  PAL["ink"] + (215,), 1.8)
 
@@ -1567,6 +1486,138 @@ def bg_castle():
     img = washi(img, 0.95)
     img = grain(img, 3)
     img = vignette(img, 0.18)
+    return img.convert("RGB")
+
+
+def bg_market():
+    """Plaza del mercado de Nagasaki: el puesto de Haru, el del socio y el del rival."""
+    img = new_rgba()
+    vgrad(img, 0, 526, [(0, (118, 146, 168)), (0.40, (176, 186, 186)),
+                        (0.72, (226, 198, 154)), (1, (242, 216, 174))])
+    pen = Pen(img)
+
+    soft_glow(img, 250, 214, 180, (255, 232, 178), 75)
+    pen.ellipse((190, 154, 310, 274), (248, 230, 182, 235),
+                PAL["gold"] + (150,), 2)
+    cloud(img, 900, 118, 420, 40, PAL["paper_l"] + (230,), True)
+    cloud(img, 520, 196, 300, 26, PAL["paper_l"] + (170,), True)
+
+    # montañas y casa al fondo
+    mountain(img, [(0, 470), (0, 396), (170, 366), (350, 400), (520, 362),
+                   (700, 396), (880, 364), (1060, 398), (1280, 368), (1280, 470)],
+             (72, 96, 116, 240), PAL["prussian"])
+    for x in range(-40, W, 200):
+        pen.rect((x, 428, x + 180, 530), (150, 126, 100, 255),
+                 PAL["ink"] + (170,), 1.4)
+        pen.poly([(x - 14, 430), (x + 90, 394), (x + 194, 430)],
+                 (66, 74, 84, 255), PAL["ink"] + (200,))
+        pen.rect((x + 60, 466, x + 104, 530), (72, 58, 48, 235))
+        pen.line([(x + 14, 452), (x + 52, 452)], (232, 206, 160, 140), 2)
+
+    # suelo de tierra apisonada
+    pen.rect((0, 520, W, H), (198, 174, 140, 255))
+    pen.rect((0, 520, W, 528), (140, 116, 90, 255))
+    for row in range(6):
+        y = 546 + row * 26
+        for x in range(-40 + (row % 2) * 40, W, 80):
+            pen.line([(x, y), (x + 30, y)], (168, 144, 112, 110), 1)
+
+    # --- puestos -----------------------------------------------------------
+    def puesto(cx, w, base, aw_a, aw_b, goods, seal, sign):
+        x0, x1 = cx - w // 2, cx + w // 2
+        top = base - 244
+        # sombra en el suelo
+        pen.ellipse((x0 - 18, base - 16, x1 + 18, base + 20), (120, 100, 80, 60))
+        # postes
+        for px in (x0 + 4, x1 - 16):
+            pen.rect((px, top + 30, px + 12, base), PAL["wood_d"] + (255,),
+                     PAL["ink"] + (220,), 1.4)
+        # mostrador y tablas
+        pen.rect((x0 + 8, base - 78, x1 - 8, base - 56), PAL["wood_l"] + (255,),
+                 PAL["ink"] + (230,), 1.8)
+        pen.rect((x0 + 14, base - 56, x1 - 14, base), PAL["wood"] + (255,),
+                 PAL["ink"] + (230,), 1.8)
+        for px in range(x0 + 30, x1 - 24, 34):
+            pen.line([(px, base - 52), (px, base - 2)], (76, 54, 34, 120), 1.2)
+        # faldón con el sello del puesto
+        pen.rect((x0 + 18, base - 40, x0 + 76, base - 8), seal + (240,),
+                 PAL["ink"] + (210,), 1.2)
+        pen.ellipse((x0 + 34, base - 34, x0 + 60, base - 14),
+                    PAL["paper_l"] + (240,))
+        # mercancía sobre el mostrador
+        for i, kind in enumerate(goods):
+            gx = x0 + 44 + i * ((w - 96) / max(1, len(goods) - 1))
+            if kind == "caja":
+                pen.rect((gx - 18, base - 108, gx + 18, base - 78),
+                         (146, 108, 70, 255), PAL["ink"] + (220,), 1.4)
+                pen.line([(gx - 18, base - 108), (gx + 18, base - 78)],
+                         PAL["ink_soft"] + (150,), 1.2)
+            elif kind == "saco":
+                pen.poly([(gx - 18, base - 80), (gx + 18, base - 80),
+                          (gx + 13, base - 124), (gx - 13, base - 124)],
+                         (206, 186, 148, 255), PAL["ink"] + (220,))
+                pen.line([(gx - 9, base - 124), (gx + 9, base - 124)],
+                         PAL["ink_soft"] + (210,), 1.6)
+            elif kind == "pescado":
+                pen.ellipse((gx - 20, base - 96, gx + 10, base - 78),
+                            (196, 200, 196, 255), PAL["ink"] + (210,), 1.2)
+                pen.poly([(gx + 10, base - 87), (gx + 22, base - 96),
+                          (gx + 22, base - 78)], (196, 200, 196, 255),
+                         PAL["ink"] + (210,))
+                pen.ellipse((gx - 14, base - 90, gx - 10, base - 86),
+                            PAL["ink"] + (200,))
+            else:  # "vasija"
+                pen.rect((gx - 12, base - 108, gx + 12, base - 80),
+                         (120, 132, 146, 255), PAL["ink"] + (220,), 1.4)
+                pen.ellipse((gx - 8, base - 114, gx + 8, base - 102),
+                            (120, 132, 146, 255), PAL["ink"] + (220,), 1.2)
+        # toldo a rayas
+        pen.poly([(x0 - 26, top + 30), (x0, top), (x1, top), (x1 + 26, top + 30)],
+                 aw_a + (250,), PAL["ink"] + (235,))
+        n = 8
+        step = (w + 52) / n
+        for i in range(n):
+            if i % 2:
+                continue
+            ax = x0 - 26 + i * step
+            pen.poly([(ax, top + 30), (ax + step, top + 30),
+                      (ax + step - 6, top + 68), (ax + 6, top + 68)],
+                     aw_b + (235,), None)
+        pen.line([(x0 - 26, top + 30), (x1 + 26, top + 30)], PAL["ink"] + (200,), 2)
+        for i in range(n):
+            ax = x0 - 26 + i * step
+            pen.poly([(ax + 8, top + 68), (ax + step - 8, top + 68),
+                      (ax + step - 16, top + 80), (ax + 16, top + 80)],
+                     aw_b + (215,), None)
+        # letrero colgado del toldo
+        sx = cx - 30
+        pen.line([(sx + 8, top + 62), (sx + 8, top + 96)], PAL["ink_soft"] + (200,), 1.2)
+        pen.line([(sx + 52, top + 62), (sx + 52, top + 96)], PAL["ink_soft"] + (200,), 1.2)
+        pen.rect((sx, top + 96, sx + 60, top + 140), PAL["wood_l"] + (255,),
+                 PAL["ink"] + (235,), 1.8)
+        pen.ellipse((sx + 18, top + 108, sx + 42, top + 132), PAL["paper_l"] + (245,),
+                    PAL["ink_soft"] + (180,), 1.2)
+        pen.rect((sx + 22, top + 112, sx + 38, top + 128), sign + (200,))
+
+    puesto(232, 292, 620, PAL["indigo"], PAL["indigo_p"],
+           ["saco", "caja", "saco"], PAL["indigo"], PAL["indigo_p"])
+    puesto(640, 360, 636, PAL["vermillion"], PAL["gold"],
+           ["caja", "pescado", "pescado", "caja"], PAL["vermillion"],
+           PAL["vermillion_d"])
+    puesto(1046, 292, 620, (86, 62, 78), PAL["gold"],
+           ["vasija", "caja", "vasija"], (86, 62, 78), PAL["gold"])
+
+    # cajas y barriles sueltos
+    pen.rect((54, 652, 128, 714), (146, 108, 70, 255), PAL["ink"] + (225,), 1.8)
+    pen.line([(54, 652), (128, 714)], PAL["ink_soft"] + (140,), 1.4)
+    pen.rect((156, 668, 214, 714), (146, 108, 70, 255), PAL["ink"] + (225,), 1.8)
+    pen.ellipse((1140, 664, 1216, 714), (126, 92, 58, 255), PAL["ink"] + (225,), 1.8)
+    pen.line([(1140, 684), (1216, 684)], PAL["wood_l"] + (140,), 1.6)
+
+    cartouche(img, 30, 30, 34, 226, "MERCADO")
+    img = washi(img, 1.0)
+    img = grain(img, 3)
+    img = vignette(img, 0.14)
     return img.convert("RGB")
 
 
@@ -1849,7 +1900,7 @@ def obj_pause():
                  FONT_BOLD, "mm")
     d = ImageDraw.Draw(img)
     f = ImageFont.truetype(FONT_REG, sc(16))
-    d.text((sc(640), sc(596)), "Clic derecho para abrir el menú", font=f,
+    d.text((sc(640), sc(596)), "Clic derecho o ESC para abrir el menú", font=f,
            fill=PAL["ink_soft"] + (190,), anchor="mm")
     return img
 
@@ -1874,6 +1925,7 @@ def main():
     save(bg_menu(), "bg_menu.png")
     save(bg_home(), "bg_home.png")
     save(bg_street(), "bg_street.png")
+    save(bg_market(), "bg_market.png")
     save(bg_port(), "bg_port.png")
     save(bg_fisher(), "bg_fisher.png")
     save(bg_castle(), "bg_castle.png")
@@ -1881,7 +1933,8 @@ def main():
         "menu": {"path": "graphics/bg_menu.png"},
         "castillo": {"path": "graphics/bg_castle.png"},
         "casa": {"path": "graphics/bg_home.png"},
-        "mercado": {"path": "graphics/bg_street.png"},
+        "calle": {"path": "graphics/bg_street.png"},
+        "mercado": {"path": "graphics/bg_market.png"},
         "puerto": {"path": "graphics/bg_port.png"},
         "casa_pescador": {"path": "graphics/bg_fisher.png"},
     }

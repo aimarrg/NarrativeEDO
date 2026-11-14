@@ -3,8 +3,8 @@
 Prototipo jugable de aventura point-and-click para **Visionaire Studio 5**.
 Nagasaki, 1641 (período Edo), estética ukiyo-e. La partida se abre con una
 **cinemática en el castillo del Shogun** (la ejecución de Haru) y, al terminar,
-Haru despierta en su casa. Desde ahí recorre cuatro escenas encadenadas:
-**casa → mercado → puerto → casa del pescador**.
+Haru despierta en su casa. Desde ahí recorre la ciudad:
+**casa → calle → puerto (pescador) → calle → mercado**, y de vuelta.
 
 La historia y los diálogos son tuyos: todo el contenido narrativo está en un
 único archivo editable, `build/world.py`.
@@ -39,7 +39,11 @@ O a mano:
 | Clic en el suelo | Haru camina hasta ahí (solo por las zonas de suelo) |
 | Clic en un objeto/persona | Interactúa (el nombre aparece al pasar el ratón) |
 | Clic sobre un texto | Salta el texto |
-| **Clic derecho** | Abre el **menú de pausa** (Continuar / Menú principal / Salir) |
+| **Clic derecho** o **ESC** | Abre el **menú de pausa** (Continuar / Menú principal / Salir) |
+
+`ESC` también cierra el menú de pausa (lo implementa un script Lua con
+`registerEventHandler("keyEvent", …)`). En la cinemática del castillo, cerrar
+la pausa no saca a Haru de pie: la pausa respeta `pause_show_char`.
 
 El cursor lo dibuja un script Lua (`graphics.addDrawFunc`), porque `visplayer`
 oculta el cursor del sistema.
@@ -112,12 +116,13 @@ SCENES = [
     {"key": "castillo", "name": "Castillo del Shogun", "bg": "bg_castle",
      "music": "audio/castle.ogg",
      "way": [(0, 600), (1280, 600), (1280, 714), (0, 714)],
-     "entry": (760, 660),
+     "entry": (240, 690),
      "start_hide_char": True,
      "cinematic": ["castillo_1", "castillo_2",
                    {"set": "ejecutado"}, "castillo_7"],
      "start_show_char": True,
-     "start_scene_to": "casa"},
+     "start_scene_to": "casa",
+     "pause_show_char": False},
     {"key": "casa", "name": "Casa de Haru", "bg": "bg_home",
      "music": "audio/warehouse.ogg",
      "way": [(0, 585), (1280, 585), (1280, 714), (0, 714)],
@@ -128,7 +133,7 @@ SCENES = [
 
 - `key`: identificador interno (se usa en `scene` y `scene_to`).
 - `bg`: fondo generado por `make_art.py` (`bg_castle`, `bg_home`,
-  `bg_street`, `bg_port`, `bg_fisher`).
+  `bg_street`, `bg_market`, `bg_port`, `bg_fisher`).
 - `way`: polígono de suelo por el que puede caminar Haru. El último valor
   (`714`) es el borde inferior.
 - `entry`: punto donde aparece Haru al entrar en la escena.
@@ -153,24 +158,32 @@ Cada salida es un clicable con `scene_to`:
 ```python
 {"key": "salir_casa", "scene": "casa", "name": "n_salir_casa",
  "rect": (1030, 160, 190, 420), "stand": (1015, 690), "order": 2,
- "scene_to": "mercado"},
+ "scene_to": "calle"},
 ```
 
-Para invertir el orden (por ejemplo, puerto antes que mercado) basta cambiar a
+Para invertir el orden (por ejemplo, mercado antes que puerto) basta cambiar a
 qué escena apunta cada salida. Las salidas actuales son:
 
 | Desde | Salida | Hacia |
 |---|---|---|
 | castillo | (cinemática inicial) | casa |
-| casa | puerta derecha | mercado |
-| mercado | borde izquierdo | casa |
-| mercado | borde derecho | puerto |
-| puerto | borde izquierdo | mercado |
+| casa | puerta derecha | calle |
+| calle | borde izquierdo (con el pase) | mercado |
+| calle | borde izquierdo (sin el pase) | aviso: «Abre a las 9:00» |
+| calle | borde derecho | puerto |
+| calle | puerta central | casa |
+| mercado | borde izquierdo | calle |
+| puerto | borde izquierdo | calle |
 | puerto | cabaña derecha | casa_pescador |
 | casa_pescador | puerta izquierda | puerto |
 
 El castillo no tiene salidas clicables: se recorre solo, de principio a fin, y
 salta a `casa` al terminar su cinemática.
+
+> Las claves de `CLICKABLES` deben ser **únicas en todo el juego**, aunque las
+> salidas estén en escenas distintas (por eso el mercado usa `salir_mercado` y
+> el puerto `volver_calle`). Si repites una clave, `make_ved.py` se detiene con
+> un error para que no desaparezca una salida sin darte cuenta.
 
 ### 3.3 Clicables
 
@@ -211,8 +224,10 @@ solos cuando la condición cambia, sin necesidad de acciones.
 CONDITIONS = {
     "viendo_foto": False,        # la foto está ampliada
     "tabernas_abiertas": False,  # las tabernas están cerradas al principio
-    "hablo_pescador": False,     # marca de diálogo
+    "hablo_pescador": False,     # ya has hablado con el pescador
+    "tengo_check": False,        # el pescador te ha dado el pase del mercado
     "pausa": False,              # menú de pausa abierto
+    "sin_haru_en_pausa": False,  # la pausa no muestra a Haru (cinemáticas)
     "ejecutado": False,          # el filo ha caído en la cinemática inicial
 }
 ```
@@ -227,7 +242,7 @@ Para añadir una condición nueva:
 
 ### 4.2 Las dos tabernas
 
-En el mercado hay dos tabernas, cerradas al principio:
+En la calle hay dos tabernas, cerradas al principio:
 
 - `taberna_a_cerrada` / `taberna_b_cerrada` → visibles mientras
   `tabernas_abiertas` es falsa (`negate: True`).
@@ -239,17 +254,37 @@ hacerlo. Por ejemplo, al hablar con el pescador:
 
 ```python
 {
-    "key": "pescador", "scene": "casa_pescador", "name": "n_pescador",
-    "sprite": "fisher", "pos": (760, 377), "stand": (865, 690),
+    "key": "pescador_1", "scene": "casa_pescador", "name": "n_pescador",
+    "sprite": "fisher", "pos": (760, 377), "stand": (990, 690),
     "order": 5, "text": "pescador",
-    "set": ["hablo_pescador", "tabernas_abiertas"],   # ← abre las tabernas
+    "cond": "hablo_pescador", "negate": True,
+    "set": ["hablo_pescador", "tengo_check", "tabernas_abiertas"],
 },
 ```
 
 No hay ninguna lógica cableada: cuando la condición cambia, los sprites
 cerrados desaparecen y aparecen los abiertos.
 
-### 4.3 Textos y diálogos
+### 4.3 El pase del mercado
+
+La calle tiene dos salidas laterales: a la izquierda el **mercado**, a la
+derecha el **puerto**. Al principio no se puede entrar al mercado:
+
+- `mercado_cerrado` (condición `tengo_check` **negada**) ocupa el borde
+  izquierdo y muestra «El mercado está cerrado… abre a las 9:00».
+- `ir_mercado` (condición `tengo_check`) ocupa el mismo rect y cambia a la
+  escena `mercado` cuando ya tienes el pase.
+
+El pase lo da el pescador en su primera conversación
+(`"set": ["hablo_pescador", "tengo_check"]`). Para cambiar el requisito, usa
+otra condición en `ir_mercado` / `mercado_cerrado`, o pon el `set` donde
+prefieras.
+
+En el mercado hay tres puestos: el del **socio** (izquierda), el **tuyo**
+(centro) y el del **rival** (derecha). Cada uno es un clicable independiente
+con su propio texto (`mercado_socio`, `mercado_tuyo`, `mercado_rival`).
+
+### 4.4 Textos y diálogos
 
 Todas las frases están en `TEXTS` dentro de `world.py`. Las claves que
 empiezan por `n_` son nombres de objeto; el resto son frases:
@@ -272,27 +307,28 @@ Reglas prácticas:
   escribirlo tú (el motor no lo añade solo).
 - Los acentos, `«»`, `¿` y `¡` funcionan: el `.ved` se guarda en UTF-8.
 
-### 4.4 Conversaciones con ramas
+### 4.5 Conversaciones con ramas
 
 Para una conversación que cambia según lo ya hablado, añade el texto y usa la
 condición en un clicable alternativo:
 
 ```python
 {"key": "pescador_1", "scene": "casa_pescador", "name": "n_pescador",
- "sprite": "fisher", "pos": (760, 377), "stand": (865, 690),
+ "sprite": "fisher", "pos": (760, 377), "stand": (990, 690),
  "cond": "hablo_pescador", "negate": True,
- "text": "pescador_primera", "set": ["hablo_pescador"]},
+ "text": "pescador", "set": ["hablo_pescador", "tengo_check"]},
 
 {"key": "pescador_2", "scene": "casa_pescador", "name": "n_pescador",
- "sprite": "fisher", "pos": (760, 377), "stand": (865, 690),
+ "sprite": "fisher", "pos": (760, 377), "stand": (990, 690),
  "cond": "hablo_pescador",
  "text": "pescador_despues"},
 ```
 
-El primero se ve la primera vez; el segundo, después. Es la misma mecánica que
-las tabernas y no requiere tocar el generador.
+El primero se ve la primera vez (y da el pase del mercado); el segundo,
+después. Es la misma mecánica que las tabernas y no requiere tocar el
+generador.
 
-### 4.5 La cinemática inicial (castillo del Shogun)
+### 4.6 La cinemática inicial (castillo del Shogun)
 
 La partida no empieza en casa: `START_SCENE = "castillo"` y la escena
 `castillo` reproduce su secuencia de entrada. Está descrita en `SCENES`:
@@ -308,12 +344,13 @@ La partida no empieza en casa: `START_SCENE = "castillo"` y la escena
 ],
 "start_show_char": True,
 "start_scene_to": "casa",         # al acabar, Haru despierta en su casa
+"pause_show_char": False,         # la pausa no saca a Haru de pie aquí
 ```
 
 Qué hace cada pieza:
 
 - Cada cadena es una frase de `TEXTS`; se muestran seguidas y se pueden
-  saltar con un clic.
+  saltar con un clic. Los diálogos son marcadores: escríbelos tú.
 - `{"set": "ejecutado"}` cambia la condición a mitad de la secuencia. Los
   objetos del cadalso están ligados a ella: mientras es falsa se ve la
   guillotina con el filo arriba y Haru de rodillas (`haru_reo`); cuando pasa a
@@ -322,7 +359,13 @@ Qué hace cada pieza:
   `start_show_char` lo vuelve a mostrar antes de saltar a casa.
 - El decorado son cuatro objetos sin acción en `CLICKABLES` (`guillotine_up`,
   `guillotine_down`, `verdugo`, `haru_reo`); se mueven con las claves `pos` y
-  `order` como cualquier otro sprite.
+  `order` como cualquier otro sprite. Los cuatro están **en el suelo del
+  patio**, con los pies/base a la altura `y ≈ 700`, y sus clics en
+  `guillotine_up/down` (250, 368), `verdugo` (470, 449) y `haru_reo`
+  (320, 579).
+- El fondo `bg_castle` dibuja el **torreón arriba**, sobre la muralla, y una
+  **escalinata central** que sube desde el patio hasta la puerta. Para mover
+  algo, cambia su `pos` (la base del sprite) sin tocar el generador.
 
 Para cambiar el texto de la cinemática edita `castillo_1` … `castillo_9` en
 `TEXTS`. Para alargarla o acortarla, añade o quita claves en `cinematic`.
@@ -353,11 +396,17 @@ regenera el arte.
   botones se definen en `MENU_ITEMS` dentro de `make_ved.py`:
   `NUEVA PARTIDA` reinicia todas las condiciones y valores, muestra a Haru y
   salta a `START_SCENE`; `SALIR` cierra el juego.
-- El **menú de pausa** se abre con **clic derecho** en cualquier escena
-  (`GameRightClickAction` → acción `abrir_pausa`).
+- El **menú de pausa** se abre con **clic derecho** (`GameRightClickAction` →
+  acción `abrir_pausa`) o con **ESC** (script Lua `nagasakiKeyHandler`).
   - `CONTINUAR` cierra la pausa y muestra a Haru.
   - `MENÚ PRINCIPAL` cierra la pausa y vuelve al menú.
   - `SALIR` cierra el juego.
+- El script de teclado filtra `eEvtKeyDown` (el evento llega dos veces: tecla
+  pulsada y soltada) y consume la tecla con `return true`.
+- Al cerrar la pausa, la acción `Cerrar pausa` consulta `sin_haru_en_pausa`.
+  Cada acción de inicio de escena la fija según `pause_show_char`, así que en
+  la cinemática del castillo Haru no reaparece de pie. Ya no se detecta la
+  escena por nombre (en Lua `Scene.Name` no devuelve la clave de `world.py`).
 - La capa de pausa y sus botones son objetos con `cond: "pausa"`; se generan
   automáticamente para cada escena de `world.py`.
 - Para cambiar los textos de los botones, edita `n_continuar`, `n_menu`,

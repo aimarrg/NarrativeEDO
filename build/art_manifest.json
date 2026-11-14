@@ -121,8 +121,11 @@
   "casa": {
    "path": "graphics/bg_home.png"
   },
-  "mercado": {
+  "calle": {
    "path": "graphics/bg_street.png"
+  },
+  "mercado": {
+   "path": "graphics/bg_market.png"
   },
   "puerto": {
    "path": "graphics/bg_port.png"

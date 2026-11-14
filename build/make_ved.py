@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Genera game/Nagasaki1641.ved: proyecto de Visionaire Studio 5 (XML .ved)
 para el prototipo "Nagasaki 1641: El sello de Dejima".
@@ -108,6 +108,11 @@ _OBJ_ORDER = [0]
 def make_object(key, scene_key, z=0, name_text=None, sprite=None, pos=None,
                 rect=None, cond=None, negate=False, walkable="F", stand=None):
     """Crea un objeto. El sprite es opcional (las salidas son zonas invisibles)."""
+    if key in OBJ:
+        # Cada clicable necesita una clave única aunque esté en escenas distintas:
+        # si se repite, el segundo sustituye al primero y su escena se queda sin él.
+        raise SystemExit(
+            "ERROR: la clave de clicable '%s' está repetida en world.py" % key)
     w = h = 0
     sprite_id = None
     if sprite is not None:
@@ -294,7 +299,10 @@ _reset_parts = [ap_setcond(c, 1) for c in COND.values()]
 _reset_parts += [ap_setvalue(v, 0, 0) for v in VAL.values()]
 A["menu_nueva"] = add_action("Nueva partida", 7, _reset_parts + _show_parts)
 A["menu_salir"] = add_action("Salir del juego", 7, [add_ap(55, "Salir")])
-A["start_menu"] = add_action("Inicio del menú", 31, [ap_hidechar()])
+A["start_menu"] = add_action("Inicio del menú", 31,
+                             [ap_setcond(COND["sin_haru_en_pausa"]),
+                              ap_setcond(COND["en_menu"]),
+                              ap_hidechar()])
 OBJ_ACTION["menu_nueva"] = A["menu_nueva"]
 OBJ_ACTION["menu_salir"] = A["menu_salir"]
 
@@ -334,8 +342,14 @@ for _sc in world.SCENES:
             _parts.append(add_ap(55, "Salir"))
         OBJ_ACTION[_key] = add_action("Acción: " + _key, 7, _parts)
 
-A["abrir_pausa"] = add_action("Abrir menú de pausa", 7,
+A["abrir_pausa"] = add_action("Abrir pausa", 7,
                              [ap_setcond(COND["pausa"]), ap_hidechar()])
+# Cierra la pausa. Si la escena marca pause_show_char = False (la cinemática
+# del castillo) no vuelve a mostrar a Haru, igual que el botón CONTINUAR.
+A["cerrar_pausa"] = add_action("Cerrar pausa", 7,
+                              [ap_if(COND["sin_haru_en_pausa"], False),
+                               ap_showchar(), ap_endif(),
+                               ap_setcond(COND["pausa"], 1)])
 
 
 # ---------------------------------------------------------------------------
@@ -389,7 +403,14 @@ def _beat_parts(item):
 
 def make_start_action(sc):
     scene_key = sc["key"]
+    # "sin_haru_en_pausa": las escenas con pause_show_char = False no muestran
+    # al personaje al cerrar el menú de pausa (cinemáticas).
     parts = []
+    parts.append(ap_setcond(COND["en_menu"], 1))
+    if sc.get("pause_show_char", True):
+        parts.append(ap_setcond(COND["sin_haru_en_pausa"], 1))
+    else:
+        parts.append(ap_setcond(COND["sin_haru_en_pausa"]))
     if sc.get("start_hide_char"):
         parts.append(ap_hidechar())
 
@@ -1265,29 +1286,10 @@ for v in values:
 # --- Scripts (cursor dibujado por el juego)
 CURSOR_SCRIPT = """local cursorSprite = nil
 
-local function logText(msg)
-  local f = io.open("C:/Temps/opencode/lua_text.log", "a")
-  if f then
-    f:write(msg .. "\\n")
-    f:close()
-  end
-end
-
+-- Autoavance de los diálogos: cada texto dura en pantalla según su longitud
+-- (y se puede saltar con un clic, como siempre).
 function nagasakiTextStarted(text)
-  local id = "?"
-  if text and text.getId then
-    local tid = text:getId()
-    if tid then id = tostring(tid.id) end
-  end
   local body = text and text.CurrentText or ""
-  logText(string.format("%.2f textStarted id=%s len=%d current=%s", os.clock(), id, #body, body))
-  local names = {"viendo_foto", "tabernas_abiertas", "hablo_pescador", "pausa"}
-  local parts = {}
-  for _, n in ipairs(names) do
-    local c = Conditions[n]
-    if c then parts[#parts + 1] = n .. "=" .. tostring(c.Value) end
-  end
-  logText("  cond " .. table.concat(parts, " "))
   if text then
     local dur = 1300 + #body * 28
     if dur > 5200 then dur = 5200 end
@@ -1296,17 +1298,7 @@ function nagasakiTextStarted(text)
   end
 end
 
-function nagasakiTextStopped(text)
-  local id = "?"
-  if text and text.getId then
-    local tid = text:getId()
-    if tid then id = tostring(tid.id) end
-  end
-  logText(string.format("%.2f textStopped id=%s", os.clock(), id))
-end
-
 registerEventHandler("textStarted", "nagasakiTextStarted")
-registerEventHandler("textStopped", "nagasakiTextStopped")
 
 function nagasakiCursor()
   if not cursorSprite then
@@ -1320,6 +1312,27 @@ function nagasakiCursor()
 end
 
 graphics.addDrawFunc("nagasakiCursor()", 1)"""
+
+# --- Teclado: ESC abre y cierra el menú de pausa ---------------------------
+KEY_SCRIPT = """-- ESC: abrir / cerrar el menú de pausa
+function nagasakiKeyHandler(eventType, character, keycode, modifiers)
+  if keycode == eKeyEscape and eventType == eEvtKeyDown then
+    local enMenu = Conditions["en_menu"] and Conditions["en_menu"].Value
+    if enMenu then return false end
+    local pv = Conditions["pausa"] and Conditions["pausa"].Value
+    if pv then
+      startAction(Actions["Cerrar pausa"])
+    else
+      startAction(Actions["Abrir pausa"])
+    end
+    return true
+  end
+  return false
+end
+
+registerEventHandler("keyEvent", "nagasakiKeyHandler")"""
+
+CURSOR_SCRIPT = CURSOR_SCRIPT + "\n\n" + KEY_SCRIPT
 
 scripts_container = ET.SubElement(root, "Scripts")
 scripts_container.set("newId", "1")
