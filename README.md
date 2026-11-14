@@ -477,32 +477,81 @@ carpetas `graphics/`, `characters/`, `fonts/` y `audio/`.
 
 ## 11. El editor de Visionaire
 
+### 11.1 Abrir el proyecto
+
+El editor arranca en una pantalla de inicio (Home). Para trabajar en el juego:
+**Load recently opened game → `Nagasaki1641.ved`** (o `CTRL+O` y elegir
+`game\Nagasaki1641.ved`). El título de la ventana muestra la ruta del proyecto
+abierto.
+
+Las secciones se cambian con los iconos de la barra superior:
+
+| Icono | Sección |
+| --- | --- |
+| engranaje | Game properties (escena inicial, personaje activo, resolución…) |
+| casita | **Scenes** (escenas y sus objetos) |
+| persona | Characters |
+| ventana | Interfaces |
+| diamante | Items / Objects |
+| flecha | Cursors |
+| A | Fonts |
+| `{}` | Scripts |
+| copo | Particles |
+| bocadillo | Texts (diálogos y traducciones) |
+| líneas | Shaders |
+| onda | Audio |
+
+En *Scenes*, la lista de la izquierda son las escenas (`menu` no aparece aquí:
+está en la sección *Menus*). Al seleccionar una escena, la zona central muestra
+su imagen y sus pestañas `Objects / Way systems / Actions / Curves`, y a la
+derecha sus `Conditions / Values / Components`.
+
+Para inspeccionar todo el proyecto de una vez: *Tools → Explorer* (`CTRL+E`),
+que lista `eScenes`, `eCharacters`, `eDialogs`, `eTexts`…
+
+### 11.2 Si una sección sale vacía
+
 El editor guarda el layout de paneles en
-`%LOCALAPPDATA%\Visionaire Editor\viseditor.ini`, y lo guarda **solo de la
-sección que estuviera activa al cerrarlo**. Si sales del editor mientras estás
-en *Texts*, la próxima vez abre con el panel de diálogos y traducciones y
-parece que el proyecto "solo tiene textos": el `.ved` está bien, es el layout.
+`%LOCALAPPDATA%\Visionaire Editor\viseditor.ini` y **solo guarda el de la
+sección que estuviera activa al cerrarlo**. Si sales del editor estando en
+*Texts*, la próxima vez abre con el panel de diálogos y traducciones y parece
+que el proyecto "solo tiene textos": el `.ved` está bien, es el layout.
 
-Para recuperar el árbol de proyecto y el editor de escenas:
+Dos remedios:
 
-```
-py build\fix_editor_layout.py
-```
+1. En el editor: clic derecho sobre el icono de la sección (la casita para
+   *Scenes*) → **Reset workspace**.
+2. Con el editor cerrado:
 
-El script cierra la línea `Workspaces=` del `.ini` (con copia de seguridad) y
-el editor reconstruye el layout por defecto al abrirlo. Cierra el editor antes
-de ejecutarlo; si sigue abierto, al salir volverá a escribir su workspace.
+   ```
+   py build\fix_editor_layout.py
+   ```
 
-También se puede hacer desde el propio editor: clic derecho sobre el icono de
-la sección en la barra superior → **Reset workspace**.
+   Borra la línea `Workspaces=` del `.ini` (con copia de seguridad) y el editor
+   reconstruye el layout por defecto. Si el editor sigue abierto, al salir
+   volverá a escribir su workspace.
 
-Las secciones se cambian con los iconos de la barra superior (Game properties,
-Characters, Interfaces, Items, Cursors, Fonts, Scripts, Particles, Texts,
-Shaders, Audio…). Para inspeccionar todo el proyecto de una vez: *Tools →
-Explorer* (`CTRL+E`), que lista `eScenes`, `eCharacters`, `eDialogs`, `eTexts`…
+### 11.3 Las listas del juego (`GameSceneLinks`)
 
-> Cada vez que el editor se cierra guarda el `.ved`; si no has cambiado nada y
-> quieres volver a la versión del repositorio: `git checkout -- game/Nagasaki1641.ved`.
+Cada sección del editor es un filtro sobre el proyecto (`\eScenes`,
+`\eCharacters`, `\eFonts`…, definidos en `structures.xml` del programa). Esas
+rutas recorren las listas de enlaces que cuelgan del objeto `Game`:
+`GameSceneLinks`, `GameCharacterLinks`, `GameFontLinks`, `GameCursors`…
+
+El player no las necesita (carga las escenas del contenedor `<Scenes>`), pero
+el editor **sí**: si están vacías, el proyecto abre, *Game properties* muestra
+los datos, y sin embargo *Scenes*, *Characters* o *Fonts* aparecen sin
+contenido. Por eso `make_ved.py` las rellena al final con un `<Link>` por cada
+objeto (`id` del objeto y `tableId` de su tabla: escenas 4, personajes 0, fuentes
+3, cursores 15). Si algún día se añade una tabla nueva al generador, hay que
+añadir también su lista de enlaces.
+
+### 11.4 Guardar
+
+> Cada vez que el editor se cierra guarda el `.ved` (y reescribe el archivo con
+> su propio formato). La fuente de verdad del proyecto es `build\make_ved.py`:
+> si has estado trasteando en el editor y quieres volver a la versión generada,
+> ejecuta `py build\make_ved.py`, o `git checkout -- game/Nagasaki1641.ved`.
 
 ---
 

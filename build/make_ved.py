@@ -1370,6 +1370,36 @@ for i, name in enumerate(["MainInterface", "Inventory", "SecondaryInterface",
     e.set("lastModified", "-1")
     e.set("InterfaceClassName", name)
 
+# --- Listas de links del juego.
+# El player no las necesita (resuelve las escenas por el contenedor <Scenes>),
+# pero el editor de Visionaire construye los paneles de cada seccion recorriendo
+# estas listas (p. ej. la seccion "Scenes" lista \eScenes).  Si quedan vacias,
+# el editor carga el proyecto pero los paneles aparecen sin contenido.
+def _fill_game_links(game_tag, root_tag, table_id, keep=None):
+    holder = game.find(game_tag)
+    container = root.find(root_tag)
+    if holder is None or container is None:
+        return
+    for child in list(holder):
+        holder.remove(child)
+    for obj in container:
+        if keep is not None and not keep(obj):
+            continue
+        link = ET.SubElement(holder, "Link")
+        link.set("parentLink", "T")
+        link.set("id", obj.get("id", "0"))
+        link.set("tableId", str(table_id))
+        link.set("LinkAny", "F")
+
+
+_fill_game_links("GameSceneLinks", "Scenes", T["scenes"])
+_fill_game_links("GameCharacterLinks", "Characters", T["characters"])
+_fill_game_links("GameFontLinks", "Fonts", T["fonts"])
+_fill_game_links("GameInterfaces", "Interfaces", T["interfaces"])
+_fill_game_links("GameCursors", "Cursors", T["cursors"])
+_fill_game_links("GameItems", "Objects", T["objects"],
+                 keep=lambda o: o.get("IsItem") == "T")
+
 ET.indent(root, space="\t")
 out = os.path.join(GAME, "Nagasaki1641.ved")
 with open(out, "wb") as f:
