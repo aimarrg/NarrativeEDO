@@ -130,6 +130,33 @@ SCENES = [
         "entry": (300, 690),
         "start_texts": [],
     },
+    {
+        "key": "escondite_cristiano",
+        "name": "Escondite del cristiano",
+        "bg": "bg_escondite",
+        "music": "audio/warehouse.ogg",
+        "way": [(0, 585), (1280, 585), (1280, 714), (0, 714)],
+        "entry": (640, 690),
+        "start_texts": [],
+    },
+    {
+        "key": "oficina_inspector",
+        "name": "Oficina del inspector",
+        "bg": "bg_oficina",
+        "music": "audio/warehouse.ogg",
+        "way": [(0, 585), (1280, 585), (1280, 714), (0, 714)],
+        "entry": (640, 690),
+        "start_texts": [],
+    },
+    {
+        "key": "mapa",
+        "name": "Mapa",
+        "bg": "bg_mapa",
+        "music": "audio/menu.ogg",
+        "way": [(0, 0), (1280, 0), (1280, 714), (0, 714)],
+        "entry": (640, 690),
+        "start_texts": [],
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -525,4 +552,8 @@ CLICKABLES = [
         "order": 2,
         "scene_to": "puerto",
     },
+    {"key": "ir_escondite", "scene": "mercado", "name": "n_ir_escondite", "rect": (1180, 520, 100, 200), "stand": (1160, 690), "order": 2, "scene_to": "escondite_cristiano"},
+    {"key": "ir_oficina", "scene": "mercado", "name": "n_ir_oficina", "rect": (1080, 520, 100, 200), "stand": (1060, 690), "order": 2, "scene_to": "oficina_inspector"},
+    {"key": "volver_mercado_esc", "scene": "escondite_cristiano", "name": "n_volver_mercado", "rect": (0, 560, 90, 160), "stand": (110, 700), "order": 2, "scene_to": "mercado"},
+    {"key": "volver_mercado_ofi", "scene": "oficina_inspector", "name": "n_volver_mercado", "rect": (0, 560, 90, 160), "stand": (110, 700), "order": 2, "scene_to": "mercado"},
 ]

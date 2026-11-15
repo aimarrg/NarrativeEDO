@@ -332,6 +332,7 @@ A["start_menu"] = add_action("Inicio del menú", 31,
                               ap_hidechar()])
 OBJ_ACTION["menu_nueva"] = A["menu_nueva"]
 OBJ_ACTION["menu_salir"] = A["menu_salir"]
+A["ir_mapa"] = add_action("Ir al mapa", 7, [ap_scene("_entry_mapa")])
 
 
 # ---------------------------------------------------------------------------
@@ -1397,7 +1398,16 @@ graphics.addDrawFunc("nagasakiCursor()", 1)"""
 
 # --- Teclado: ESC abre y cierra el menú de pausa ---------------------------
 KEY_SCRIPT = """-- ESC: abrir / cerrar el menú de pausa
+-- TAB: abrir el mapa
 function nagasakiKeyHandler(eventType, character, keycode, modifiers)
+  if keycode == eKeyTab and eventType == eEvtKeyDown then
+    local enMenu = Conditions["en_menu"] and Conditions["en_menu"].Value
+    if enMenu then return false end
+    local pv = Conditions["pausa"] and Conditions["pausa"].Value
+    if pv then return false end
+    startAction(Actions["Ir al mapa"])
+    return true
+  end
   if keycode == eKeyEscape and eventType == eEvtKeyDown then
     local enMenu = Conditions["en_menu"] and Conditions["en_menu"].Value
     if enMenu then return false end
