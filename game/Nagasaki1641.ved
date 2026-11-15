@@ -150,7 +150,7 @@
 			<CharacterConditions />
 			<CharacterActiveDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<CharacterInactiveDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
-			<CharacterDialogArea top="0" left="140" bottom="220" right="1140" />
+			<CharacterDialogArea top="10" left="140" bottom="120" right="1140" />
 			<CharacterDialogActiveScrollUp name="" pause="-1" path="" Transparency="2">
 				<position x="0" y="0" />
 			</CharacterDialogActiveScrollUp>

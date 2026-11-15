@@ -815,7 +815,7 @@ _nar.set("name", "Narrador")
 _nar.set("id", str(NARRATOR_ID))
 _nar.set("order", str(NARRATOR_ID))
 _narea = _nar.find("CharacterDialogArea")
-for _k, _v in {"top": "0", "left": "140", "bottom": "220", "right": "1140"}.items():
+for _k, _v in {"top": "10", "left": "140", "bottom": "120", "right": "1140"}.items():
     _narea.set(_k, _v)
 chars.append(_nar)
 chars.set("newId", str(NARRATOR_ID + 1))
