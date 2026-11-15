@@ -19,6 +19,12 @@ T = {
     "interfaceclasses": 31, "waysystems": 29, "scripts": 30,
 }
 
+# El editor de Visionaire no muestra en la lista de "Characters" el personaje
+# con id="0" (lo trata como "sin personaje"), asi que Haru se guarda con id 1
+# y todas las referencias (GameCharacterLinks, GameFirstCharacter, ActionParts)
+# apuntan a ese id.
+CHAR_ID = 1
+
 FONT_PATH = "fonts/NotoSans-Regular.ttf"
 ALPHABET = ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
             "áéíóúüñÁÉÍÓÚÜÑ¿¡.,:;!?()'-·%")
@@ -163,7 +169,7 @@ for _sc in world.SCENES + [{"key": "menu", "entry": (640, 690)}]:
 # ---------------------------------------------------------------------------
 # ActionParts
 # ---------------------------------------------------------------------------
-def ap_text(text_id, char=0):
+def ap_text(text_id, char=CHAR_ID):
     return add_ap(23, "Diálogo", link1=(T["texts"], text_id),
                   link2=(T["characters"], char), i1=0)
 
@@ -196,7 +202,7 @@ def ap_setvalue(value_id, op, number):
 
 def ap_goto(obj_key):
     o = OBJ[obj_key]
-    return add_ap(31, "Ir a " + obj_key, link1=(T["characters"], 0),
+    return add_ap(31, "Ir a " + obj_key, link1=(T["characters"], CHAR_ID),
                   link2=(T["objects"], o["id"]), i1=1)
 
 
@@ -206,11 +212,11 @@ def ap_scene(entry_key):
                   link1=(T["objects"], o["id"]), i1=1, i2=0)
 
 
-def ap_showchar(char=0):
+def ap_showchar(char=CHAR_ID):
     return add_ap(98, "Mostrar personaje", link1=(T["characters"], char), i1=0)
 
 
-def ap_hidechar(char=0):
+def ap_hidechar(char=CHAR_ID):
     return add_ap(98, "Ocultar personaje", link1=(T["characters"], char), i1=1)
 
 
@@ -564,7 +570,7 @@ res.set("y", "720")
 ET.SubElement(game, "GameCursors")
 first_char = ET.SubElement(game, "GameFirstCharacter")
 first_char.set("parentLink", "F")
-first_char.set("id", "0")
+first_char.set("id", str(CHAR_ID))
 first_char.set("tableId", str(T["characters"]))
 first_char.set("LinkAny", "F")
 std_lang = ET.SubElement(game, "GameStandardLanguage")
@@ -677,13 +683,13 @@ for sp in ("LoadingSprite", "LoadingStatusSprite"):
 
 # --- Characters
 chars = ET.SubElement(root, "Characters")
-chars.set("newId", "1")
+chars.set("newId", str(CHAR_ID + 1))
 chars.set("versionedId", "-1")
 chars.set("tableId", str(T["characters"]))
 ch = ET.SubElement(chars, "Character")
 ch.set("name", "Haru")
-ch.set("id", "0")
-ch.set("order", "0")
+ch.set("id", str(CHAR_ID))
+ch.set("order", str(CHAR_ID))
 ch.set("lastModified", "-1")
 ch.set("CharacterWalkingSound", "")
 ch.set("CharacterScale", "T")
@@ -728,8 +734,7 @@ start.set("tableId", str(T["objects"]))
 start.set("LinkAny", "F")
 ET.SubElement(ch, "CharacterValues")
 ET.SubElement(ch, "CharacterConditions")
-for tag in ["CharacterActiveDialogFont", "CharacterInactiveDialogFont",
-            "CharacterActiveUsedDialogFont", "CharacterInactiveUsedDialogFont"]:
+for tag in ["CharacterActiveDialogFont", "CharacterInactiveDialogFont"]:
     e = ET.SubElement(ch, tag)
     e.set("parentLink", "F")
     e.set("id", "-1")
@@ -761,6 +766,26 @@ bus.set("id", "-1")
 bus.set("tableId", "-1")
 bus.set("LinkAny", "F")
 ET.SubElement(ch, "CharacterComponents")
+# El editor escribe estos nodos al final del personaje, en este orden exacto;
+# si faltan o van descolocados, el personaje no aparece en la lista de Characters.
+for tag in ["CharacterActiveUsedDialogFont", "CharacterInactiveUsedDialogFont",
+            "CharacterStartScene"]:
+    e = ET.SubElement(ch, tag)
+    e.set("parentLink", "F")
+    e.set("id", "-1")
+    e.set("tableId", "-1")
+    e.set("LinkAny", "F")
+e = ET.SubElement(ch, "CharacterStartPos")
+e.set("x", "0")
+e.set("y", "0")
+e = ET.SubElement(ch, "CharacterSnoopAnimation")
+e.set("parentLink", "F")
+e.set("id", "-1")
+e.set("tableId", "-1")
+e.set("LinkAny", "F")
+e = ET.SubElement(ch, "CharacterSnoopAnimationOffsetPos")
+e.set("x", "0")
+e.set("y", "0")
 
 # --- Interfaces / Buttons vacíos
 for tag, table in (("Interfaces", T["interfaces"]), ("Buttons", T["buttons"])):
@@ -1075,8 +1100,11 @@ for ap in aps:
     e.set("ActionPartString", "")
     e.set("ActionPartDisabled", "F")
     l1 = ET.SubElement(e, "ActionPartLink")
+    # parentLink="T" marca el objeto enlazado como *hijo* del ActionPart: el
+    # editor lo saca de su lista (p. ej. el personaje desaparece de Characters).
+    # Los enlaces de un ActionPart solo referencian objetos, asi que van en "F".
     if ap["l1"]:
-        l1.set("parentLink", "F" if ap["cmd"] == 10 else "T")
+        l1.set("parentLink", "F")
         l1.set("id", str(ap["l1"][1]))
         l1.set("tableId", str(ap["l1"][0]))
     else:
@@ -1085,11 +1113,7 @@ for ap in aps:
         l1.set("tableId", "-1")
     l1.set("LinkAny", "F")
     l2 = ET.SubElement(e, "ActionPartAltLink")
-    if ap["l2"] and ap["cmd"] == 31:
-        l2.set("parentLink", "T")
-        l2.set("id", str(ap["l2"][1]))
-        l2.set("tableId", str(ap["l2"][0]))
-    elif ap["l2"]:
+    if ap["l2"]:
         l2.set("parentLink", "F")
         l2.set("id", str(ap["l2"][1]))
         l2.set("tableId", str(ap["l2"][0]))
