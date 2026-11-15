@@ -164,7 +164,7 @@ def make_zone(key, scene_key, z, name_text, rect, stand=None, cond=None,
 
 
 # Punto de entrada invisible de cada escena (destino de los cambios de escena)
-for _sc in world.SCENES + [{"key": "menu", "entry": (640, 690)}]:
+for _sc in world.SCENES + [{"key": "menu", "entry": (640, -200)}]:
     _ex, _ey = _sc["entry"]
     make_object("_entry_" + _sc["key"], _sc["key"], z=-10, walkable="T",
                 rect=(_ex - 6, _ey - 6, 12, 12), stand=(_ex, _ey))

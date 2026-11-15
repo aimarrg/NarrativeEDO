@@ -970,10 +970,10 @@
 		<Object name="_entry_menu" id="11" order="99" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
-				<point x="636" y="686" />
-				<point x="644" y="686" />
-				<point x="644" y="694" />
-				<point x="636" y="694" />
+				<point x="636" y="-204" />
+				<point x="644" y="-204" />
+				<point x="644" y="-196" />
+				<point x="636" y="-196" />
 			</ObjectPolygon>
 			<ObjectCondition parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectSprite parentLink="F" id="-1" tableId="-1" LinkAny="F" />
@@ -983,7 +983,7 @@
 			<ObjectConditions />
 			<ObjectAnimations />
 			<ObjectValues />
-			<ObjectPosition x="640" y="690" />
+			<ObjectPosition x="640" y="-200" />
 			<ObjectSnoopAnimationPos x="0" y="0" />
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
