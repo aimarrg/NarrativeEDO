@@ -38,7 +38,7 @@ O a mano:
 |---|---|
 | Clic en el suelo | Haru camina hasta ahí (solo por las zonas de suelo) |
 | Clic en un objeto/persona | Interactúa (el nombre aparece al pasar el ratón) |
-| Clic sobre un texto | Salta el texto |
+| Clic sobre un texto | Salta el texto (sale en el cuadro de arriba) |
 | **Clic derecho** o **ESC** | Abre el **menú de pausa** (Continuar / Menú principal / Salir) |
 
 `ESC` también cierra el menú de pausa (lo implementa un script Lua con
@@ -308,13 +308,16 @@ Reglas prácticas:
   escribirlo tú (el motor no lo añade solo).
 - Los acentos, `«»`, `¿` y `¡` funcionan: el `.ved` se guarda en UTF-8.
 
-- El cuadro de diálogo se dibuja centrado (`GameTextAlignment = 2`) dentro de un
-  rectángulo definido por `GameActionTextRect` (`GameDrawActionText = 2`), anclado
-  abajo del todo del escenario (game 1280x720: rect `x=140..1140`, `y=440..700`).
-  Así no tapa la visibilidad del personaje y queda centrado horizontalmente.
-- La misma área para los diálogos con personaje se fija con
-  `CharacterDialogArea` (`top=440`, `left=140`, `bottom=700`, `right=1140`) para que
-  tampoco salga por encima de la cabeza del personaje.
+- **Todos los textos salen en un cuadro centrado arriba** (panel semitransparente
+  de 1000x110 en `x=140..1140`, `y=10..120`). Hay un objeto `dialog_box_<escena>`
+  por escena; el generador enciende la condición `caja_texto` justo antes de cada
+  texto y la apaga justo después, así que el cuadro solo se ve mientras suena una
+  frase. El texto se centra (`GameTextAlignment = 2`) y la fuente rompe línea a
+  880 px, de modo que ninguna frase pasa de 2 líneas dentro del cuadro.
+- **El nombre de un clicable aparece junto al cursor**, es decir, sobre el propio
+  objeto (`GameDrawActionText = 1`). `GameActionTextRect` solo marca los límites
+  para que el nombre no se corte en los bordes. Con el valor `2` el nombre se
+  dibujaría fijo dentro de ese rectángulo, que es lo que lo dejaba en medio abajo.
 - Las opciones de diálogo (`GameDialogTextAlignment`) también se centran (`2`).
 
 ### 4.5 Conversaciones con ramas
