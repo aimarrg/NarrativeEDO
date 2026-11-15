@@ -2876,27 +2876,27 @@
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="110" order="3" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="25" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="111" order="4" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="26" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="112" order="5" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="27" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="113" order="6" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="28" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="114" order="7" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="29" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="115" order="8" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="30" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="Cambiar condición" id="116" order="9" lastModified="-1" ActionPartCommand="139" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="7" tableId="10" LinkAny="F" />
@@ -2904,15 +2904,15 @@
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="117" order="10" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="31" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="118" order="11" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="32" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="119" order="12" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="33" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="35" tableId="6" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="Mostrar personaje" id="120" order="13" lastModified="-1" ActionPartCommand="98" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="1" tableId="0" LinkAny="F" />

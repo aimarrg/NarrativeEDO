@@ -417,10 +417,10 @@ def _as_list(v):
 
 def _beat_parts(item):
     if isinstance(item, str):
-        return [ap_text(TX[item], char=NARRATOR_ID)]
+        return [ap_text(TX[item], obj="dialog_box")]
     out = []
     if item.get("text"):
-        out.append(ap_text(TX[item["text"]], char=NARRATOR_ID))
+        out.append(ap_text(TX[item["text"]], obj="dialog_box"))
     for cname in _as_list(item.get("set")):
         out.append(ap_setcond(COND[cname]))
     for cname in _as_list(item.get("unset")):
