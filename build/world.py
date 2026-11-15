@@ -157,6 +157,24 @@ SCENES = [
         "entry": (640, 690),
         "start_texts": [],
     },
+    {
+        "key": "calle_socio",
+        "name": "Calle del socio",
+        "bg": "bg_street",
+        "music": "audio/market.ogg",
+        "way": [(0, 585), (1280, 585), (1280, 714), (0, 714)],
+        "entry": (150, 690),
+        "start_texts": [],
+    },
+    {
+        "key": "calle_rival",
+        "name": "Calle del rival",
+        "bg": "bg_street",
+        "music": "audio/market.ogg",
+        "way": [(0, 585), (1280, 585), (1280, 714), (0, 714)],
+        "entry": (150, 690),
+        "start_texts": [],
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -361,52 +379,6 @@ CLICKABLES = [
 
     # ----------------------------------------------------------------- CALLE
     {
-        "key": "taberna_a_cerrada",
-        "scene": "calle",
-        "name": "n_taberna_a",
-        "sprite": "tavern_a_closed",
-        "pos": (40, 250),
-        "stand": (220, 690),
-        "order": 5,
-        "cond": "tabernas_abiertas",
-        "negate": True,
-        "text": "taberna_cerrada",
-    },
-    {
-        "key": "taberna_a_abierta",
-        "scene": "calle",
-        "name": "n_taberna_a",
-        "sprite": "tavern_a_open",
-        "pos": (40, 250),
-        "stand": (220, 690),
-        "order": 5,
-        "cond": "tabernas_abiertas",
-        "text": "taberna_abierta",
-    },
-    {
-        "key": "taberna_b_cerrada",
-        "scene": "calle",
-        "name": "n_taberna_b",
-        "sprite": "tavern_b_closed",
-        "pos": (880, 250),
-        "stand": (1060, 690),
-        "order": 5,
-        "cond": "tabernas_abiertas",
-        "negate": True,
-        "text": "taberna_cerrada",
-    },
-    {
-        "key": "taberna_b_abierta",
-        "scene": "calle",
-        "name": "n_taberna_b",
-        "sprite": "tavern_b_open",
-        "pos": (880, 250),
-        "stand": (1060, 690),
-        "order": 5,
-        "cond": "tabernas_abiertas",
-        "text": "taberna_abierta",
-    },
-    {
         # la puerta de casa, en la fachada central de la calle
         "key": "volver_casa",
         "scene": "calle",
@@ -560,6 +532,10 @@ CLICKABLES = [
     },
     {"key": "ir_escondite", "scene": "mercado", "name": "n_ir_escondite", "rect": (1180, 520, 100, 200), "stand": (1160, 690), "order": 2, "scene_to": "escondite_cristiano"},
     {"key": "ir_oficina", "scene": "mercado", "name": "n_ir_oficina", "rect": (1080, 520, 100, 200), "stand": (1060, 690), "order": 2, "scene_to": "oficina_inspector"},
+    {"key": "ir_calle_socio", "scene": "mercado", "name": "n_ir_calle_socio", "rect": (980, 520, 100, 200), "stand": (960, 690), "order": 2, "scene_to": "calle_socio"},
+    {"key": "ir_calle_rival", "scene": "mercado", "name": "n_ir_calle_rival", "rect": (880, 520, 100, 200), "stand": (860, 690), "order": 2, "scene_to": "calle_rival"},
+    {"key": "volver_mercado_soc", "scene": "calle_socio", "name": "n_volver_mercado", "rect": (0, 560, 90, 160), "stand": (110, 700), "order": 2, "scene_to": "mercado"},
+    {"key": "volver_mercado_riv", "scene": "calle_rival", "name": "n_volver_mercado", "rect": (0, 560, 90, 160), "stand": (110, 700), "order": 2, "scene_to": "mercado"},
     {"key": "volver_mercado_esc", "scene": "escondite_cristiano", "name": "n_volver_mercado", "rect": (0, 560, 90, 160), "stand": (110, 700), "order": 2, "scene_to": "mercado"},
     {"key": "volver_mercado_ofi", "scene": "oficina_inspector", "name": "n_volver_mercado", "rect": (0, 560, 90, 160), "stand": (110, 700), "order": 2, "scene_to": "mercado"},
 ]
