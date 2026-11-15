@@ -4849,112 +4849,112 @@
 		</Text>
 		<Text name="castillo_1" id="25" order="25" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="Castillo del Shogun. Amanecer del décimo día del octavo mes." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_2" id="26" order="26" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="El patio huele a tierra mojada. Nadie habla." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_3" id="27" order="27" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="Haru espera de rodillas junto al cepo. Las manos le tiemblan detrás de la espalda." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_4" id="28" order="28" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="«Haru, hijo de comerciantes de Nagasaki: acusado de tratar con extranjeros.»" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_5" id="29" order="29" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="La multitud contiene el aliento. El verdugo comprueba la cuerda." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_6" id="30" order="30" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="La hoja sube. Un instante de silencio." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_7" id="31" order="31" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="El filo cae." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_8" id="32" order="32" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="Y todo se apaga." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_9" id="33" order="33" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="Despiertas en tu casa. Aún es de noche y todo sigue en su sitio." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="foto" id="34" order="34" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="Tu familia, retratada el año del incendio. Tu madre sostiene el abanico que aún guardas; tu padre finge no sonreír." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="nota" id="35" order="35" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="«Haru: si lees esto, es que ya eres el hombre de la casa. Te quiero más de lo que supe decirte. Cuida el negocio y cuídate tú. — Tu padre»" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="taberna_cerrada" id="36" order="36" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="La puerta está cerrada con una cuerda y un cartel: «Cerrado hasta la noche»." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="taberna_abierta" id="37" order="37" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá tu diálogo de la taberna.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="mercado_cerrado" id="38" order="38" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="El mercado está cerrado. Un cartel dice: «Abre a las 9:00»." path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="mercado_tuyo" id="39" order="39" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá tu texto del puesto de Haru.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="mercado_socio" id="40" order="40" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá tu diálogo con el socio.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="mercado_rival" id="41" order="41" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá tu diálogo con el rival.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="pescador" id="42" order="42" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá tu diálogo con el pescador, que te da el pase del mercado.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="pescador_despues" id="43" order="43" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá lo que dice el pescador la segunda vez.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="red" id="44" order="44" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá el texto de la red de pesca.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="barco" id="45" order="45" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá el texto del barco holandés.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="cajas" id="46" order="46" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="(Aquí irá el texto de las cajas del muelle.)" path="" int="0" />
+				<text Text="" path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="scene_castillo" id="47" order="47" lastModified="-1">
