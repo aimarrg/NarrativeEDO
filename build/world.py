@@ -513,8 +513,6 @@ CLICKABLES = [
         "scene_to": "puerto",
     },
     {"key": "ir_escondite", "scene": "mercado", "name": "n_ir_escondite", "rect": (1180, 520, 100, 200), "stand": (1160, 690), "order": 2, "scene_to": "escondite_cristiano"},
-    {"key": "arrow_escondite", "scene": "mercado", "sprite": "arrow_right", "pos": (1230, 580), "rect": (1230, 580, 60, 60), "order": 900},
-    {"key": "arrow_oficina", "scene": "mercado", "sprite": "arrow_right", "pos": (1130, 580), "rect": (1130, 580, 60, 60), "order": 900},
     {"key": "ir_oficina", "scene": "mercado", "name": "n_ir_oficina", "rect": (1080, 520, 100, 200), "stand": (1060, 690), "order": 2, "scene_to": "oficina_inspector"},
     {"key": "ir_calle_socio", "scene": "mercado", "name": "n_ir_calle_socio", "rect": (980, 520, 100, 200), "stand": (960, 690), "order": 2, "scene_to": "calle_socio"},
     {"key": "ir_calle_rival", "scene": "mercado", "name": "n_ir_calle_rival", "rect": (880, 520, 100, 200), "stand": (860, 690), "order": 2, "scene_to": "calle_rival"},
