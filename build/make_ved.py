@@ -305,8 +305,9 @@ def build_clickable(spec):
 
     if spec.get("set_first"):
         parts.extend(condition_parts())
-    if spec.get("text"):
-        parts.extend(text_parts(TX[spec["text"]], spec["scene"]))
+    # Dialogos desactivados.
+    # if spec.get("text"):
+    #     parts.extend(text_parts(TX[spec["text"]], spec["scene"]))
     if not spec.get("set_first"):
         parts.extend(condition_parts())
     if spec.get("scene_to"):
@@ -433,10 +434,11 @@ def _as_list(v):
 
 def _beat_parts(item, scene_key):
     if isinstance(item, str):
-        return text_parts(TX[item], scene_key)
+        return []
     out = []
-    if item.get("text"):
-        out.extend(text_parts(TX[item["text"]], scene_key))
+    # Dialogos desactivados.
+    # if item.get("text"):
+    #     out.extend(text_parts(TX[item["text"]], scene_key))
     for cname in _as_list(item.get("set")):
         out.append(ap_setcond(COND[cname]))
     for cname in _as_list(item.get("unset")):

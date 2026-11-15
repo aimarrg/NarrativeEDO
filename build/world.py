@@ -358,24 +358,6 @@ CLICKABLES = [
         "order": 2,
         "scene_to": "calle",
     },
-    {
-        "key": "ir_mercado_casa",
-        "scene": "casa",
-        "name": "n_ir_mercado",
-        "rect": (60, 560, 180, 160),
-        "stand": (150, 690),
-        "order": 2,
-        "scene_to": "mercado",
-    },
-    {
-        "key": "ir_puerto_casa",
-        "scene": "casa",
-        "name": "n_ir_puerto",
-        "rect": (260, 560, 180, 160),
-        "stand": (350, 690),
-        "order": 2,
-        "scene_to": "puerto",
-    },
 
     # ----------------------------------------------------------------- CALLE
     {
@@ -533,8 +515,6 @@ CLICKABLES = [
     {"key": "ir_escondite", "scene": "mercado", "name": "n_ir_escondite", "rect": (1180, 520, 100, 200), "stand": (1160, 690), "order": 2, "scene_to": "escondite_cristiano"},
     {"key": "arrow_escondite", "scene": "mercado", "sprite": "arrow_right", "pos": (1230, 580), "rect": (1230, 580, 60, 60), "order": 900},
     {"key": "arrow_oficina", "scene": "mercado", "sprite": "arrow_right", "pos": (1130, 580), "rect": (1130, 580, 60, 60), "order": 900},
-    {"key": "arrow_mercado_casa", "scene": "casa", "sprite": "arrow_left", "pos": (60, 620), "rect": (60, 620, 60, 60), "order": 900},
-    {"key": "arrow_puerto_casa", "scene": "casa", "sprite": "arrow_right", "pos": (300, 620), "rect": (300, 620, 60, 60), "order": 900},
     {"key": "ir_oficina", "scene": "mercado", "name": "n_ir_oficina", "rect": (1080, 520, 100, 200), "stand": (1060, 690), "order": 2, "scene_to": "oficina_inspector"},
     {"key": "ir_calle_socio", "scene": "mercado", "name": "n_ir_calle_socio", "rect": (980, 520, 100, 200), "stand": (960, 690), "order": 2, "scene_to": "calle_socio"},
     {"key": "ir_calle_rival", "scene": "mercado", "name": "n_ir_calle_rival", "rect": (880, 520, 100, 200), "stand": (860, 690), "order": 2, "scene_to": "calle_rival"},
