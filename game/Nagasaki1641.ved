@@ -241,6 +241,7 @@
 				<Link parentLink="T" id="59" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="60" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="61" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="102" tableId="6" LinkAny="F" />
 			</SceneObjects>
 			<SceneCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<SceneSavegameAreas />
@@ -736,7 +737,7 @@
 	<Dialogs newId="0" versionedId="-1" tableId="11" />
 	<DialogParts newId="0" versionedId="-1" tableId="12" />
 	<CommentSets newId="0" versionedId="-1" tableId="16" />
-	<Objects newId="102" versionedId="-1" tableId="6">
+	<Objects newId="103" versionedId="-1" tableId="6">
 		<Object name="_entry_castillo" id="0" order="9" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
@@ -3129,6 +3130,29 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
+		<Object name="dialog_box" id="102" order="0" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<ObjectPolygon>
+				<point x="142" y="12" />
+				<point x="1138" y="12" />
+				<point x="1138" y="118" />
+				<point x="142" y="118" />
+			</ObjectPolygon>
+			<ObjectCondition parentLink="F" id="7" tableId="10" LinkAny="F" />
+			<ObjectSprite parentLink="T" id="34" tableId="13" LinkAny="F" />
+			<ObjectAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<ObjectSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<ObjectActions />
+			<ObjectConditions>
+				<Link parentLink="T" id="7" tableId="10" LinkAny="F" />
+			</ObjectConditions>
+			<ObjectAnimations />
+			<ObjectValues />
+			<ObjectPosition x="640" y="690" />
+			<ObjectSnoopAnimationPos x="0" y="0" />
+			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<ObjectComponents />
+		</Object>
 	</Objects>
 	<Actions newId="77" versionedId="-1" tableId="7">
 		<Action name="Acción: foto" id="0" order="0" lastModified="-1" ActionExecutionType="7">
@@ -4520,7 +4544,7 @@
 			<ConditionConditions />
 		</Condition>
 	</Conditions>
-	<Sprites newId="34" versionedId="-1" tableId="13">
+	<Sprites newId="35" versionedId="-1" tableId="13">
 		<Sprite name="dialog_box_castillo" id="0" order="0" lastModified="-1">
 			<SpriteSprite name="" pause="-1" path="graphics/dialog_box.png" Transparency="2">
 				<position x="140" y="10" />
@@ -4689,6 +4713,11 @@
 		<Sprite name="pause" id="33" order="33" lastModified="-1">
 			<SpriteSprite name="" pause="-1" path="graphics/obj_pause.png" Transparency="2">
 				<position x="0" y="0" />
+			</SpriteSprite>
+		</Sprite>
+		<Sprite name="dialog_box" id="34" order="34" lastModified="-1">
+			<SpriteSprite name="" pause="-1" path="graphics/dialog_box.png" Transparency="2">
+				<position x="140" y="10" />
 			</SpriteSprite>
 		</Sprite>
 	</Sprites>
