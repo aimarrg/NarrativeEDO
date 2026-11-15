@@ -1383,11 +1383,33 @@ for v in values:
 # --- Scripts (cursor dibujado por el juego)
 CURSOR_SCRIPT = """local cursorSprite = nil
 
+-- Cuadro de texto superior: todos los textos se centran en (BOX_TEXT_X, BOX_TEXT_Y).
+-- El cuadro (dialog_box.png) ocupa x=140..1140, y=10..120. BOX_TEXT_Y es el borde
+-- superior del bloque de texto: si el texto queda muy alto o bajo, cambia solo este numero.
+local BOX_TEXT_X = 640
+local BOX_TEXT_Y = 30
+
+local function nagasakiPlaceText(text)
+  local pos = {x = BOX_TEXT_X, y = BOX_TEXT_Y}
+  local ok = pcall(function() text:setValue(VTextPosition, pos) end)
+  if not ok then
+    pcall(function() text.Position = pos end)
+  end
+end
+
+function nagasakiTextPosHook(text)
+  nagasakiPlaceText(text)
+  return true
+end
+
+pcall(registerHookFunction, "setTextPosition", "nagasakiTextPosHook")
+
 -- Autoavance de los diálogos: cada texto dura en pantalla según su longitud
 -- (y se puede saltar con un clic, como siempre).
 function nagasakiTextStarted(text)
   local body = text and text.CurrentText or ""
   if text then
+    nagasakiPlaceText(text)
     local dur = 1300 + #body * 28
     if dur > 5200 then dur = 5200 end
     if dur < 1500 then dur = 1500 end

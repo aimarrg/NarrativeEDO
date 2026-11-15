@@ -314,6 +314,10 @@ Reglas prácticas:
   texto y la apaga justo después, así que el cuadro solo se ve mientras suena una
   frase. El texto se centra (`GameTextAlignment = 2`) y la fuente rompe línea a
   880 px, de modo que ninguna frase pasa de 2 líneas dentro del cuadro.
+- La posición del texto dentro del cuadro la fija el script Lua (`BOX_TEXT_X = 640`,
+  `BOX_TEXT_Y = 30`, en `CURSOR_SCRIPT` de `make_ved.py`). `BOX_TEXT_Y` es el borde
+  superior del bloque: si el texto queda muy alto o bajo, cambia solo ese número y
+  regenera el `.ved`.
 - **El nombre de un clicable aparece junto al cursor**, es decir, sobre el propio
   objeto (`GameDrawActionText = 1`). `GameActionTextRect` solo marca los límites
   para que el nombre no se corte en los bordes. Con el valor `2` el nombre se
