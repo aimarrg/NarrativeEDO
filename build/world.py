@@ -406,20 +406,7 @@ CLICKABLES = [
         "rect": (0, 520, 90, 200),
         "stand": (120, 690),
         "order": 2,
-        "cond": "tengo_check",
         "scene_to": "mercado",
-    },
-    {
-        # sin el pase: el mercado aún está cerrado
-        "key": "mercado_cerrado",
-        "scene": "calle",
-        "name": "n_ir_mercado",
-        "rect": (0, 520, 90, 200),
-        "stand": (120, 690),
-        "order": 2,
-        "cond": "tengo_check",
-        "negate": True,
-        "text": "mercado_cerrado",
     },
     {
         "key": "ir_puerto",
