@@ -137,7 +137,7 @@ SCENES = [
         "music": "audio/warehouse.ogg",
         "way": [(0, 585), (1280, 585), (1280, 714), (0, 714)],
         "entry": (640, 690),
-        "start_texts": [],
+        "start_texts": ["escondite_1"],
     },
     {
         "key": "oficina_inspector",
@@ -226,6 +226,7 @@ TEXTS = {
     "n_nueva": "Nueva partida",
     "n_abandonar": "Salir del juego",
     "haru": "Haru",
+    "escondite_1": "(Aqui ira tu texto del escondite.)",
 
     # --- cinemática inicial (castillo del Shogun) ---
     "castillo_1": "Castillo del Shogun. Amanecer del décimo día del octavo mes.",
