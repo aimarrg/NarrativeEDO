@@ -340,6 +340,24 @@ CLICKABLES = [
         "order": 2,
         "scene_to": "calle",
     },
+    {
+        "key": "ir_mercado_casa",
+        "scene": "casa",
+        "name": "n_ir_mercado",
+        "rect": (60, 560, 180, 160),
+        "stand": (150, 690),
+        "order": 2,
+        "scene_to": "mercado",
+    },
+    {
+        "key": "ir_puerto_casa",
+        "scene": "casa",
+        "name": "n_ir_puerto",
+        "rect": (260, 560, 180, 160),
+        "stand": (350, 690),
+        "order": 2,
+        "scene_to": "puerto",
+    },
 
     # ----------------------------------------------------------------- CALLE
     {
