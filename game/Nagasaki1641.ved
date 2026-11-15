@@ -12,6 +12,7 @@
 		</GameSceneLinks>
 		<GameCharacterLinks>
 			<Link parentLink="T" id="1" tableId="0" LinkAny="F" />
+			<Link parentLink="T" id="2" tableId="0" LinkAny="F" />
 		</GameCharacterLinks>
 		<GameInterfaces />
 		<GameFontLinks>
@@ -86,7 +87,7 @@
 			</LoadingStatusSprite>
 		</Loading>
 	</Loadings>
-	<Characters newId="2" versionedId="-1" tableId="0">
+	<Characters newId="3" versionedId="-1" tableId="0">
 		<Character name="Haru" id="1" order="1" lastModified="-1" CharacterWalkingSound="" CharacterScale="T" CharacterDialogVerticalSpace="10" CharacterScaleFactor="100" CharacterHarmonizeWalkAnimations="F">
 			<CharacterName parentLink="T" id="24" tableId="14" LinkAny="F" />
 			<CharacterInterfaces />
@@ -106,6 +107,50 @@
 			<CharacterActiveDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<CharacterInactiveDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<CharacterDialogArea top="440" left="140" bottom="700" right="1140" />
+			<CharacterDialogActiveScrollUp name="" pause="-1" path="" Transparency="2">
+				<position x="0" y="0" />
+			</CharacterDialogActiveScrollUp>
+			<CharacterDialogInactiveScrollUp name="" pause="-1" path="" Transparency="2">
+				<position x="0" y="0" />
+			</CharacterDialogInactiveScrollUp>
+			<CharacterDialogActiveScrollDown name="" pause="-1" path="" Transparency="2">
+				<position x="0" y="0" />
+			</CharacterDialogActiveScrollDown>
+			<CharacterDialogInactiveScrollDown name="" pause="-1" path="" Transparency="2">
+				<position x="0" y="0" />
+			</CharacterDialogInactiveScrollDown>
+			<CharacterDialogSprite name="" pause="-1" path="" Transparency="2">
+				<position x="0" y="0" />
+			</CharacterDialogSprite>
+			<CharacterActionDestPosition x="-1" y="-1" />
+			<CharacterAudioBus parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterComponents />
+			<CharacterActiveUsedDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterInactiveUsedDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterStartScene parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterStartPos x="0" y="0" />
+			<CharacterSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterSnoopAnimationOffsetPos x="0" y="0" />
+		</Character>
+		<Character name="Narrador" id="2" order="2" lastModified="-1" CharacterWalkingSound="" CharacterScale="T" CharacterDialogVerticalSpace="10" CharacterScaleFactor="100" CharacterHarmonizeWalkAnimations="F">
+			<CharacterName parentLink="T" id="24" tableId="14" LinkAny="F" />
+			<CharacterInterfaces />
+			<CharacterFont parentLink="F" id="0" tableId="3" LinkAny="F" />
+			<CharacterCurrentOutfit parentLink="F" id="0" tableId="17" LinkAny="F" />
+			<CharacterCurrentCommentSet parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterDialogCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterDialogs />
+			<CharacterActions />
+			<CharacterOutfits>
+				<Link parentLink="T" id="0" tableId="17" LinkAny="F" />
+			</CharacterOutfits>
+			<CharacterCommentSets />
+			<CharacterStartObject parentLink="F" id="0" tableId="6" LinkAny="F" />
+			<CharacterValues />
+			<CharacterConditions />
+			<CharacterActiveDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterInactiveDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<CharacterDialogArea top="0" left="140" bottom="220" right="1140" />
 			<CharacterDialogActiveScrollUp name="" pause="-1" path="" Transparency="2">
 				<position x="0" y="0" />
 			</CharacterDialogActiveScrollUp>
@@ -2807,27 +2852,27 @@
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="110" order="3" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="25" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="111" order="4" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="26" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="112" order="5" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="27" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="113" order="6" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="28" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="114" order="7" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="29" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="115" order="8" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="30" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="Cambiar condición" id="116" order="9" lastModified="-1" ActionPartCommand="139" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="7" tableId="10" LinkAny="F" />
@@ -2835,15 +2880,15 @@
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="117" order="10" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="31" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="118" order="11" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="32" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="DIALOGO" id="119" order="12" lastModified="-1" ActionPartCommand="23" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="33" tableId="14" LinkAny="F" />
-			<ActionPartAltLink parentLink="F" id="1" tableId="0" LinkAny="F" />
+			<ActionPartAltLink parentLink="F" id="2" tableId="0" LinkAny="F" />
 		</ActionPart>
 		<ActionPart name="Mostrar personaje" id="120" order="13" lastModified="-1" ActionPartCommand="98" ActionPartPath="" ActionPartInt="0" ActionPartAltInt="0" ActionPartAltInt2="0" ActionPartString="" ActionPartDisabled="F">
 			<ActionPartLink parentLink="F" id="1" tableId="0" LinkAny="F" />

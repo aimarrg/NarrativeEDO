@@ -24,6 +24,7 @@ T = {
 # y todas las referencias (GameCharacterLinks, GameFirstCharacter, ActionParts)
 # apuntan a ese id.
 CHAR_ID = 1
+NARRATOR_ID = 2
 
 FONT_PATH = "fonts/NotoSans-Regular.ttf"
 ALPHABET = ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -400,10 +401,10 @@ def _as_list(v):
 
 def _beat_parts(item):
     if isinstance(item, str):
-        return [ap_text(TX[item])]
+        return [ap_text(TX[item], char=NARRATOR_ID)]
     out = []
     if item.get("text"):
-        out.append(ap_text(TX[item["text"]]))
+        out.append(ap_text(TX[item["text"]], char=NARRATOR_ID))
     for cname in _as_list(item.get("set")):
         out.append(ap_setcond(COND[cname]))
     for cname in _as_list(item.get("unset")):
@@ -790,6 +791,26 @@ e.set("LinkAny", "F")
 e = ET.SubElement(ch, "CharacterSnoopAnimationOffsetPos")
 e.set("x", "0")
 e.set("y", "0")
+
+# --- Narrador: personaje invisible para textos de cinematica (cuadro superior)
+import copy as _copy
+_nar = _copy.deepcopy(ch)
+_nar.set("name", "Narrador")
+_nar.set("id", str(NARRATOR_ID))
+_nar.set("order", str(NARRATOR_ID))
+_narea = _nar.find("CharacterDialogArea")
+for _k, _v in {"top": "0", "left": "140", "bottom": "220", "right": "1140"}.items():
+    _narea.set(_k, _v)
+chars.append(_nar)
+chars.set("newId", str(NARRATOR_ID + 1))
+
+# enlazar el narrador en el juego (no es jugable, pero se necesita para textos)
+_gl = game.find("GameCharacterLinks")
+_nl = ET.SubElement(_gl, "Link")
+_nl.set("parentLink", "T")
+_nl.set("id", str(NARRATOR_ID))
+_nl.set("tableId", "0")
+_nl.set("LinkAny", "F")
 
 # --- Interfaces / Buttons vacíos
 for tag, table in (("Interfaces", T["interfaces"]), ("Buttons", T["buttons"])):
