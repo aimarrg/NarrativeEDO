@@ -171,6 +171,7 @@ CONDITIONS = {
     "sin_haru_en_pausa": False,  # la pausa no muestra a Haru (cinemáticas)
     "en_menu": False,            # estás en el menú principal (ESC no abre pausa)
     "ejecutado": False,          # el filo ha caído en la cinemática inicial
+    "caja_texto": False,         # cuadro de texto superior visible (lo activa el generador)
 }
 
 VALUES = {

@@ -231,6 +231,35 @@ def ap_hidechar(char=CHAR_ID):
 OBJ_ACTION = {}
 OBJECT_COUNT = [0]
 
+# Cuadro de texto superior, centrado (panel semi-transparente de 1000x110 en
+# x=140..1140, y=10..120). Hay uno por escena y solo se ve mientras suena un
+# texto: la condición "caja_texto" se activa justo antes y se apaga justo
+# después. El texto lo "dice" ese objeto, así que sale dentro del cuadro.
+_BOX_SPRITE_PATH = "graphics/dialog_box.png"
+_BOX_Z = 900  # por debajo del menú de pausa (950/960)
+for _sc in world.SCENES:
+    _bkey = "dialog_box_" + _sc["key"]
+    OBJ[_bkey] = {
+        "id": nid("obj"),
+        "name": None,
+        "sprite": add_sprite(_BOX_SPRITE_PATH, 140, 10, _bkey),
+        "scene": _sc["key"],
+        "order": 0,
+        "z": _BOX_Z,
+        "cond": COND["caja_texto"],
+        "negate": False,
+        "stand": (640, 690),
+        "rect": (140, 10, 1000, 110),
+        "walkable": "F",
+    }
+
+
+def text_parts(text_id, scene_key):
+    """Texto dentro del cuadro superior: enciende la caja, habla y la apaga."""
+    return [ap_setcond(COND["caja_texto"]),
+            ap_text(text_id, obj="dialog_box_" + scene_key),
+            ap_setcond(COND["caja_texto"], 1)]
+
 
 def build_clickable(spec):
     key = spec["key"]
@@ -274,7 +303,7 @@ def build_clickable(spec):
     if spec.get("set_first"):
         parts.extend(condition_parts())
     if spec.get("text"):
-        parts.append(ap_text(TX[spec["text"]], obj=key))
+        parts.extend(text_parts(TX[spec["text"]], spec["scene"]))
     if not spec.get("set_first"):
         parts.extend(condition_parts())
     if spec.get("scene_to"):
@@ -288,23 +317,6 @@ def build_clickable(spec):
 
 for _spec in world.CLICKABLES:
     build_clickable(_spec)
-
-# Caja de dialogo (panel superior semi-transparente, solo en la cinematica del castillo).
-_box_sprite = add_sprite("graphics/dialog_box.png", 140, 10, "dialog_box")
-OBJ["dialog_box"] = {
-    "id": nid("obj"),
-    "name": None,
-    "sprite": _box_sprite,
-    "scene": "castillo",
-    "order": 0,
-    "z": 1000,
-    "cond": COND.get("ejecutado"),
-    "negate": True,
-    "stand": (640, 690),
-    "rect": (140, 10, 1000, 110),
-    "walkable": "F",
-}
-
 
 # ---------------------------------------------------------------------------
 # Menú principal
@@ -416,12 +428,12 @@ def _as_list(v):
     return list(v)
 
 
-def _beat_parts(item):
+def _beat_parts(item, scene_key):
     if isinstance(item, str):
-        return [ap_text(TX[item], obj="dialog_box")]
+        return text_parts(TX[item], scene_key)
     out = []
     if item.get("text"):
-        out.append(ap_text(TX[item["text"]], obj="dialog_box"))
+        out.extend(text_parts(TX[item["text"]], scene_key))
     for cname in _as_list(item.get("set")):
         out.append(ap_setcond(COND[cname]))
     for cname in _as_list(item.get("unset")):
@@ -446,7 +458,7 @@ def make_start_action(sc):
     if seq is None:
         seq = list(sc.get("start_texts", []))
     for item in seq:
-        parts.extend(_beat_parts(item))
+        parts.extend(_beat_parts(item, scene_key))
 
     if sc.get("start_show_char"):
         parts.append(ap_showchar())
@@ -529,7 +541,9 @@ game.set("GameAlignCharacterOnImExecution", "F")
 game.set("GameSceneComposedFiles", "0")
 game.set("GameCharacterComposedFiles", "0")
 game.set("GameMovieComposedFiles", "2")
-game.set("GameDrawActionText", "2")
+# Nombre del clicable al pasar el ratón: 1 = junto al cursor (sobre el objeto);
+# 2 = fijo dentro de GameActionTextRect (era lo que lo dejaba en medio abajo).
+game.set("GameDrawActionText", "1")
 game.set("GameQuake", "F")
 game.set("GameSpeakerTextAlignment", "0")
 game.set("GameTextAlignment", "2")
@@ -625,12 +639,12 @@ font_link.set("id", "0")
 font_link.set("tableId", str(T["fonts"]))
 font_link.set("LinkAny", "F")
 rect = ET.SubElement(game, "GameActionTextRect")
-# Cuadro de dialogo: centrado horizontalmente, anclado en la parte baja de la
-# pantalla (game 1280x720), para no tapar la visibilidad del escenario.
-rect.set("top", "440")
-rect.set("left", "140")
+# Con GameDrawActionText = 1 el rectángulo solo marca los límites dentro de los
+# que puede moverse el nombre (para que no se corte por el borde derecho/abajo).
+rect.set("top", "-1")
+rect.set("left", "-1")
 rect.set("bottom", "700")
-rect.set("right", "1140")
+rect.set("right", "1260")
 script_links = ET.SubElement(game, "GameScriptLinks")
 l = ET.SubElement(script_links, "Link")
 l.set("parentLink", "T")
@@ -861,7 +875,8 @@ fo.set("FontLetterSpacing", "0")
 fo.set("VerticalLetterSpacing", "3")
 fo.set("FontSpaceWidth", "10")
 fo.set("FontAutoLineBreak", "T")
-fo.set("FontLineWidth", "640")
+# 880 px: dentro del cuadro superior (1000 px de ancho) ningún texto pasa de 2 líneas
+fo.set("FontLineWidth", "880")
 fo.set("FontKerning", "")
 fo.set("FontTrueTypeFont", "T")
 fo.set("FontTrueTypeFontPath", FONT_PATH)
@@ -1369,11 +1384,33 @@ for v in values:
 # --- Scripts (cursor dibujado por el juego)
 CURSOR_SCRIPT = """local cursorSprite = nil
 
+-- Cuadro de texto superior: todos los textos se centran en (BOX_TEXT_X, BOX_TEXT_Y).
+-- El cuadro (dialog_box.png) ocupa x=140..1140, y=10..120. BOX_TEXT_Y es el borde
+-- superior del bloque de texto: si el texto queda muy alto o bajo, cambia solo este numero.
+local BOX_TEXT_X = 640
+local BOX_TEXT_Y = 30
+
+local function nagasakiPlaceText(text)
+  local pos = {x = BOX_TEXT_X, y = BOX_TEXT_Y}
+  local ok = pcall(function() text:setValue(VTextPosition, pos) end)
+  if not ok then
+    pcall(function() text.Position = pos end)
+  end
+end
+
+function nagasakiTextPosHook(text)
+  nagasakiPlaceText(text)
+  return true
+end
+
+pcall(registerHookFunction, "setTextPosition", "nagasakiTextPosHook")
+
 -- Autoavance de los diálogos: cada texto dura en pantalla según su longitud
 -- (y se puede saltar con un clic, como siempre).
 function nagasakiTextStarted(text)
   local body = text and text.CurrentText or ""
   if text then
+    nagasakiPlaceText(text)
     local dur = 1300 + #body * 28
     if dur > 5200 then dur = 5200 end
     if dur < 1500 then dur = 1500 end
