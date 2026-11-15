@@ -1437,7 +1437,7 @@ graphics.addDrawFunc("nagasakiCursor()", 1)"""
 KEY_SCRIPT = """-- ESC: abrir / cerrar el menú de pausa
 -- TAB: abrir el mapa
 function nagasakiKeyHandler(eventType, character, keycode, modifiers)
-  if keycode == eKeyTab and eventType == eEvtKeyDown then
+  if keycode == eKeyL and eventType == eEvtKeyDown then
     local enMenu = Conditions["en_menu"] and Conditions["en_menu"].Value
     if enMenu then return false end
     local pv = Conditions["pausa"] and Conditions["pausa"].Value
