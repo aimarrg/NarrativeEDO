@@ -10,6 +10,9 @@ import xml.etree.ElementTree as ET
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GAME = os.path.join(ROOT, "game")
 MANIFEST = json.load(open(os.path.join(ROOT, "build", "art_manifest.json"), encoding="utf-8"))
+for _ak in ("arrow_left", "arrow_right", "arrow_up"):
+    MANIFEST["objects"][_ak] = {"path": "graphics/" + _ak + ".png",
+                                "x": 0, "y": 0, "w": 60, "h": 60}
 
 T = {
     "characters": 0, "interfaces": 1, "buttons": 2, "fonts": 3, "scenes": 4,
