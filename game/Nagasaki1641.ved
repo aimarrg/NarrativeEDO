@@ -1781,10 +1781,10 @@
 		<Object name="ir_escondite" id="46" order="38" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
-				<point x="1182" y="522" />
+				<point x="1082" y="522" />
 				<point x="1278" y="522" />
 				<point x="1278" y="718" />
-				<point x="1182" y="718" />
+				<point x="1082" y="718" />
 			</ObjectPolygon>
 			<ObjectCondition parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectSprite parentLink="F" id="-1" tableId="-1" LinkAny="F" />
