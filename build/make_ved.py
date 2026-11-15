@@ -169,9 +169,13 @@ for _sc in world.SCENES + [{"key": "menu", "entry": (640, 690)}]:
 # ---------------------------------------------------------------------------
 # ActionParts
 # ---------------------------------------------------------------------------
-def ap_text(text_id, char=CHAR_ID):
-    return add_ap(23, "Diálogo", link1=(T["texts"], text_id),
-                  link2=(T["characters"], char), i1=0)
+def ap_text(text_id, char=CHAR_ID, obj=None):
+    if obj is not None:
+        link2 = (T["objects"], OBJ[obj]["id"])
+    else:
+        link2 = (T["characters"], char)
+    return add_ap(23, "DIALOGO", link1=(T["texts"], text_id),
+                  link2=link2, i1=0)
 
 
 def ap_if(cond_id, is_true=True, elseif=False):
@@ -269,7 +273,7 @@ def build_clickable(spec):
     if spec.get("set_first"):
         parts.extend(condition_parts())
     if spec.get("text"):
-        parts.append(ap_text(TX[spec["text"]]))
+        parts.append(ap_text(TX[spec["text"]], obj=key))
     if not spec.get("set_first"):
         parts.extend(condition_parts())
     if spec.get("scene_to"):
