@@ -98,7 +98,7 @@ VAL = {}
 for _name, _initial in world.VALUES.items():
     VAL[_name] = add_value(_name, _initial)
 
-_empty_dialogs = {"castillo_1","castillo_2","castillo_3","castillo_4","castillo_5",
+_empty_dialogs = {"castillo_2","castillo_3","castillo_4","castillo_5",
     "castillo_6","castillo_7","castillo_8","castillo_9","foto","nota",
     "taberna_cerrada","taberna_abierta","mercado_cerrado","mercado_tuyo",
     "mercado_socio","mercado_rival","pescador","pescador_despues","red",
