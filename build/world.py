@@ -228,17 +228,17 @@ TEXTS = {
     "haru": "Haru",
 
     # --- cinemática inicial (castillo del Shogun) ---
-    "castillo_1": "Castillo del Shogun. Amanecer del décimo día del octavo mes.",
-    "castillo_2": "El patio huele a tierra mojada. Nadie habla.",
+    "castillo_1": "Castillo del Shogun. Amanecer del decimo dia del octavo mes.",
+    "castillo_2": "",
     "castillo_3": ("Haru espera de rodillas junto al cepo. Las manos le tiemblan "
                    "detrás de la espalda."),
     "castillo_4": ("«Haru, hijo de comerciantes de Nagasaki: acusado de tratar "
                    "con extranjeros.»"),
     "castillo_5": ("La multitud contiene el aliento. El verdugo comprueba la "
                    "cuerda."),
-    "castillo_6": "La hoja sube. Un instante de silencio.",
-    "castillo_7": "El filo cae.",
-    "castillo_8": "Y todo se apaga.",
+    "castillo_6": "",
+    "castillo_7": "",
+    "castillo_8": "",
     "castillo_9": ("Despiertas en tu casa. Aún es de noche y todo sigue en su "
                    "sitio."),
 
@@ -249,17 +249,17 @@ TEXTS = {
              "de lo que supe decirte. Cuida el negocio y cuídate tú. — Tu padre»"),
     "taberna_cerrada": ("La puerta está cerrada con una cuerda y un cartel: "
                         "«Cerrado hasta la noche»."),
-    "taberna_abierta": "(Aquí irá tu diálogo de la taberna.)",
+    "taberna_abierta": "",
     "mercado_cerrado": ("El mercado está cerrado. Un cartel dice: «Abre a las 9:00»."),
-    "mercado_tuyo": "(Aquí irá tu texto del puesto de Haru.)",
-    "mercado_socio": "(Aquí irá tu diálogo con el socio.)",
-    "mercado_rival": "(Aquí irá tu diálogo con el rival.)",
+    "mercado_tuyo": "",
+    "mercado_socio": "",
+    "mercado_rival": "",
     "pescador": ("(Aquí irá tu diálogo con el pescador, que te da el pase del "
                  "mercado.)"),
-    "pescador_despues": "(Aquí irá lo que dice el pescador la segunda vez.)",
-    "red": "(Aquí irá el texto de la red de pesca.)",
-    "barco": "(Aquí irá el texto del barco holandés.)",
-    "cajas": "(Aquí irá el texto de las cajas del muelle.)",
+    "pescador_despues": "",
+    "red": "",
+    "barco": "",
+    "cajas": "",
 }
 
 # ---------------------------------------------------------------------------

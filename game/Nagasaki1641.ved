@@ -4849,7 +4849,7 @@
 		</Text>
 		<Text name="castillo_1" id="25" order="25" lastModified="-1">
 			<TextTextLanguages>
-				<text Text="" path="" int="0" />
+				<text Text="Castillo del Shogun. Amanecer del decimo dia del octavo mes." path="" int="0" />
 			</TextTextLanguages>
 		</Text>
 		<Text name="castillo_2" id="26" order="26" lastModified="-1">
