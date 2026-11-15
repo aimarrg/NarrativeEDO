@@ -289,6 +289,22 @@ def build_clickable(spec):
 for _spec in world.CLICKABLES:
     build_clickable(_spec)
 
+# Caja de dialogo (panel superior semi-transparente, solo en la cinematica del castillo).
+_box_sprite = add_sprite("graphics/dialog_box.png", 140, 10, "dialog_box")
+OBJ["dialog_box"] = {
+    "id": nid("obj"),
+    "name": None,
+    "sprite": _box_sprite,
+    "scene": "castillo",
+    "order": 0,
+    "z": 1000,
+    "cond": COND.get("ejecutado"),
+    "negate": True,
+    "stand": (640, 690),
+    "rect": (140, 10, 1000, 110),
+    "walkable": "F",
+}
+
 
 # ---------------------------------------------------------------------------
 # Menú principal

@@ -197,8 +197,8 @@
 			<SceneName parentLink="T" id="53" tableId="14" LinkAny="F" />
 			<SceneObjects>
 				<Link parentLink="T" id="6" tableId="6" LinkAny="F" />
-				<Link parentLink="T" id="35" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="36" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="37" tableId="6" LinkAny="F" />
 			</SceneObjects>
 			<SceneCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<SceneSavegameAreas />
@@ -231,10 +231,11 @@
 				<Link parentLink="T" id="8" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="9" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="10" tableId="6" LinkAny="F" />
-				<Link parentLink="T" id="37" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="38" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="39" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="40" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="41" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="35" tableId="6" LinkAny="F" />
 			</SceneObjects>
 			<SceneCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<SceneSavegameAreas />
@@ -267,10 +268,10 @@
 				<Link parentLink="T" id="11" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="13" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="12" tableId="6" LinkAny="F" />
-				<Link parentLink="T" id="41" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="42" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="43" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="44" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="45" tableId="6" LinkAny="F" />
 			</SceneObjects>
 			<SceneCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<SceneSavegameAreas />
@@ -307,10 +308,10 @@
 				<Link parentLink="T" id="16" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="17" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="18" tableId="6" LinkAny="F" />
-				<Link parentLink="T" id="45" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="46" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="47" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="48" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="49" tableId="6" LinkAny="F" />
 			</SceneObjects>
 			<SceneCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<SceneSavegameAreas />
@@ -343,10 +344,10 @@
 				<Link parentLink="T" id="24" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="25" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="26" tableId="6" LinkAny="F" />
-				<Link parentLink="T" id="49" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="50" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="51" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="52" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="53" tableId="6" LinkAny="F" />
 			</SceneObjects>
 			<SceneCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<SceneSavegameAreas />
@@ -379,10 +380,10 @@
 				<Link parentLink="T" id="28" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="29" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="30" tableId="6" LinkAny="F" />
-				<Link parentLink="T" id="53" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="54" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="55" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="56" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="57" tableId="6" LinkAny="F" />
 			</SceneObjects>
 			<SceneCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<SceneSavegameAreas />
@@ -415,10 +416,10 @@
 				<Link parentLink="T" id="33" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="31" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="32" tableId="6" LinkAny="F" />
-				<Link parentLink="T" id="57" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="58" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="59" tableId="6" LinkAny="F" />
 				<Link parentLink="T" id="60" tableId="6" LinkAny="F" />
+				<Link parentLink="T" id="61" tableId="6" LinkAny="F" />
 			</SceneObjects>
 			<SceneCursor parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<SceneSavegameAreas />
@@ -510,8 +511,8 @@
 	<Dialogs newId="0" versionedId="-1" tableId="11" />
 	<DialogParts newId="0" versionedId="-1" tableId="12" />
 	<CommentSets newId="0" versionedId="-1" tableId="16" />
-	<Objects newId="61" versionedId="-1" tableId="6">
-		<Object name="_entry_castillo" id="0" order="8" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+	<Objects newId="62" versionedId="-1" tableId="6">
+		<Object name="_entry_castillo" id="0" order="9" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="236" y="686" />
@@ -532,7 +533,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="_entry_casa" id="1" order="17" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="_entry_casa" id="1" order="18" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="636" y="686" />
@@ -553,7 +554,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="_entry_calle" id="2" order="30" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="_entry_calle" id="2" order="31" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="146" y="686" />
@@ -574,7 +575,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="_entry_mercado" id="3" order="39" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="_entry_mercado" id="3" order="40" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="156" y="696" />
@@ -595,7 +596,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="_entry_puerto" id="4" order="48" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="_entry_puerto" id="4" order="49" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="146" y="686" />
@@ -616,7 +617,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="_entry_casa_pescador" id="5" order="57" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="_entry_casa_pescador" id="5" order="58" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="296" y="686" />
@@ -637,7 +638,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="_entry_menu" id="6" order="60" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="_entry_menu" id="6" order="61" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="T" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="636" y="686" />
@@ -658,7 +659,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="guillotine_up" id="7" order="6" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="guillotine_up" id="7" order="7" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="252" y="370" />
@@ -681,7 +682,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="guillotine_down" id="8" order="7" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="guillotine_down" id="8" order="8" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="252" y="370" />
@@ -704,7 +705,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="verdugo" id="9" order="5" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="verdugo" id="9" order="6" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="472" y="451" />
@@ -725,7 +726,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="haru_reo" id="10" order="4" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="haru_reo" id="10" order="5" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="322" y="581" />
@@ -748,7 +749,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="foto" id="11" order="15" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="foto" id="11" order="16" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="0" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="302" y="192" />
@@ -773,7 +774,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="foto_zoom" id="12" order="13" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="foto_zoom" id="12" order="14" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="2" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="2" />
@@ -798,7 +799,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="nota" id="13" order="14" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="nota" id="13" order="15" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="1" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="394" y="600" />
@@ -823,7 +824,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="salir_casa" id="14" order="16" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="salir_casa" id="14" order="17" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="3" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="1032" y="162" />
@@ -846,7 +847,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="taberna_a_cerrada" id="15" order="22" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="taberna_a_cerrada" id="15" order="23" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="10" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="42" y="252" />
@@ -871,7 +872,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="taberna_a_abierta" id="16" order="23" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="taberna_a_abierta" id="16" order="24" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="10" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="42" y="252" />
@@ -896,7 +897,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="taberna_b_cerrada" id="17" order="24" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="taberna_b_cerrada" id="17" order="25" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="11" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="882" y="252" />
@@ -921,7 +922,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="taberna_b_abierta" id="18" order="25" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="taberna_b_abierta" id="18" order="26" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="11" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="882" y="252" />
@@ -946,7 +947,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="volver_casa" id="19" order="26" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="volver_casa" id="19" order="27" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="4" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="468" y="450" />
@@ -969,7 +970,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="ir_mercado" id="20" order="27" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="ir_mercado" id="20" order="28" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="6" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="522" />
@@ -994,7 +995,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="mercado_cerrado" id="21" order="28" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="mercado_cerrado" id="21" order="29" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="6" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="522" />
@@ -1019,7 +1020,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="ir_puerto" id="22" order="29" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="ir_puerto" id="22" order="30" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="5" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="1202" y="522" />
@@ -1042,7 +1043,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="salir_mercado" id="23" order="38" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="salir_mercado" id="23" order="39" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="7" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="562" />
@@ -1065,7 +1066,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="puesto_socio" id="24" order="35" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="puesto_socio" id="24" order="36" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="13" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="88" y="358" />
@@ -1088,7 +1089,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="puesto_tuyo" id="25" order="36" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="puesto_tuyo" id="25" order="37" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="12" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="462" y="338" />
@@ -1111,7 +1112,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="puesto_rival" id="26" order="37" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="puesto_rival" id="26" order="38" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="14" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="902" y="358" />
@@ -1134,7 +1135,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="volver_calle" id="27" order="46" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="volver_calle" id="27" order="47" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="7" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="532" />
@@ -1157,7 +1158,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="ir_casa_pescador" id="28" order="47" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="ir_casa_pescador" id="28" order="48" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="8" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="1092" y="262" />
@@ -1180,7 +1181,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="barco" id="29" order="44" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="barco" id="29" order="45" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="17" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="702" y="212" />
@@ -1203,7 +1204,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="cajas" id="30" order="45" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="cajas" id="30" order="46" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="18" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="172" y="462" />
@@ -1226,7 +1227,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pescador_1" id="31" order="53" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pescador_1" id="31" order="54" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="15" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="762" y="379" />
@@ -1251,7 +1252,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pescador_2" id="32" order="54" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pescador_2" id="32" order="55" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="15" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="762" y="379" />
@@ -1276,7 +1277,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="red" id="33" order="55" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="red" id="33" order="56" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="16" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="252" y="302" />
@@ -1299,7 +1300,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="salir_pescador" id="34" order="56" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="salir_pescador" id="34" order="57" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="9" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="32" y="232" />
@@ -1322,7 +1323,30 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="menu_nueva" id="35" order="58" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="dialog_box" id="35" order="0" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="T" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<ObjectPolygon>
+				<point x="142" y="12" />
+				<point x="1138" y="12" />
+				<point x="1138" y="118" />
+				<point x="142" y="118" />
+			</ObjectPolygon>
+			<ObjectCondition parentLink="F" id="7" tableId="10" LinkAny="F" />
+			<ObjectSprite parentLink="T" id="14" tableId="13" LinkAny="F" />
+			<ObjectAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<ObjectSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<ObjectActions />
+			<ObjectConditions>
+				<Link parentLink="T" id="7" tableId="10" LinkAny="F" />
+			</ObjectConditions>
+			<ObjectAnimations />
+			<ObjectValues />
+			<ObjectPosition x="640" y="690" />
+			<ObjectSnoopAnimationPos x="0" y="0" />
+			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
+			<ObjectComponents />
+		</Object>
+		<Object name="menu_nueva" id="36" order="59" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="22" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="398" />
@@ -1345,7 +1369,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="menu_salir" id="36" order="59" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="menu_salir" id="37" order="60" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="23" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="488" />
@@ -1368,7 +1392,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_fondo_castillo" id="37" order="3" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_fondo_castillo" id="38" order="4" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="2" />
@@ -1377,7 +1401,7 @@
 				<point x="2" y="718" />
 			</ObjectPolygon>
 			<ObjectCondition parentLink="F" id="4" tableId="10" LinkAny="F" />
-			<ObjectSprite parentLink="T" id="14" tableId="13" LinkAny="F" />
+			<ObjectSprite parentLink="T" id="15" tableId="13" LinkAny="F" />
 			<ObjectAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectActions />
@@ -1391,7 +1415,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_continuar_castillo" id="38" order="0" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_continuar_castillo" id="39" order="1" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="19" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="332" />
@@ -1416,7 +1440,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_menu_castillo" id="39" order="1" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_menu_castillo" id="40" order="2" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="20" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="422" />
@@ -1441,7 +1465,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_salir_castillo" id="40" order="2" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_salir_castillo" id="41" order="3" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="21" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="512" />
@@ -1466,7 +1490,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_fondo_casa" id="41" order="12" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_fondo_casa" id="42" order="13" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="2" />
@@ -1475,7 +1499,7 @@
 				<point x="2" y="718" />
 			</ObjectPolygon>
 			<ObjectCondition parentLink="F" id="4" tableId="10" LinkAny="F" />
-			<ObjectSprite parentLink="T" id="15" tableId="13" LinkAny="F" />
+			<ObjectSprite parentLink="T" id="16" tableId="13" LinkAny="F" />
 			<ObjectAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectActions />
@@ -1489,7 +1513,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_continuar_casa" id="42" order="9" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_continuar_casa" id="43" order="10" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="19" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="332" />
@@ -1514,7 +1538,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_menu_casa" id="43" order="10" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_menu_casa" id="44" order="11" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="20" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="422" />
@@ -1539,7 +1563,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_salir_casa" id="44" order="11" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_salir_casa" id="45" order="12" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="21" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="512" />
@@ -1564,7 +1588,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_fondo_calle" id="45" order="21" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_fondo_calle" id="46" order="22" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="2" />
@@ -1573,7 +1597,7 @@
 				<point x="2" y="718" />
 			</ObjectPolygon>
 			<ObjectCondition parentLink="F" id="4" tableId="10" LinkAny="F" />
-			<ObjectSprite parentLink="T" id="16" tableId="13" LinkAny="F" />
+			<ObjectSprite parentLink="T" id="17" tableId="13" LinkAny="F" />
 			<ObjectAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectActions />
@@ -1587,7 +1611,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_continuar_calle" id="46" order="18" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_continuar_calle" id="47" order="19" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="19" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="332" />
@@ -1612,7 +1636,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_menu_calle" id="47" order="19" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_menu_calle" id="48" order="20" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="20" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="422" />
@@ -1637,7 +1661,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_salir_calle" id="48" order="20" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_salir_calle" id="49" order="21" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="21" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="512" />
@@ -1662,7 +1686,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_fondo_mercado" id="49" order="34" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_fondo_mercado" id="50" order="35" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="2" />
@@ -1671,7 +1695,7 @@
 				<point x="2" y="718" />
 			</ObjectPolygon>
 			<ObjectCondition parentLink="F" id="4" tableId="10" LinkAny="F" />
-			<ObjectSprite parentLink="T" id="17" tableId="13" LinkAny="F" />
+			<ObjectSprite parentLink="T" id="18" tableId="13" LinkAny="F" />
 			<ObjectAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectActions />
@@ -1685,7 +1709,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_continuar_mercado" id="50" order="31" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_continuar_mercado" id="51" order="32" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="19" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="332" />
@@ -1710,7 +1734,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_menu_mercado" id="51" order="32" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_menu_mercado" id="52" order="33" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="20" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="422" />
@@ -1735,7 +1759,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_salir_mercado" id="52" order="33" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_salir_mercado" id="53" order="34" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="21" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="512" />
@@ -1760,7 +1784,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_fondo_puerto" id="53" order="43" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_fondo_puerto" id="54" order="44" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="2" />
@@ -1769,7 +1793,7 @@
 				<point x="2" y="718" />
 			</ObjectPolygon>
 			<ObjectCondition parentLink="F" id="4" tableId="10" LinkAny="F" />
-			<ObjectSprite parentLink="T" id="18" tableId="13" LinkAny="F" />
+			<ObjectSprite parentLink="T" id="19" tableId="13" LinkAny="F" />
 			<ObjectAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectActions />
@@ -1783,7 +1807,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_continuar_puerto" id="54" order="40" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_continuar_puerto" id="55" order="41" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="19" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="332" />
@@ -1808,7 +1832,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_menu_puerto" id="55" order="41" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_menu_puerto" id="56" order="42" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="20" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="422" />
@@ -1833,7 +1857,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_salir_puerto" id="56" order="42" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_salir_puerto" id="57" order="43" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="21" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="512" />
@@ -1858,7 +1882,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_fondo_casa_pescador" id="57" order="52" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_fondo_casa_pescador" id="58" order="53" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="2" y="2" />
@@ -1867,7 +1891,7 @@
 				<point x="2" y="718" />
 			</ObjectPolygon>
 			<ObjectCondition parentLink="F" id="4" tableId="10" LinkAny="F" />
-			<ObjectSprite parentLink="T" id="19" tableId="13" LinkAny="F" />
+			<ObjectSprite parentLink="T" id="20" tableId="13" LinkAny="F" />
 			<ObjectAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectActions />
@@ -1881,7 +1905,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_continuar_casa_pescador" id="58" order="49" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_continuar_casa_pescador" id="59" order="50" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="19" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="332" />
@@ -1906,7 +1930,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_menu_casa_pescador" id="59" order="50" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_menu_casa_pescador" id="60" order="51" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="20" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="422" />
@@ -1931,7 +1955,7 @@
 			<ObjectValue parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<ObjectComponents />
 		</Object>
-		<Object name="pausa_salir_casa_pescador" id="60" order="51" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
+		<Object name="pausa_salir_casa_pescador" id="61" order="52" lastModified="-1" ObjectDirection="-1" ObjectCenter="-1" ObjectIsItem="F" ObjectConditionNegate="F" ObjectIsWalkable="F" ObjectScrollFactorX="100" ObjectScrollFactorY="100" ObjectModel="" ObjectValueOperator="0" ObjectValueInt="0" ObjectLightmapAffected="F">
 			<ObjectName parentLink="T" id="21" tableId="14" LinkAny="F" />
 			<ObjectPolygon>
 				<point x="442" y="512" />
@@ -3055,7 +3079,7 @@
 			<ConditionConditions />
 		</Condition>
 	</Conditions>
-	<Sprites newId="20" versionedId="-1" tableId="13">
+	<Sprites newId="21" versionedId="-1" tableId="13">
 		<Sprite name="guillotine_up" id="0" order="0" lastModified="-1">
 			<SpriteSprite name="" pause="-1" path="graphics/obj_guillotine_up.png" Transparency="2">
 				<position x="250" y="368" />
@@ -3126,9 +3150,9 @@
 				<position x="250" y="300" />
 			</SpriteSprite>
 		</Sprite>
-		<Sprite name="pause" id="14" order="14" lastModified="-1">
-			<SpriteSprite name="" pause="-1" path="graphics/obj_pause.png" Transparency="2">
-				<position x="0" y="0" />
+		<Sprite name="dialog_box" id="14" order="14" lastModified="-1">
+			<SpriteSprite name="" pause="-1" path="graphics/dialog_box.png" Transparency="2">
+				<position x="140" y="10" />
 			</SpriteSprite>
 		</Sprite>
 		<Sprite name="pause" id="15" order="15" lastModified="-1">
@@ -3152,6 +3176,11 @@
 			</SpriteSprite>
 		</Sprite>
 		<Sprite name="pause" id="19" order="19" lastModified="-1">
+			<SpriteSprite name="" pause="-1" path="graphics/obj_pause.png" Transparency="2">
+				<position x="0" y="0" />
+			</SpriteSprite>
+		</Sprite>
+		<Sprite name="pause" id="20" order="20" lastModified="-1">
 			<SpriteSprite name="" pause="-1" path="graphics/obj_pause.png" Transparency="2">
 				<position x="0" y="0" />
 			</SpriteSprite>
