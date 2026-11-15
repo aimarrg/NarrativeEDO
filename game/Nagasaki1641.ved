@@ -145,7 +145,7 @@
 				<Link parentLink="T" id="0" tableId="17" LinkAny="F" />
 			</CharacterOutfits>
 			<CharacterCommentSets />
-			<CharacterStartObject parentLink="F" id="0" tableId="6" LinkAny="F" />
+			<CharacterStartObject parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<CharacterValues />
 			<CharacterConditions />
 			<CharacterActiveDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
@@ -171,8 +171,8 @@
 			<CharacterComponents />
 			<CharacterActiveUsedDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<CharacterInactiveUsedDialogFont parentLink="F" id="-1" tableId="-1" LinkAny="F" />
-			<CharacterStartScene parentLink="F" id="-1" tableId="-1" LinkAny="F" />
-			<CharacterStartPos x="0" y="0" />
+			<CharacterStartScene parentLink="F" id="0" tableId="4" LinkAny="F" />
+			<CharacterStartPos x="640" y="60" />
 			<CharacterSnoopAnimation parentLink="F" id="-1" tableId="-1" LinkAny="F" />
 			<CharacterSnoopAnimationOffsetPos x="0" y="0" />
 		</Character>
