@@ -225,42 +225,37 @@ TEXTS = {
     "n_salir": "Salir",
     "n_nueva": "Nueva partida",
     "n_abandonar": "Salir del juego",
+    "n_ir_escondite": "Ir al escondite",
+    "n_ir_oficina": "Oficina del inspector",
+    "n_ir_calle_socio": "Calle del socio",
+    "n_ir_calle_rival": "Calle del rival",
+    "n_volver_mercado": "Volver al mercado",
     "haru": "Haru",
-    "escondite_1": "(Aqui ira tu texto del escondite.)",
 
-    # --- cinemática inicial (castillo del Shogun) ---
-    "castillo_1": "Castillo del Shogun. Amanecer del décimo día del octavo mes.",
-    "castillo_2": "El patio huele a tierra mojada. Nadie habla.",
-    "castillo_3": ("Haru espera de rodillas junto al cepo. Las manos le tiemblan "
-                   "detrás de la espalda."),
-    "castillo_4": ("«Haru, hijo de comerciantes de Nagasaki: acusado de tratar "
-                   "con extranjeros.»"),
-    "castillo_5": ("La multitud contiene el aliento. El verdugo comprueba la "
-                   "cuerda."),
-    "castillo_6": "La hoja sube. Un instante de silencio.",
-    "castillo_7": "El filo cae.",
-    "castillo_8": "Y todo se apaga.",
-    "castillo_9": ("Despiertas en tu casa. Aún es de noche y todo sigue en su "
-                   "sitio."),
-
-    # --- frases (sustitúyelas por tus diálogos) ---
-    "foto": ("Tu familia, retratada el año del incendio. Tu madre sostiene el abanico "
-             "que aún guardas; tu padre finge no sonreír."),
-    "nota": ("«Haru: si lees esto, es que ya eres el hombre de la casa. Te quiero más "
-             "de lo que supe decirte. Cuida el negocio y cuídate tú. — Tu padre»"),
-    "taberna_cerrada": ("La puerta está cerrada con una cuerda y un cartel: "
-                        "«Cerrado hasta la noche»."),
-    "taberna_abierta": "(Aquí irá tu diálogo de la taberna.)",
-    "mercado_cerrado": ("El mercado está cerrado. Un cartel dice: «Abre a las 9:00»."),
-    "mercado_tuyo": "(Aquí irá tu texto del puesto de Haru.)",
-    "mercado_socio": "(Aquí irá tu diálogo con el socio.)",
-    "mercado_rival": "(Aquí irá tu diálogo con el rival.)",
-    "pescador": ("(Aquí irá tu diálogo con el pescador, que te da el pase del "
-                 "mercado.)"),
-    "pescador_despues": "(Aquí irá lo que dice el pescador la segunda vez.)",
-    "red": "(Aquí irá el texto de la red de pesca.)",
-    "barco": "(Aquí irá el texto del barco holandés.)",
-    "cajas": "(Aquí irá el texto de las cajas del muelle.)",
+    # --- textos y diálogos (marcadores provisionales) ---
+    "escondite_1": "AQUI VA DIALOGO",
+    "castillo_1": "AQUI VA DIALOGO",
+    "castillo_2": "AQUI VA DIALOGO",
+    "castillo_3": "AQUI VA DIALOGO",
+    "castillo_4": "AQUI VA DIALOGO",
+    "castillo_5": "AQUI VA DIALOGO",
+    "castillo_6": "AQUI VA DIALOGO",
+    "castillo_7": "AQUI VA DIALOGO",
+    "castillo_8": "AQUI VA DIALOGO",
+    "castillo_9": "AQUI VA DIALOGO",
+    "foto": "AQUI VA DIALOGO",
+    "nota": "AQUI VA DIALOGO",
+    "taberna_cerrada": "AQUI VA DIALOGO",
+    "taberna_abierta": "AQUI VA DIALOGO",
+    "mercado_cerrado": "AQUI VA DIALOGO",
+    "mercado_tuyo": "AQUI VA DIALOGO",
+    "mercado_socio": "AQUI VA DIALOGO",
+    "mercado_rival": "AQUI VA DIALOGO",
+    "pescador": "AQUI VA DIALOGO",
+    "pescador_despues": "AQUI VA DIALOGO",
+    "red": "AQUI VA DIALOGO",
+    "barco": "AQUI VA DIALOGO",
+    "cajas": "AQUI VA DIALOGO",
 }
 
 # ---------------------------------------------------------------------------

@@ -164,7 +164,7 @@ def make_zone(key, scene_key, z, name_text, rect, stand=None, cond=None,
 
 
 # Punto de entrada invisible de cada escena (destino de los cambios de escena)
-for _sc in world.SCENES + [{"key": "menu", "entry": (640, -200)}]:
+for _sc in world.SCENES + [{"key": "menu", "entry": (640, -420)}]:
     _ex, _ey = _sc["entry"]
     make_object("_entry_" + _sc["key"], _sc["key"], z=-10, walkable="T",
                 rect=(_ex - 6, _ey - 6, 12, 12), stand=(_ex, _ey))
@@ -768,7 +768,11 @@ l.set("LinkAny", "F")
 ET.SubElement(ch, "CharacterCommentSets")
 start = ET.SubElement(ch, "CharacterStartObject")
 start.set("parentLink", "F")
-start.set("id", str(OBJ["_entry_" + world.START_SCENE]["id"]))
+# Haru arranca en la entrada del menú (fuera de pantalla). Si arrancaba en la
+# entrada de la primera escena, el motor lo dibujaba ahí sobre el menú y las
+# acciones de "Ocultar personaje" corrían antes de colocarlo. "Nueva partida"
+# lo muestra y lo manda a la escena inicial.
+start.set("id", str(OBJ["_entry_menu"]["id"]))
 start.set("tableId", str(T["objects"]))
 start.set("LinkAny", "F")
 ET.SubElement(ch, "CharacterValues")

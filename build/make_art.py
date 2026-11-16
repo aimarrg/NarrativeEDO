@@ -14,7 +14,7 @@ import os
 import random
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GAME = os.path.join(ROOT, "game")
@@ -1615,164 +1615,508 @@ def bg_castle():
     return img.convert("RGB")
 
 
+def _market_roof(pen, x0, x1, y_base, rise, fill):
+    """Tejado a dos aguas con aleros curvos y tejas marcadas."""
+    ink = PAL["ink"] + (255,)
+    ridge = y_base - rise
+    pen.poly([(x0 - 16, y_base), (x0 + 8, ridge + rise * 0.14),
+              (x0 + 26, ridge), (x1 - 26, ridge),
+              (x1 - 8, ridge + rise * 0.14), (x1 + 16, y_base),
+              (x1, y_base + 3), (x0, y_base + 3)],
+             fill + (255,), ink)
+    n = max(3, int((x1 - x0) / 30))
+    for i in range(1, n):
+        t = i / n
+        xb = x0 - 11 + (x1 - x0 + 22) * t
+        xt = x0 + 24 + (x1 - x0 - 48) * t
+        pen.line([(xt, ridge + 2), (xb, y_base + 1)],
+                 mix(fill, PAL["ink"], 0.5) + (110,), 1.0)
+    pen.line([(x0 + 24, ridge), (x1 - 24, ridge)], ink, 3)
+    pen.line([(x0 - 18, y_base), (x1 + 18, y_base)], ink, 2)
+    pen.line([(x0 - 15, y_base - 4), (x0 + 2, y_base - 4)],
+             mix(fill, PAL["paper_l"], 0.35) + (170,), 2)
+
+
+def _market_lantern(pen, img, cx, y_top, h=42, w=26):
+    """Farolillo de papel (chochin) con aros y luz cálida."""
+    ink = PAL["ink"] + (255,)
+    soft_glow(img, cx, y_top + h * 0.5, 54, (255, 214, 150), 38)
+    pen.line([(cx, y_top - 15), (cx, y_top + 2)], PAL["ink_soft"] + (210,), 1.2)
+    pen.ellipse((cx - w / 2, y_top + h * 0.10, cx + w / 2, y_top + h * 0.90),
+                PAL["paper_l"] + (250,), ink, 1.5)
+    pen.rect((cx - w * 0.30, y_top, cx + w * 0.30, y_top + h * 0.16),
+             PAL["wood_d"] + (255,), ink, 1.1)
+    pen.rect((cx - w * 0.30, y_top + h * 0.84, cx + w * 0.30, y_top + h),
+             PAL["wood_d"] + (255,), ink, 1.1)
+    for t in (0.30, 0.50, 0.70):
+        pen.line([(cx - w * 0.42, y_top + h * t), (cx + w * 0.42, y_top + h * t)],
+                 PAL["vermillion_d"] + (100,), 1.0)
+    pen.line([(cx - 4, y_top + h * 0.36), (cx + 4, y_top + h * 0.36)],
+             PAL["ink_soft"] + (180,), 1.3)
+    pen.line([(cx, y_top + h * 0.30), (cx, y_top + h * 0.50)],
+             PAL["ink_soft"] + (180,), 1.3)
+
+
+def draw_vendor(pen, cx, feet, h, kimono, hair, hat=False, bun=False):
+    """Vendedor de mercado: kimono con mangas, cuello y rostro sereno."""
+    ink = PAL["ink"] + (255,)
+    soft = PAL["ink_soft"] + (205,)
+    head_r = h * 0.108
+    head_cy = feet - h + head_r * 1.15
+    sh_y = head_cy + head_r * 0.92
+    sw = h * 0.155
+    hip_y = feet - h * 0.40
+
+    # cuerpo (silueta continua, sin triángulo rígido)
+    pen.poly([(cx - sw * 0.36, sh_y + h * 0.015),
+              (cx - sw * 0.95, sh_y + h * 0.05),
+              (cx - sw * 1.10, hip_y + h * 0.05),
+              (cx - sw * 1.16, feet - h * 0.01),
+              (cx + sw * 1.16, feet - h * 0.01),
+              (cx + sw * 1.10, hip_y + h * 0.05),
+              (cx + sw * 0.95, sh_y + h * 0.05),
+              (cx + sw * 0.36, sh_y + h * 0.015)],
+             kimono + (255,), ink)
+    # sombra de la manga y brillo del hombro
+    pen.poly([(cx - sw * 1.02, sh_y + h * 0.06),
+              (cx - sw * 1.14, hip_y + h * 0.05),
+              (cx - sw * 0.72, hip_y + h * 0.02),
+              (cx - sw * 0.64, sh_y + h * 0.07)],
+             mix(kimono, PAL["ink"], 0.16) + (255,), None)
+    pen.line([(cx - sw * 0.98, sh_y + h * 0.10),
+              (cx - sw * 1.06, hip_y + h * 0.05)],
+             mix(kimono, PAL["paper_l"], 0.22) + (255,), 1.5)
+    # cuello en uve y pliegue central
+    pen.line([(cx - head_r * 0.46, sh_y + h * 0.005), (cx, sh_y + h * 0.115),
+              (cx + head_r * 0.46, sh_y + h * 0.005)], soft, 2)
+    pen.line([(cx - head_r * 0.16, sh_y + h * 0.08),
+              (cx + head_r * 0.10, sh_y + h * 0.03)],
+             mix(kimono, PAL["paper_l"], 0.26) + (255,), 1.3)
+    # obi
+    pen.rect((cx - sw * 0.92, hip_y - h * 0.02, cx + sw * 0.92, hip_y + h * 0.05),
+             mix(kimono, PAL["ink"], 0.48) + (240,), None)
+    pen.rect((cx - sw * 0.15, hip_y - h * 0.02, cx + sw * 0.15, hip_y + h * 0.05),
+             PAL["gold"] + (190,), soft, 1)
+    # cuello
+    pen.poly([(cx - head_r * 0.28, sh_y - head_r * 0.12),
+              (cx + head_r * 0.28, sh_y - head_r * 0.12),
+              (cx + head_r * 0.30, sh_y + head_r * 0.16),
+              (cx - head_r * 0.30, sh_y + head_r * 0.16)],
+             PAL["skin_d"] + (255,), None)
+    # cabeza y orejas
+    pen.ellipse((cx - head_r, head_cy - head_r * 1.02,
+                 cx + head_r, head_cy + head_r * 1.04),
+                PAL["skin"] + (255,), ink, 1.8)
+    for s in (-1, 1):
+        pen.ellipse((cx + s * head_r * 0.94 - head_r * 0.10, head_cy - head_r * 0.10,
+                     cx + s * head_r * 0.94 + head_r * 0.10, head_cy + head_r * 0.28),
+                    PAL["skin_d"] + (255,), None)
+    # pelo
+    pen.poly([(cx - head_r * 1.02, head_cy + head_r * 0.02),
+              (cx - head_r * 0.98, head_cy - head_r * 0.72),
+              (cx - head_r * 0.42, head_cy - head_r * 1.14),
+              (cx + head_r * 0.42, head_cy - head_r * 1.14),
+              (cx + head_r * 0.98, head_cy - head_r * 0.72),
+              (cx + head_r * 1.02, head_cy + head_r * 0.02),
+              (cx + head_r * 0.72, head_cy - head_r * 0.30),
+              (cx, head_cy - head_r * 0.44),
+              (cx - head_r * 0.72, head_cy - head_r * 0.30)],
+             hair + (255,), ink)
+    if bun:
+        pen.ellipse((cx - head_r * 0.36, head_cy - head_r * 1.62,
+                     cx + head_r * 0.36, head_cy - head_r * 1.10),
+                    hair + (255,), ink, 1.2)
+        pen.line([(cx, head_cy - head_r * 1.36),
+                  (cx - head_r * 0.50, head_cy - head_r * 1.08)],
+                 PAL["ochre"] + (210,), 1.6)
+    if hat:
+        hx0, hx1 = cx - head_r * 1.95, cx + head_r * 1.95
+        brim_y = head_cy - head_r * 0.54
+        apex_y = head_cy - head_r * 2.10
+        half = []
+        for q in range(7):
+            t = q / 6
+            half.append((hx0 + (cx - hx0) * t,
+                         brim_y + (apex_y - brim_y) * (t ** 1.16)))
+        half2 = []
+        for q in range(1, 7):
+            t = q / 6
+            half2.append((cx + (hx1 - cx) * t,
+                          apex_y + (brim_y - apex_y) * (t ** 1.16)))
+        brim = [(hx0 + (hx1 - hx0) * s / 8,
+                 brim_y + 2.6 * math.sin(math.pi * s / 8)) for s in range(9)]
+        pen.poly(half + half2 + list(reversed(brim)), (146, 116, 78, 255), ink)
+        pen.line(brim, ink, 1.6)
+        pen.line([(cx, apex_y + 4), (cx, brim_y - 2)],
+                 (90, 68, 44, 110), 1.0)
+    # ojos serenos, cejas, nariz y boca
+    ey = head_cy + head_r * 0.10
+    for s in (-1, 1):
+        pen.arc((cx + s * head_r * 0.48 - head_r * 0.24, ey - head_r * 0.10,
+                 cx + s * head_r * 0.48 + head_r * 0.24, ey + head_r * 0.20),
+                200, 340, ink, 1.5)
+        pen.line([(cx + s * head_r * 0.20, ey - head_r * 0.30),
+                  (cx + s * head_r * 0.66, ey - head_r * 0.26)], soft, 1.2)
+    pen.line([(cx, ey + head_r * 0.04), (cx - head_r * 0.06, ey + head_r * 0.32)],
+             soft, 1.0)
+    pen.line([(cx - head_r * 0.16, head_cy + head_r * 0.62),
+              (cx + head_r * 0.16, head_cy + head_r * 0.62)],
+             (150, 90, 76, 210), 1.3)
+
+
+def _mon_tomoe(pen, cx, cy, r, col):
+    """Mon de tres comas (mitsudomoe), trazo orgánico para el sello del puesto."""
+    for k in range(3):
+        a0 = math.radians(-90 + k * 120)
+        pts = []
+        n = 12
+        for i in range(n + 1):
+            t = i / n
+            ang = a0 + t * 2.05
+            rad = r * (0.96 - 0.62 * t)
+            pts.append((cx + math.cos(ang) * rad, cy + math.sin(ang) * rad))
+        for i in range(n, -1, -1):
+            t = i / n
+            ang = a0 + 0.50 + t * 2.05
+            rad = r * (0.56 - 0.50 * t)
+            pts.append((cx + math.cos(ang) * rad, cy + math.sin(ang) * rad))
+        pen.poly(pts, col + (238,), None)
+
+
+def _market_tree(pen, cx, base, h, spread=1.0, tone=(88, 104, 76)):
+    """Árbol de copa redondeada, a pinceladas, para el fondo de la plaza."""
+    ink = PAL["ink"] + (165,)
+    rng = random.Random(int(cx))
+    # tronco
+    pen.poly([(cx - h * 0.035, base), (cx + h * 0.035, base),
+              (cx + h * 0.022, base - h * 0.60), (cx - h * 0.022, base - h * 0.60)],
+             PAL["wood_d"] + (255,), ink)
+    # copa con lóbulos
+    for i in range(9):
+        t = i / 8
+        ex = cx + (t - 0.5) * h * 0.66 * spread + rng.randint(-5, 5)
+        ey = base - h * (0.60 + 0.30 * math.sin(t * math.pi)) + rng.randint(-7, 7)
+        r = h * (0.15 + 0.10 * rng.random())
+        pen.ellipse((ex - r, ey - r * 0.92, ex + r, ey + r * 0.92),
+                    tone + (246,), ink, 1.2)
+    # hojas: trazos sueltos
+    for _ in range(26):
+        ex = cx + rng.randint(int(-h * 0.32), int(h * 0.32))
+        ey = base - h * (0.52 + 0.42 * rng.random())
+        pen.line([(ex, ey), (ex + rng.randint(-5, 5), ey + rng.randint(3, 8))],
+                 (50, 62, 44, rng.randint(50, 95)), 1.0)
+    # luz en la copa
+    pen.ellipse((cx - h * 0.18, base - h * 0.94, cx + h * 0.02, base - h * 0.76),
+                (150, 160, 120, 60), None)
+
+
+def _crate(pen, gx, y, w=36, h=28):
+    ink = PAL["ink"] + (225,)
+    top = y - h
+    pen.poly([(gx - w / 2, top), (gx + w / 2, top),
+              (gx + w / 2, y), (gx - w / 2, y)],
+             PAL["wood_l"] + (255,), ink)
+    pen.poly([(gx - w / 2, top), (gx - w / 2 + 7, top - 8),
+              (gx + w / 2 + 7, top - 8), (gx + w / 2, top)],
+             mix(PAL["wood_l"], PAL["paper_l"], 0.28) + (255,), ink)
+    pen.line([(gx - w / 2 + 2, top + 9), (gx + w / 2 - 2, top + 9)],
+             PAL["ink_soft"] + (110,), 1.0)
+    pen.line([(gx - w / 2 + 2, y - 6), (gx + w / 2 - 2, y - 6)],
+             PAL["ink_soft"] + (110,), 1.0)
+
+
+def _sack(pen, gx, y, w=30, h=36):
+    ink = PAL["ink"] + (225,)
+    fill = mix(PAL["wood_l"], PAL["cream"], 0.42)
+    pen.poly([(gx - w / 2, y), (gx + w / 2, y),
+              (gx + w * 0.42, y - h * 0.66),
+              (gx + w * 0.20, y - h), (gx - w * 0.20, y - h),
+              (gx - w * 0.42, y - h * 0.66)],
+             fill + (255,), ink)
+    # sombra lateral y pliegues
+    pen.poly([(gx + w * 0.10, y - h * 0.92), (gx + w * 0.42, y - h * 0.66),
+              (gx + w / 2, y), (gx + w * 0.16, y)],
+             mix(fill, PAL["ink"], 0.13) + (255,), None)
+    pen.arc((gx - w * 0.36, y - h * 0.62, gx + w * 0.06, y - h * 0.08),
+            200, 330, PAL["ink_soft"] + (60,), 1.2)
+    pen.arc((gx - w * 0.06, y - h * 0.52, gx + w * 0.38, y - h * 0.05),
+            210, 340, PAL["ink_soft"] + (50,), 1.2)
+    # boca atada
+    pen.line([(gx - w * 0.22, y - h * 0.94), (gx + w * 0.22, y - h * 0.94)],
+             PAL["ink_soft"] + (195,), 1.3)
+    pen.line([(gx - w * 0.10, y - h * 0.97), (gx - w * 0.26, y - h * 0.82)],
+             PAL["ink_soft"] + (165,), 1.1)
+    pen.line([(gx + w * 0.10, y - h * 0.97), (gx + w * 0.26, y - h * 0.82)],
+             PAL["ink_soft"] + (165,), 1.1)
+    # sello del comerciante
+    pen.rect((gx - w * 0.16, y - h * 0.56, gx + w * 0.02, y - h * 0.38),
+             PAL["vermillion_d"] + (200,), None)
+
+
+def _fish(pen, gx, y, s=1.0, col=(196, 202, 198)):
+    ink = PAL["ink"] + (220,)
+    pen.ellipse((gx - 20 * s, y - 12 * s, gx + 12 * s, y + 8 * s), col + (255,), ink, 1.2)
+    pen.poly([(gx + 10 * s, y - 2 * s), (gx + 24 * s, y - 12 * s),
+              (gx + 22 * s, y + 6 * s)], col + (255,), ink)
+    pen.ellipse((gx - 15 * s, y - 5 * s, gx - 11 * s, y - 1 * s), PAL["ink"] + (230,))
+    pen.arc((gx - 10 * s, y - 10 * s, gx + 1 * s, y + 4 * s), 300, 60,
+            PAL["ink_soft"] + (130,), 1.0)
+    pen.line([(gx - 2 * s, y - 9 * s), (gx + 2 * s, y + 5 * s)],
+             PAL["ink_soft"] + (80,), 1.0)
+
+
+def _jar(pen, gx, y, w=26, h=36, col=(116, 128, 140)):
+    ink = PAL["ink"] + (225,)
+    pen.ellipse((gx - w / 2, y - h, gx + w / 2, y - h * 0.40), col + (255,), ink, 1.2)
+    pen.rect((gx - w * 0.17, y - h * 1.05, gx + w * 0.17, y - h * 0.72),
+             col + (255,), ink, 1.1)
+    pen.ellipse((gx - w * 0.24, y - h * 1.10, gx + w * 0.24, y - h * 0.98),
+                mix(col, PAL["paper_l"], 0.35) + (255,), ink, 1.0)
+    pen.arc((gx - w * 0.34, y - h * 0.86, gx + w * 0.30, y - h * 0.44),
+            200, 300, (255, 255, 255, 65), 2)
+
+
+def _daikon(pen, gx, y, s=1.0):
+    ink = PAL["ink"] + (215,)
+    pen.poly([(gx - 7 * s, y - 2 * s), (gx + 7 * s, y - 2 * s),
+              (gx + 5 * s, y - 26 * s), (gx - 5 * s, y - 26 * s)],
+             (238, 234, 218, 255), ink)
+    pen.arc((gx - 7 * s, y - 8 * s, gx + 7 * s, y + 4 * s), 200, 340,
+            PAL["ink_soft"] + (105,), 1.0)
+    for k in (-1, 0, 1):
+        pen.line([(gx + k * 3 * s, y - 26 * s), (gx + k * 10 * s, y - 42 * s)],
+                 (86, 110, 74, 235), 1.8)
+        pen.ellipse((gx + k * 10 * s - 4 * s, y - 47 * s,
+                     gx + k * 10 * s + 4 * s, y - 38 * s),
+                    (96, 118, 80, 240), None)
+
+
 def bg_market():
     """Plaza del mercado de Nagasaki: el puesto de Haru, el del socio y el del rival."""
     img = new_rgba()
-    vgrad(img, 0, 526, [(0, (118, 146, 168)), (0.40, (176, 186, 186)),
-                        (0.72, (226, 198, 154)), (1, (242, 216, 174))])
+    # --- cielo del amanecer ------------------------------------------------
+    vgrad(img, 0, 492, [(0, (74, 102, 130)), (0.42, (140, 158, 164)),
+                        (0.72, (212, 190, 158)), (1, (240, 216, 176))])
     pen = Pen(img)
 
-    soft_glow(img, 250, 214, 180, (255, 232, 178), 75)
-    pen.ellipse((190, 154, 310, 274), (248, 230, 182, 235),
-                PAL["gold"] + (150,), 2)
-    cloud(img, 900, 118, 420, 40, PAL["paper_l"] + (230,), True)
-    cloud(img, 520, 196, 300, 26, PAL["paper_l"] + (170,), True)
+    # sol velado por la bruma
+    soft_glow(img, 992, 198, 232, (255, 232, 184), 62)
+    pen.ellipse((918, 124, 1066, 272), (248, 228, 184, 228), PAL["gold"] + (135,), 2)
 
-    # montañas y casa al fondo
-    mountain(img, [(0, 470), (0, 396), (170, 366), (350, 400), (520, 362),
-                   (700, 396), (880, 364), (1060, 398), (1280, 368), (1280, 470)],
-             (72, 96, 116, 240), PAL["prussian"])
-    for x in range(-40, W, 200):
-        pen.rect((x, 428, x + 180, 530), (150, 126, 100, 255),
-                 PAL["ink"] + (170,), 1.4)
-        pen.poly([(x - 14, 430), (x + 90, 394), (x + 194, 430)],
-                 (66, 74, 84, 255), PAL["ink"] + (200,))
-        pen.rect((x + 60, 466, x + 104, 530), (72, 58, 48, 235))
-        pen.line([(x + 14, 452), (x + 52, 452)], (232, 206, 160, 140), 2)
+    # nubes en bandas
+    cloud(img, 296, 92, 430, 30, PAL["paper_l"] + (225,), True)
+    cloud(img, 782, 152, 330, 22, PAL["paper"] + (175,), True)
+    cloud(img, 1126, 218, 260, 18, PAL["paper_l"] + (145,), True)
 
-    # suelo de tierra apisonada
-    pen.rect((0, 520, W, H), (198, 174, 140, 255))
-    pen.rect((0, 520, W, 528), (140, 116, 90, 255))
-    for row in range(6):
-        y = 546 + row * 26
-        for x in range(-40 + (row % 2) * 40, W, 80):
-            pen.line([(x, y), (x + 30, y)], (168, 144, 112, 110), 1)
+    # pájaros
+    for bx, by, s in ((470, 182, 1.0), (505, 168, 0.8), (540, 188, 0.7)):
+        pen.line([(bx - 9 * s, by), (bx, by - 5 * s), (bx + 9 * s, by)],
+                 PAL["ink_soft"] + (190,), 1.4)
+
+    # montañas del fondo
+    mountain(img, [(0, 472), (0, 392), (140, 366), (300, 396), (470, 356),
+                   (640, 392), (820, 358), (1000, 394), (1160, 364),
+                   (1280, 388), (1280, 472)],
+             (76, 98, 118, 232), PAL["prussian"])
+
+    # --- suelo de tierra apisonada -----------------------------------------
+    vgrad(img, 556, H, [(0, (198, 174, 140)), (0.32, (207, 183, 149)),
+                        (1, (183, 157, 123))])
+    pen = Pen(img)
+    pen.line([(0, 556), (W, 556)], (150, 126, 98, 150), 2)
+    # vetas suaves del terreno (sin formas geométricas)
+    rng = random.Random(7)
+    for _ in range(240):
+        x = rng.randint(-20, W + 20)
+        y = rng.randint(566, H - 6)
+        ln = rng.randint(6, 26)
+        pen.line([(x, y), (x + ln, y + rng.randint(-2, 2))],
+                 (166, 142, 110, rng.randint(18, 42)), 1.0)
+    for _ in range(70):
+        x = rng.randint(0, W)
+        y = rng.randint(570, H - 4)
+        pen.ellipse((x, y, x + rng.randint(2, 5), y + rng.randint(1, 3)),
+                    (150, 128, 100, rng.randint(30, 70)))
+
+    # --- hilera de casas ---------------------------------------------------
+    casas = [(-30, 252, 514, 64, (150, 126, 98)),
+             (214, 452, 500, 56, (164, 138, 106)),
+             (430, 662, 512, 60, (144, 118, 90)),
+             (640, 906, 498, 54, (168, 142, 110)),
+             (884, 1116, 516, 66, (152, 126, 96)),
+             (1094, 1310, 502, 56, (160, 134, 104))]
+    for hx0, hx1, hy, rise, wall in casas:
+        pen.rect((hx0, hy, hx1, 572), wall + (255,), PAL["ink"] + (210,), 1.5)
+        for vx in range(hx0 + 18, hx1, 34):
+            pen.line([(vx, hy + 8), (vx, 566)],
+                     mix(wall, PAL["ink"], 0.22) + (65,), 1.0)
+        pen.rect((hx0, 546, hx1, 572), mix(wall, PAL["ink"], 0.34) + (255,))
+        # ventanas con celosía
+        for wx in (hx0 + 24, hx1 - 58):
+            if wx < hx1 - 30:
+                pen.rect((wx, hy + 34, wx + 34, hy + 76),
+                         (58, 50, 42, 225), PAL["ink"] + (170,), 1)
+                pen.line([(wx + 17, hy + 34), (wx + 17, hy + 76)],
+                         PAL["wood_l"] + (140,), 1.1)
+                pen.line([(wx, hy + 55), (wx + 34, hy + 55)],
+                         PAL["wood_l"] + (110,), 1.0)
+        # puerta con noren
+        door_w = 66
+        dx = hx0 + (hx1 - hx0) * 0.5 - door_w / 2
+        pen.rect((dx, hy + 42, dx + door_w, 562), (56, 46, 36, 235),
+                 PAL["ink"] + (190,), 1.2)
+        for i in range(3):
+            sx = dx + 3 + i * (door_w - 6) / 3
+            pen.rect((sx, hy + 42, sx + (door_w - 6) / 3 - 2, hy + 76),
+                     PAL["indigo"] + (225,), None)
+        _market_roof(pen, hx0, hx1, hy, rise, (84, 70, 56))
+
+    # --- árboles en los huecos entre puestos -------------------------------
+    _market_tree(pen, 418, 574, 244, 0.62)
+    _market_tree(pen, 858, 574, 256, 0.64)
 
     # --- puestos -----------------------------------------------------------
-    def puesto(cx, w, base, aw_a, aw_b, goods, seal, sign):
+    def puesto(cx, w, base, cloth, trim, goods, crest, vendor):
+        ink = PAL["ink"] + (255,)
+        soft = PAL["ink_soft"] + (215,)
         x0, x1 = cx - w // 2, cx + w // 2
-        top = base - 244
-        # sombra en el suelo
-        pen.ellipse((x0 - 18, base - 16, x1 + 18, base + 20), (120, 100, 80, 60))
-        # postes
-        for px in (x0 + 4, x1 - 16):
-            pen.rect((px, top + 30, px + 12, base), PAL["wood_d"] + (255,),
-                     PAL["ink"] + (220,), 1.4)
-        # mostrador y tablas
-        pen.rect((x0 + 8, base - 78, x1 - 8, base - 56), PAL["wood_l"] + (255,),
-                 PAL["ink"] + (230,), 1.8)
-        pen.rect((x0 + 14, base - 56, x1 - 14, base), PAL["wood"] + (255,),
-                 PAL["ink"] + (230,), 1.8)
-        for px in range(x0 + 30, x1 - 24, 34):
-            pen.line([(px, base - 52), (px, base - 2)], (76, 54, 34, 120), 1.2)
-        # faldón con el sello del puesto
-        pen.rect((x0 + 18, base - 40, x0 + 76, base - 8), seal + (240,),
-                 PAL["ink"] + (210,), 1.2)
-        pen.ellipse((x0 + 34, base - 34, x0 + 60, base - 14),
-                    PAL["paper_l"] + (240,))
+        y_back = base - 284
+        y_front = base - 220
+
+        # sombra en el suelo (dos capas premezcladas: el alfa no se compone)
+        ground = (203, 179, 145)
+        pen.ellipse((x0 - 44, base - 22, x1 + 44, base + 32),
+                    mix(ground, (92, 76, 58), 0.12) + (255,))
+        pen.ellipse((x0 - 24, base - 16, x1 + 24, base + 24),
+                    mix(ground, (92, 76, 58), 0.22) + (255,))
+
+        # postes y estante del fondo
+        for px in (x0 + 8, x1 - 18):
+            pen.rect((px, y_back + 16, px + 10, base - 50),
+                     PAL["wood_d"] + (255,), ink, 1.3)
+            pen.line([(px + 3, y_back + 18), (px + 3, base - 52)],
+                     PAL["wood_l"] + (55,), 1.2)
+        pen.rect((x0 + 24, base - 168, x1 - 24, base - 160),
+                 PAL["wood"] + (255,), ink, 1.2)
+        for k, gx in enumerate((x0 + 54, x0 + 92, x1 - 76, x1 - 42)):
+            if k % 2:
+                pen.ellipse((gx - 12, base - 196, gx + 12, base - 166),
+                            (118, 128, 132, 240), ink, 1.2)
+                pen.rect((gx - 5, base - 204, gx + 5, base - 192),
+                         (118, 128, 132, 240), ink, 1.1)
+            else:
+                pen.rect((gx - 13, base - 194, gx + 13, base - 164),
+                         (150, 116, 76, 240), ink, 1.3)
+                pen.line([(gx - 13, base - 186), (gx + 13, base - 186)],
+                         soft, 1.0)
+
+        # vendedor detrás del mostrador
+        draw_vendor(pen, cx, base - 4, 164, *vendor)
+
+        # mostrador
+        pen.rect((x0 + 4, base - 84, x1 - 4, base - 68),
+                 PAL["wood_l"] + (255,), ink, 1.6)
+        pen.rect((x0 + 10, base - 68, x1 - 10, base),
+                 PAL["wood"] + (255,), ink, 1.6)
+        for px in range(x0 + 36, x1 - 28, 38):
+            pen.line([(px, base - 64), (px, base - 4)], (74, 52, 32, 105), 1.1)
+        # cajonera con tirador
+        pen.rect((x0 + 26, base - 58, x0 + 94, base - 12),
+                 mix(PAL["wood"], PAL["ink"], 0.16) + (255,), ink, 1.2)
+        pen.ellipse((x0 + 54, base - 40, x0 + 66, base - 28),
+                    PAL["gold"] + (225,), ink, 1.0)
+        # paño colgante en el frente (noren) con el sello del puesto
+        mx = x1 - 80
+        pan_x0, pan_x1 = x1 - 146, x1 - 14
+        top = base - 70
+        pen.rect((pan_x0 - 5, top - 4, pan_x1 + 5, top + 3),
+                 PAL["wood_d"] + (255,), ink, 1.1)
+        steps = 28
+        bot_pts = []
+        for s in range(steps + 1):
+            xq = pan_x0 + (pan_x1 - pan_x0) * s / steps
+            bot_pts.append((xq, base - 12 + 2.4 * math.sin((xq - pan_x0) / 8.5)))
+        pen.poly([(pan_x0, top + 3), (pan_x1, top + 3)]
+                 + list(reversed(bot_pts)), cloth + (250,), ink)
+        for px in range(int(pan_x0) + 14, int(pan_x1) - 6, 15):
+            yb = base - 12 + 2.4 * math.sin((px - pan_x0) / 8.5)
+            pen.line([(px, top + 7), (px, yb - 4)],
+                     mix(cloth, PAL["ink"], 0.26) + (105,), 1.1)
+        pen.line([(bx, by - 3) for bx, by in bot_pts],
+                 mix(cloth, PAL["paper_l"], 0.55) + (235,), 2.2)
+        # sello del puesto (mon de tres comas)
+        pen.ellipse((mx - 21, base - 58, mx + 21, base - 16),
+                    PAL["paper_l"] + (242,), ink, 1.3)
+        _mon_tomoe(pen, mx, base - 37, 13.5, crest)
+        pen.ellipse((mx - 1.8, base - 38.8, mx + 1.8, base - 35.2),
+                    crest + (245,))
+
         # mercancía sobre el mostrador
         for i, kind in enumerate(goods):
-            gx = x0 + 44 + i * ((w - 96) / max(1, len(goods) - 1))
+            gx = x0 + 54 + i * ((w - 108) / max(1, len(goods) - 1))
+            gy = base - 84
             if kind == "caja":
-                pen.rect((gx - 18, base - 108, gx + 18, base - 78),
-                         (146, 108, 70, 255), PAL["ink"] + (220,), 1.4)
-                pen.line([(gx - 18, base - 108), (gx + 18, base - 78)],
-                         PAL["ink_soft"] + (150,), 1.2)
+                _crate(pen, gx, gy)
             elif kind == "saco":
-                pen.poly([(gx - 18, base - 80), (gx + 18, base - 80),
-                          (gx + 13, base - 124), (gx - 13, base - 124)],
-                         (206, 186, 148, 255), PAL["ink"] + (220,))
-                pen.line([(gx - 9, base - 124), (gx + 9, base - 124)],
-                         PAL["ink_soft"] + (210,), 1.6)
+                _sack(pen, gx, gy)
             elif kind == "pescado":
-                pen.ellipse((gx - 20, base - 96, gx + 10, base - 78),
-                            (196, 200, 196, 255), PAL["ink"] + (210,), 1.2)
-                pen.poly([(gx + 10, base - 87), (gx + 22, base - 96),
-                          (gx + 22, base - 78)], (196, 200, 196, 255),
-                         PAL["ink"] + (210,))
-                pen.ellipse((gx - 14, base - 90, gx - 10, base - 86),
-                            PAL["ink"] + (200,))
-            else:  # "vasija"
-                pen.rect((gx - 12, base - 108, gx + 12, base - 80),
-                         (120, 132, 146, 255), PAL["ink"] + (220,), 1.4)
-                pen.ellipse((gx - 8, base - 114, gx + 8, base - 102),
-                            (120, 132, 146, 255), PAL["ink"] + (220,), 1.2)
-        # toldo a rayas
-        pen.poly([(x0 - 26, top + 30), (x0, top), (x1, top), (x1 + 26, top + 30)],
-                 aw_a + (250,), PAL["ink"] + (235,))
+                _fish(pen, gx, gy - 4)
+            elif kind == "vasija":
+                _jar(pen, gx, gy)
+            elif kind == "verdura":
+                _daikon(pen, gx, gy)
+
+        # toldo en perspectiva
+        pen.poly([(x0 - 34, y_front), (x0 + 2, y_back),
+                  (x1 - 2, y_back), (x1 + 34, y_front)],
+                 cloth + (252,), ink)
         n = 8
-        step = (w + 52) / n
-        for i in range(n):
-            if i % 2:
-                continue
-            ax = x0 - 26 + i * step
-            pen.poly([(ax, top + 30), (ax + step, top + 30),
-                      (ax + step - 6, top + 68), (ax + 6, top + 68)],
-                     aw_b + (235,), None)
-        pen.line([(x0 - 26, top + 30), (x1 + 26, top + 30)], PAL["ink"] + (200,), 2)
-        for i in range(n):
-            ax = x0 - 26 + i * step
-            pen.poly([(ax + 8, top + 68), (ax + step - 8, top + 68),
-                      (ax + step - 16, top + 80), (ax + 16, top + 80)],
-                     aw_b + (215,), None)
-        # letrero colgado del toldo
-        sx = cx - 30
-        pen.line([(sx + 8, top + 62), (sx + 8, top + 96)], PAL["ink_soft"] + (200,), 1.2)
-        pen.line([(sx + 52, top + 62), (sx + 52, top + 96)], PAL["ink_soft"] + (200,), 1.2)
-        pen.rect((sx, top + 96, sx + 60, top + 140), PAL["wood_l"] + (255,),
-                 PAL["ink"] + (235,), 1.8)
-        pen.ellipse((sx + 18, top + 108, sx + 42, top + 132), PAL["paper_l"] + (245,),
-                    PAL["ink_soft"] + (180,), 1.2)
-        pen.rect((sx + 22, top + 112, sx + 38, top + 128), sign + (200,))
+        for i in range(1, n):
+            t = i / n
+            xf = x0 - 34 + (w + 68) * t
+            xb = x0 + 2 + (w - 4) * t
+            pen.line([(xb, y_back + 4), (xf, y_front - 4)],
+                     mix(cloth, PAL["ink"], 0.30) + (105,), 1.1)
+        pen.line([(x0 + 2, y_back), (x0 - 34, y_front)],
+                 mix(cloth, PAL["paper_l"], 0.35) + (120,), 1.2)
+        # borde de vuelo: sombra del tejido
+        pen.poly([(x0 - 34, y_front), (x1 + 34, y_front),
+                  (x1 + 28, y_front + 9), (x0 - 28, y_front + 9)],
+                 mix(cloth, PAL["ink"], 0.42) + (250,), ink)
+        # faldón con pliegues: bajo ondulado, como tela de verdad
+        n2 = 10
+        for i in range(n2):
+            ax0 = x0 - 30 + (w + 60) * (i / n2)
+            ax1 = x0 - 30 + (w + 60) * ((i + 1) / n2)
+            sag = 3.0 + (1.4 if i % 2 else 0.0)
+            colv = cloth if i % 2 == 0 else mix(cloth, PAL["paper_l"], 0.16)
+            steps = 5
+            bot_pts = []
+            for s in range(steps + 1):
+                t = s / steps
+                bot_pts.append((ax0 + (ax1 - ax0) * t,
+                                y_front + 42 - sag * math.sin(math.pi * t)))
+            pen.poly([(ax0, y_front + 9), (ax1, y_front + 9)]
+                     + list(reversed(bot_pts)), colv + (245,), None)
+            hem = [(bx, by - 4) for bx, by in bot_pts]
+            pen.line(hem, mix(cloth, PAL["paper_l"], 0.58) + (190,), 1.6)
+        pen.line([(x0 - 30, y_front + 9), (x1 + 30, y_front + 9)], ink, 1.6)
 
-    puesto(232, 292, 620, PAL["indigo"], PAL["indigo_p"],
-           ["saco", "caja", "saco"], PAL["indigo"], PAL["indigo_p"])
-    puesto(640, 360, 636, PAL["vermillion"], PAL["gold"],
-           ["caja", "pescado", "pescado", "caja"], PAL["vermillion"],
-           PAL["vermillion_d"])
+        # farolillos colgados del alero
+        for lx in (x0 - 18, x1 + 18):
+            pen.line([(lx, y_front + 18), (lx, y_front + 41)],
+                     PAL["ink_soft"] + (210,), 1.2)
+            _market_lantern(pen, img, lx, y_front + 52, 40, 24)
+
+    puesto(232, 292, 620, PAL["indigo"], PAL["gold"],
+           ["saco", "caja", "saco"], PAL["indigo"],
+           (PAL["indigo"], (34, 26, 30), True, False))
+    puesto(640, 360, 636, PAL["vermillion"], PAL["cream"],
+           ["caja", "pescado", "pescado", "verdura"], PAL["vermillion_d"],
+           (PAL["vermillion"], (34, 26, 30), False, True))
     puesto(1046, 292, 620, (86, 62, 78), PAL["gold"],
-           ["vasija", "caja", "vasija"], (86, 62, 78), PAL["gold"])
-
-    # NPC en cada puesto (vendedor detrás del mostrador)
-    draw_person(pen, 232, 618, 150, PAL["indigo"], (34, 26, 30), hat=True)
-    draw_person(pen, 640, 634, 154, PAL["vermillion"], (34, 26, 30), bun=True)
-    draw_person(pen, 1046, 618, 150, (86, 62, 78), (34, 26, 30), hat=True)
-
-    # gente paseando por la plaza
-    draw_person(pen, 120, 700, 120, PAL["prussian"], (30, 24, 28), hat=True)
-    draw_person(pen, 420, 708, 110, PAL["rose"], (30, 24, 28), bun=True)
-    draw_person(pen, 860, 705, 115, (90, 110, 80), (30, 24, 28))
-    draw_person(pen, 1180, 700, 118, PAL["indigo_p"], (30, 24, 28), hat=True)
-
-    # telas colgadas por arriba cruzando la plaza
-    pen.line([(0, 120), (1280, 150)], PAL["ink_soft"] + (140,), 2)
-    pen.line([(0, 170), (1280, 130)], PAL["ink_soft"] + (120,), 1.6)
-    for i, col in enumerate([PAL["vermillion"], PAL["indigo"], PAL["gold"], PAL["rose"],
-                              PAL["prussian"], PAL["indigo_p"], PAL["vermillion_d"], PAL["gold"],
-                              PAL["rose"], PAL["indigo"]]):
-        x = 20 + i * 125
-        sag = 18 if i % 2 == 0 else 8
-        pen.poly([(x, 126 + (i % 3) * 6), (x + 110, 134 + ((i + 1) % 3) * 6),
-                  (x + 100, 210 + sag), (x + 10, 204 + sag)],
-                 col + (185,), PAL["ink_soft"] + (120,))
-    # banderines pequeños
-    for i, col in enumerate([PAL["vermillion"], PAL["gold"], PAL["indigo"]] * 8):
-        x = 10 + i * 52
-        pen.poly([(x, 148), (x + 22, 148), (x + 11, 176)], col + (210,), None)
-
-    # cajas, cestas y barriles sueltos
-    for bx, by, bw, bh in ((54, 652, 74, 62), (156, 668, 58, 46), (380, 660, 66, 54),
-                            (820, 658, 70, 56), (1090, 664, 60, 50)):
-        pen.rect((bx, by, bx + bw, by + bh), (146, 108, 70, 255), PAL["ink"] + (225,), 1.6)
-        pen.line([(bx, by), (bx + bw, by + bh)], PAL["ink_soft"] + (120,), 1.2)
-    for cx, cy in ((420, 692), (760, 694), (1160, 690)):
-        pen.ellipse((cx - 18, cy - 18, cx + 18, cy + 12), (126, 92, 58, 255), PAL["ink"] + (220,), 1.6)
-        pen.line([(cx - 18, cy - 4), (cx + 18, cy - 4)], PAL["wood_l"] + (140,), 1.4)
-    # sacos y verduras/cestas decorativas
-    for sx in (20, 320, 930, 1230):
-        pen.ellipse((sx, 680, sx + 34, 714), (196, 178, 140, 240), PAL["ink"] + (200,), 1.4)
-    pen.ellipse((1140, 664, 1216, 714), (126, 92, 58, 255), PAL["ink"] + (225,), 1.8)
-    pen.line([(1140, 684), (1216, 684)], PAL["wood_l"] + (140,), 1.6)
+           ["vasija", "caja", "vasija"], (86, 62, 78),
+           ((86, 62, 78), (34, 26, 30), True, False))
 
     cartouche(img, 30, 30, 34, 226, "MERCADO")
     img = washi(img, 1.0)
@@ -2085,10 +2429,30 @@ def obj_pause():
 # ---------------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------------
+def paper_tone(img):
+    """Tono de papel viejo: pasa toda la paleta a sepia y baja algo el contraste.
+
+    Se aplica al guardar para que el arte generado por este script tenga el
+    mismo acabado que el resto de fondos, objetos y sprites del juego.
+    """
+    im = img.convert("RGBA")
+    arr = np.asarray(im).astype(np.float32)
+    r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
+    arr[:, :, 0] = np.clip(0.393 * r + 0.769 * g + 0.189 * b, 0, 255)
+    arr[:, :, 1] = np.clip(0.349 * r + 0.686 * g + 0.168 * b, 0, 255)
+    arr[:, :, 2] = np.clip(0.272 * r + 0.534 * g + 0.131 * b, 0, 255)
+    out = Image.fromarray(arr.astype(np.uint8), "RGBA")
+    rgb = out.convert("RGB")
+    rgb = ImageEnhance.Contrast(rgb).enhance(0.92)
+    rgb = ImageEnhance.Brightness(rgb).enhance(0.96)
+    return Image.merge("RGBA", (*rgb.split(), out.split()[3]))
+
+
 def save(img, name, path=GFX):
     os.makedirs(path, exist_ok=True)
     if img.width > W or img.height > H:
         img = img.resize((img.width // S, img.height // S), Image.LANCZOS)
+    img = paper_tone(img)
     img.save(os.path.join(path, name))
     print("  ", name, img.size)
 
@@ -2143,14 +2507,14 @@ def main():
     print("Personaje...")
     frames = []
     for i, (bob, stride) in enumerate([(0, 0), (-2, 1), (0, 0), (-1, -1)]):
-        im = char_frame("left", bob, stride)
+        im = paper_tone(char_frame("left", bob, stride))
         fn = f"haru_walk_{i + 1}.png"
         im.save(os.path.join(CHR, fn))
         frames.append(f"characters/{fn}")
     manifest["characters"]["walk"] = frames
     idle = []
     for i, bob in enumerate([0, -1]):
-        im = char_frame("left", bob, 0)
+        im = paper_tone(char_frame("left", bob, 0))
         fn = f"haru_idle_{i + 1}.png"
         im.save(os.path.join(CHR, fn))
         idle.append(f"characters/{fn}")
